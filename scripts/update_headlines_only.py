@@ -48,12 +48,45 @@ SPECIAL_ALIASES = {
 }
 
 BLOCKED_SOURCES = {
-    "facebook.com",
-    "instagram.com",
+    "facebook",
+    "instagram",
+    "tiktok",
+    "youtube",
+    "x.com",
+    "twitter",
+    "telegram",
+    "reddit",
+    "whatsapp",
     "statista",
-    "city.fukuoka.lg.jp",
+    "city fukuoka",
     "futbol24",
     "dazn",
+    "yahoo news",
+    "google news",
+}
+
+# Google News may return a social post or a low-quality aggregator unless the
+# publisher is checked explicitly. This allowlist favors established national,
+# regional, public-service, and international news organizations. Unknown
+# publishers are rejected instead of being presented as trusted news.
+REPUTABLE_SOURCES = {
+    "reuters", "associated press", "ap news", "bbc", "npr", "pbs",
+    "al jazeera", "france 24", "dw", "deutsche welle", "afp",
+    "agence france presse", "efe", "voa", "rfi", "nhk", "kyodo",
+    "the guardian", "new york times", "washington post", "financial times",
+    "bloomberg", "the economist", "politico", "cnn", "abc news", "cbs news",
+    "nbc news", "sky news", "the telegraph", "le monde", "le figaro",
+    "der spiegel", "süddeutsche", "tagesschau", "el pais", "el mundo",
+    "globo", "folha", "estadao", "la nacion", "clarin", "el universal",
+    "milenio", "rtve", "the hindu", "indian express", "times of india",
+    "hindustan times", "ndtv", "news18", "deccan herald", "press trust of india",
+    "the japan times", "asahi shimbun", "yomiuri shimbun", "mainichi",
+    "channel news asia", "straits times", "south china morning post", "scmp",
+    "the national", "arab news", "times of israel", "haaretz", "anadolu agency",
+    "ukrinform", "kyiv independent", "tass", "interfax", "news24",
+    "daily maverick", "mail guardian", "the eastafrican", "dawn", "rappler",
+    "the daily star", "the irrawaddy", "allafrica", "wion", "the wire",
+    "scroll.in", "the quint", "tribune india",
 }
 
 BAD_TITLE_PATTERNS = [
@@ -140,7 +173,9 @@ def headline_is_usable(title: str, aliases: list[str]) -> bool:
     title_norm = normalize_text(title)
     source_norm = normalize_text(title.rsplit(" - ", 1)[-1] if " - " in title else "")
 
-    if any(blocked in title.lower() or blocked in source_norm for blocked in BLOCKED_SOURCES):
+    if any(normalize_text(blocked) in title_norm or normalize_text(blocked) in source_norm for blocked in BLOCKED_SOURCES):
+        return False
+    if not source_norm or not any(normalize_text(source) in source_norm for source in REPUTABLE_SOURCES):
         return False
     if any(re.search(pattern, title_norm, re.IGNORECASE) for pattern in BAD_TITLE_PATTERNS):
         return False

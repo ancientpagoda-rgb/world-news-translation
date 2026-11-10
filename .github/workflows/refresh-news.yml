@@ -42,7 +42,8 @@ jobs:
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null
-          python -m py_compile scripts/update_headlines_only.py scripts/translate_headlines_offline.py
+          python -m py_compile scripts/update_headlines_only.py scripts/translate_headlines_offline.py scripts/source-policy-smoke.py
+          python scripts/source-policy-smoke.py
           npm run check:syntax
           npm run check:data
       - name: Commit refreshed data

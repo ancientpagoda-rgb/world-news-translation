@@ -26,3 +26,7 @@ Run python -m http.server 8000, then open http://localhost:8000.
 Run npm run check:syntax and npm run check:data.
 
 The refresh workflow uses the source project's headline selection rules and offline NLLB/Argos translation stages. Translation output is labeled as unavailable rather than silently inventing text when a source cannot be translated.
+
+## Source policy
+
+Headlines are accepted only when the publisher suffix matches the curated reputable-source allowlist in `scripts/update_headlines_only.py`. Social platforms, aggregators, and unknown publishers are rejected. When no approved source is available, the country remains in the dataset with no headline instead of showing an unverified item.
