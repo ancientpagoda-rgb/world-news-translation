@@ -27,8 +27,8 @@ function renderWordTrack(text, language = '') {
   const value = String(text || '');
   const hasHan = /\p{Script=Han}/u.test(value);
   const tokenPattern = hasHan
-    ? /\p{Script=Han}|(?:(?!\p{Script=Han})[\p{L}\p{M}\p{N}])+(?:[’'-](?:(?!\p{Script=Han})[\p{L}\p{M}\p{N}])+)*|[^\p{L}\p{M}\p{N}]+/gu
-    : /[\p{L}\p{M}\p{N}]+(?:[’'-][\p{L}\p{M}\p{N}]+)*|[^\p{L}\p{M}\p{N}]+/gu;
+    ? /\p{Script=Han}|\p{N}+(?:[.,]\p{N}+)*|(?:(?!\p{Script=Han})[\p{L}\p{M}\p{N}])+(?:[’'-](?:(?!\p{Script=Han})[\p{L}\p{M}\p{N}])+)*|[^\p{L}\p{M}\p{N}]+/gu
+    : /\p{N}+(?:[.,]\p{N}+)*|[\p{L}\p{M}\p{N}]+(?:[’'-][\p{L}\p{M}\p{N}]+)*|[^\p{L}\p{M}\p{N}]+/gu;
   const parts = value.match(tokenPattern) || [];
   let wordIndex = 0;
   return parts.map(part => {
