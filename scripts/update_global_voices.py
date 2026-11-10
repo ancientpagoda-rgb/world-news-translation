@@ -16,7 +16,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "world-news.json"
-FEED_URL = "https://globalvoices.org/feed/?cat=-28"
+FEED_URLS = (
+    "https://globalvoices.org/feed/?cat=-28",
+    "https://globalvoices.org/-/world/south-asia/india/feed/",
+)
 ATTRIBUTION_URL = "https://globalvoices.org/about/global-voices-attribution-policy/"
 
 COUNTRY_ALIASES = {
@@ -80,6 +83,10 @@ def clean_article(encoded):
     return "\n\n".join(paragraphs)
 
 
+def summarize_article(text):
+    return "\n\n".join(text.split("\n\n")[:2])
+
+
 def parse_date(value):
     if not value:
         return None
@@ -92,8 +99,8 @@ def parse_date(value):
         return None
 
 
-def fetch_feed():
-    request = urllib.request.Request(FEED_URL, headers={"User-Agent": "WorldNewsTranslation/1.0"})
+def fetch_feed(url):
+    request = urllib.request.Request(url, headers={"User-Agent": "WorldNewsTranslation/1.0"})
     with urllib.request.urlopen(request, timeout=30) as response:
         return ET.fromstring(response.read())
 
@@ -134,6 +141,7 @@ def main():
             "englishHeadline": None,
             "language": "en",
             "articleText": None,
+            "articleSummary": None,
             "articleAuthor": None,
             "articleSource": None,
             "articleLicense": None,
@@ -141,41 +149,44 @@ def main():
             "articleAttribution": None,
         })
 
-    root = fetch_feed()
-    channel = root.find("channel")
-    if channel is None:
-        raise SystemExit("Global Voices feed did not contain a channel")
-
     accepted = 0
-    for item in channel.findall("item"):
-        title = (item.findtext("title") or "").strip()
-        link = (item.findtext("link") or "").strip()
-        creator = (item.findtext("{http://purl.org/dc/elements/1.1/}creator") or "Global Voices").strip()
-        published = parse_date(item.findtext("pubDate"))
-        encoded = item.findtext("{http://purl.org/rss/1.0/modules/content/}encoded") or ""
-        article_text = clean_article(encoded)
-        if not title or not link or not article_text:
-            continue
+    for feed_url in FEED_URLS:
+        root = fetch_feed(feed_url)
+        channel = root.find("channel")
+        if channel is None:
+            raise SystemExit(f"Global Voices feed did not contain a channel: {feed_url}")
 
-        categories = item_categories(item)
-        for index in matching_rows(rows, categories, title):
-            row = rows[index]
-            if row.get("headlinePublishedAt") and (row["headlinePublishedAt"] >= (published or "")):
+        for item in channel.findall("item"):
+            title = (item.findtext("title") or "").strip()
+            link = (item.findtext("link") or "").strip()
+            creator = (item.findtext("{http://purl.org/dc/elements/1.1/}creator") or "Global Voices").strip()
+            published = parse_date(item.findtext("pubDate"))
+            encoded = item.findtext("{http://purl.org/rss/1.0/modules/content/}encoded") or ""
+            article_text = clean_article(encoded)
+            article_summary = summarize_article(article_text)
+            if not title or not link or not article_text or not article_summary:
                 continue
-            row.update({
-                "headline": title,
-                "headlineUrl": link,
-                "headlinePublishedAt": published,
-                "englishHeadline": title,
-                "language": "en",
-                "articleText": article_text,
-                "articleAuthor": creator,
-                "articleSource": "Global Voices",
-                "articleLicense": "Creative Commons Attribution (CC BY)",
-                "articleLicenseUrl": ATTRIBUTION_URL,
-                "articleAttribution": f"{creator} / Global Voices",
-            })
-            accepted += 1
+
+            categories = item_categories(item)
+            for index in matching_rows(rows, categories, title):
+                row = rows[index]
+                if row.get("headlinePublishedAt") and (row["headlinePublishedAt"] >= (published or "")):
+                    continue
+                row.update({
+                    "headline": title,
+                    "headlineUrl": link,
+                    "headlinePublishedAt": published,
+                    "englishHeadline": title,
+                    "language": "en",
+                    "articleText": article_text,
+                    "articleSummary": article_summary,
+                    "articleAuthor": creator,
+                    "articleSource": "Global Voices",
+                    "articleLicense": "Creative Commons Attribution (CC BY)",
+                    "articleLicenseUrl": ATTRIBUTION_URL,
+                    "articleAttribution": f"{creator} / Global Voices",
+                })
+                accepted += 1
 
     DATA_PATH.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     articles = sum(1 for row in rows if row.get("articleText"))

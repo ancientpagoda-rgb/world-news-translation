@@ -47,7 +47,7 @@ function render() {
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + escapeHtml(original) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
       '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + escapeHtml(row.englishHeadline || 'English translation unavailable') + '</p></div>' +
-      (row.articleText ? '<details class="article-details" open><summary>Full article</summary><div class="article-body">' + renderArticle(row.articleText) + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></details>' : '') +
+      (row.articleSummary ? '<section class="article-details"><p class="label">Summary</p><div class="article-body">' + renderArticle(row.articleSummary) + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></section>' : '') +
       source + '</article>';
   }).join('');
 

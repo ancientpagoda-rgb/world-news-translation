@@ -2,7 +2,7 @@ import fs from 'node:fs';
 
 const path = new URL('../data/world-news.json', import.meta.url);
 const rows = JSON.parse(fs.readFileSync(path, 'utf8'));
-const required = ['iso2', 'name', 'headline', 'englishHeadline', 'articleText', 'articleSource', 'articleLicenseUrl'];
+const required = ['iso2', 'name', 'headline', 'englishHeadline', 'articleText', 'articleSummary', 'articleSource', 'articleLicenseUrl'];
 if (!Array.isArray(rows) || rows.length < 200) {
   throw new Error('expected at least 200 country rows, found ' + rows.length);
 }
