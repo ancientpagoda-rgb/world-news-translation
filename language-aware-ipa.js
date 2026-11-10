@@ -272,9 +272,9 @@
     for (const part of segments) {
       if (!part.isWordLike || !/\p{Script=Han}/u.test(part.segment)) { output.push(part.segment); continue; }
       const py = String(pinyin(part.segment, { toneType: "num", nonZh: "consecutive" }));
-      output.push(py.trim().split(/\s+/).filter(Boolean).map(pinyinSyllableIpa).join(""));
+      output.push(py.trim().split(/\s+/).filter(Boolean).map(pinyinSyllableIpa).join(" "));
     }
-    return output.join("");
+    return output.join(" ").replace(/\s+([,.;:!?，。！？；：、])/gu, "$1");
   }
 
   async function directIpa(text, language) {
