@@ -18,7 +18,7 @@ function formatDate(value) {
 }
 
 function matches(row) {
-  const haystack = [row.name, row.iso2, row.nativeLanguage, row.language, row.headline, row.englishHeadline, row.description]
+  const haystack = [row.name, row.iso2, row.nativeLanguage, row.language, row.headline, row.englishHeadline]
     .filter(Boolean).join(' ').toLowerCase();
   return (state.language === 'all' || row.language === state.language) && haystack.includes(state.query);
 }
@@ -43,7 +43,7 @@ function render() {
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + escapeHtml(original) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
       '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + escapeHtml(row.englishHeadline || 'English translation unavailable') + '</p></div>' +
-      (row.description ? '<p class="description">' + escapeHtml(row.description) + '</p>' : '') + source + '</article>';
+      source + '</article>';
   }).join('');
 
   rows.forEach((row, index) => {
