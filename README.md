@@ -11,6 +11,7 @@ Licensed-text companion to World (https://github.com/ancientpagoda-rgb/world). I
 - Language-aware IPA phonetics for source headlines and summaries
 - CMUdict-backed English pronunciation lookup with a rule-based fallback
 - Position-matched word colors across original text, IPA, and translations
+- Explicit phrase alignment for translations where one source word expands into multiple English words
 - A searchable, filterable text-only browser
 - GitHub Actions refreshes every six hours
 

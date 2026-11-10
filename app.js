@@ -23,7 +23,7 @@ function renderArticle(text) {
 
 const WORD_COLORS = ['52 211 153', '248 113 113', '250 204 21', '96 165 250', '192 132 252', '34 211 238', '251 146 60'];
 
-function renderWordTrack(text, language = '') {
+function renderWordTrack(text, language = '', colorIndices = null) {
   const value = String(text || '');
   const hasHan = /\p{Script=Han}/u.test(value);
   const tokenPattern = hasHan
@@ -33,8 +33,9 @@ function renderWordTrack(text, language = '') {
   let wordIndex = 0;
   return parts.map(part => {
     if (!/[\p{L}\p{M}\p{N}]/u.test(part)) return escapeHtml(part);
-    const color = WORD_COLORS[wordIndex % WORD_COLORS.length];
-    const html = '<span class="word-token" data-word-index="' + wordIndex + '" style="--word-color: ' + color + '">' + escapeHtml(part) + '</span>';
+    const mappedIndex = Array.isArray(colorIndices) && Number.isInteger(colorIndices[wordIndex]) ? colorIndices[wordIndex] : wordIndex;
+    const color = WORD_COLORS[((mappedIndex % WORD_COLORS.length) + WORD_COLORS.length) % WORD_COLORS.length];
+    const html = '<span class="word-token" data-word-index="' + mappedIndex + '" style="--word-color: ' + color + '">' + escapeHtml(part) + '</span>';
     wordIndex += 1;
     return html;
   }).join('');
@@ -70,7 +71,7 @@ function render() {
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
-      '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderWordTrack(row.englishHeadline, 'en') : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
+      '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderWordTrack(row.englishHeadline, 'en', row.headlineTranslationWordIndices) : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
       (row.articleSummary ? '<section class="article-details"><p class="label">Original-language summary</p><div class="article-body">' + (row.articleSummaryOriginal ? renderColoredArticle(row.articleSummaryOriginal, row.language) : '<p>Native-language summary unavailable</p>') + '</div><p class="label">IPA phonetics</p><p class="headline phonetics summary-phonetics" data-summary-phonetics>' + escapeHtml(row.articleSummaryOriginal ? 'Generating phonetics…' : '—') + '</p><p class="label">English translation</p><div class="article-body">' + renderColoredArticle(row.articleSummary, 'en') + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · ' + escapeHtml(row.articleSummaryTranslationNote || 'Source summary') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></section>' : '') +
       source + '</article>';
   }).join('');
