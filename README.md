@@ -8,7 +8,8 @@ Licensed-text companion to World (https://github.com/ancientpagoda-rgb/world). I
 - Country-source headline in its original language, IPA phonetics, and English translation
 - Concise Global Voices summary in the country language, IPA phonetics, English translation, author, and licensed source URL
 - Offline English headline translations
-- Language-aware IPA phonetics for source headlines
+- Language-aware IPA phonetics for source headlines and summaries
+- CMUdict-backed English pronunciation lookup with a rule-based fallback
 - A searchable, filterable text-only browser
 - GitHub Actions refreshes every six hours
 
@@ -31,4 +32,4 @@ The refresh workflow preserves the country-source headline and language fields s
 
 ## Source and license
 
-Global Voices content is reused under its Creative Commons Attribution policy. Each displayed summary includes the author, original source link, and attribution-policy link. Images, video, and audio are intentionally excluded because they may have separate rights.
+Global Voices content is reused under its Creative Commons Attribution policy. Each displayed summary includes the author, original source link, and attribution-policy link. Images, video, and audio are intentionally excluded because they may have separate rights. English IPA uses a vendored subset of CMUdict under its BSD-3-Clause license.
