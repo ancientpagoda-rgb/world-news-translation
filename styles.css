@@ -24,6 +24,8 @@ h2 { margin: 0; font-size: 1.25rem; }
 .phonetics { color: #a8d8ff; letter-spacing: .02em; font-family: "Noto Sans", "Noto Sans Devanagari", "Noto Sans Arabic", "Noto Sans JP", "Noto Sans KR", "Noto Sans SC", sans-serif; }
 .description { color: #aebbd1; line-height: 1.55; }
 .article-details { margin-top: 1.25rem; border-top: 1px solid #33476c; padding-top: 1rem; }
+.article-headline { margin: 0 0 .45rem; font-size: 1.05rem; line-height: 1.4; color: #dbe7ff; }
+.summary-note { margin: 0 0 .9rem; color: #8fa6cf; font-size: .82rem; line-height: 1.45; }
 .article-details summary { cursor: pointer; color: #82b7ff; font-weight: 600; }
 .article-body { color: #d6deed; line-height: 1.7; }
 .article-body p { margin: 1rem 0; }

@@ -12,6 +12,7 @@ Licensed-text companion to World (https://github.com/ancientpagoda-rgb/world). I
 - CMUdict-backed English pronunciation lookup with a rule-based fallback
 - Position-matched word colors across original text, IPA, and translations
 - Explicit phrase alignment for translations where one source word expands into multiple English words
+- Global Voices summaries are visibly labeled as separate licensed articles, with both headline and article links shown
 - A searchable, filterable text-only browser
 - GitHub Actions refreshes every six hours
 
