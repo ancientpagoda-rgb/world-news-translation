@@ -19,4 +19,6 @@ if not india:
     raise SystemExit('India has no Global Voices article')
 if india.get('language') != 'hi' or not re.search(r'[\u0900-\u097f]', india.get('headline') or ''):
     raise SystemExit('India original headline is not preserved in Hindi')
-print(f'Global Voices checks passed: {len(article_rows)} concise licensed summaries; India Hindi headline present')
+if india.get('englishHeadline') in (None, '', 'English translation unavailable'):
+    raise SystemExit('India English headline translation is unavailable')
+print(f'Global Voices checks passed: {len(article_rows)} concise licensed summaries; India Hindi headline and English translation present')
