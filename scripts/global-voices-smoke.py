@@ -9,7 +9,7 @@ article_rows = [row for row in rows if row.get('articleText')]
 if not article_rows:
     raise SystemExit('no Global Voices articles found')
 for row in article_rows:
-    for field in ('articleText', 'articleSummary', 'articleHeadline', 'articleUrl', 'articleAuthor', 'articleSource', 'articleLicense', 'articleLicenseUrl'):
+    for field in ('articleText', 'articleSummary', 'articleSummaryOriginal', 'articleSummaryTranslationNote', 'articleHeadline', 'articleUrl', 'articleAuthor', 'articleSource', 'articleLicense', 'articleLicenseUrl'):
         if not row.get(field):
             raise SystemExit(f"{row.get('name')} missing {field}")
     if row['articleSource'] != 'Global Voices':

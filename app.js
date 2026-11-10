@@ -48,7 +48,7 @@ function render() {
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + escapeHtml(original) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
       '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + escapeHtml(row.englishHeadline || 'English translation unavailable') + '</p></div>' +
-      (row.articleSummary ? '<section class="article-details"><p class="label">Summary</p><div class="article-body">' + renderArticle(row.articleSummary) + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></section>' : '') +
+      (row.articleSummary ? '<section class="article-details"><p class="label">Original-language summary</p><div class="article-body">' + renderArticle(row.articleSummaryOriginal || 'Native-language summary unavailable') + '</div><p class="label">IPA phonetics</p><p class="headline phonetics summary-phonetics" data-summary-phonetics>' + escapeHtml(row.articleSummaryOriginal ? 'Generating phonetics…' : '—') + '</p><p class="label">English translation</p><div class="article-body">' + renderArticle(row.articleSummary) + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · ' + escapeHtml(row.articleSummaryTranslationNote || 'Source summary') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></section>' : '') +
       source + '</article>';
   }).join('');
 
@@ -67,6 +67,21 @@ function render() {
         const target = card && card.querySelector('[data-phonetics]');
         if (target) target.textContent = row.headline;
       });
+    if (row.articleSummaryOriginal) {
+      Promise.resolve(window.toIpaDisplay ? window.toIpaDisplay(row.articleSummaryOriginal, row.language || '') : row.articleSummaryOriginal)
+        .then(value => {
+          if (version !== renderVersion) return;
+          const card = list.querySelector('[data-row-index="' + index + '"]');
+          const target = card && card.querySelector('[data-summary-phonetics]');
+          if (target) target.textContent = value || row.articleSummaryOriginal;
+        })
+        .catch(error => {
+          console.warn('Summary phonetic rendering failed:', error);
+          const card = list.querySelector('[data-row-index="' + index + '"]');
+          const target = card && card.querySelector('[data-summary-phonetics]');
+          if (target) target.textContent = row.articleSummaryOriginal;
+        });
+    }
   });
 }
 

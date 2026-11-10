@@ -77,14 +77,21 @@ def clean_article(encoded):
     paragraphs = []
     for paragraph in re.split(r"\n+", text):
         paragraph = re.sub(r"\s+", " ", paragraph).strip()
-        if not paragraph or paragraph.lower().startswith("originally published on"):
+        lower = paragraph.casefold()
+        media_credit = any(marker in lower for marker in (
+            "image via", "art by", "photo by", "photo from", "screenshot from",
+            "illustration by", "cc by", "fair use", "used with permission",
+            "canva pro", "wikimedia commons",
+        ))
+        if not paragraph or paragraph.lower().startswith("originally published on") or media_credit:
             continue
         paragraphs.append(paragraph)
     return "\n\n".join(paragraphs)
 
 
 def summarize_article(text):
-    return "\n\n".join(text.split("\n\n")[:2])
+    # Keep the display concise and translate a stable, substantive paragraph.
+    return text.split("\n\n", 1)[0].strip()
 
 
 def parse_date(value):
@@ -143,6 +150,8 @@ def main():
             "articlePublishedAt": None,
             "articleText": None,
             "articleSummary": None,
+            "articleSummaryOriginal": None,
+            "articleSummaryTranslationNote": None,
             "articleAuthor": None,
             "articleSource": None,
             "articleLicense": None,

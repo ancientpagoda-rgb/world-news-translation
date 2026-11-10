@@ -21,12 +21,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh full licensed articles
+      - name: Refresh licensed articles
         run: python scripts/update_global_voices.py
+      - name: Apply native-language summary translations
+        run: python scripts/apply_summary_translations.py
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null
-          python -m py_compile scripts/update_global_voices.py scripts/global-voices-smoke.py
+          python -m py_compile scripts/update_global_voices.py scripts/apply_summary_translations.py scripts/global-voices-smoke.py
           python scripts/global-voices-smoke.py
           npm run check:syntax
           npm run check:data
@@ -34,4 +36,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "data: refresh Global Voices articles"
-          file_pattern: data/world-news.json
+          file_pattern: data/world-news.json scripts/summary-translations.json
