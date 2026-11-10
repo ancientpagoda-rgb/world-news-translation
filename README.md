@@ -7,6 +7,7 @@ Text-only companion to World (https://github.com/ancientpagoda-rgb/world). It ke
 - Country identity and source-language metadata
 - Current headline text and source URL
 - Offline English headline translations
+- Language-aware IPA phonetics for source headlines
 - A searchable, filterable text-only browser
 - GitHub Actions refreshes every six hours
 
