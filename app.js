@@ -21,6 +21,24 @@ function renderArticle(text) {
   return String(text || '').split(/\n{2,}/).filter(Boolean).map(paragraph => '<p>' + escapeHtml(paragraph) + '</p>').join('');
 }
 
+const WORD_COLORS = ['52 211 153', '248 113 113', '250 204 21', '96 165 250', '192 132 252', '34 211 238', '251 146 60'];
+
+function renderWordTrack(text) {
+  const parts = String(text || '').match(/[\p{L}\p{M}\p{N}]+(?:[’'-][\p{L}\p{M}\p{N}]+)*|[^\p{L}\p{M}\p{N}]+/gu) || [];
+  let wordIndex = 0;
+  return parts.map(part => {
+    if (!/[\p{L}\p{M}\p{N}]/u.test(part)) return escapeHtml(part);
+    const color = WORD_COLORS[wordIndex % WORD_COLORS.length];
+    const html = '<span class="word-token" data-word-index="' + wordIndex + '" style="--word-color: ' + color + '">' + escapeHtml(part) + '</span>';
+    wordIndex += 1;
+    return html;
+  }).join('');
+}
+
+function renderColoredArticle(text) {
+  return String(text || '').split(/\n{2,}/).filter(Boolean).map(paragraph => '<p>' + renderWordTrack(paragraph) + '</p>').join('');
+}
+
 function matches(row) {
   const haystack = [row.name, row.iso2, row.nativeLanguage, row.language, row.headline, row.englishHeadline, row.articleText]
     .filter(Boolean).join(' ').toLowerCase();
@@ -45,10 +63,10 @@ function render() {
     return '<article class="news-card" data-row-index="' + index + '">' +
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">' + escapeHtml(row.iso3 || row.iso2) + ' · ' + escapeHtml(row.language || row.nativeLanguage || 'Unknown language') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
-      '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + escapeHtml(original) + '</p></div>' +
+      '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original) : escapeHtml(original)) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
-      '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + escapeHtml(row.englishHeadline || 'English translation unavailable') + '</p></div>' +
-      (row.articleSummary ? '<section class="article-details"><p class="label">Original-language summary</p><div class="article-body">' + renderArticle(row.articleSummaryOriginal || 'Native-language summary unavailable') + '</div><p class="label">IPA phonetics</p><p class="headline phonetics summary-phonetics" data-summary-phonetics>' + escapeHtml(row.articleSummaryOriginal ? 'Generating phonetics…' : '—') + '</p><p class="label">English translation</p><div class="article-body">' + renderArticle(row.articleSummary) + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · ' + escapeHtml(row.articleSummaryTranslationNote || 'Source summary') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></section>' : '') +
+      '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderWordTrack(row.englishHeadline) : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
+      (row.articleSummary ? '<section class="article-details"><p class="label">Original-language summary</p><div class="article-body">' + (row.articleSummaryOriginal ? renderColoredArticle(row.articleSummaryOriginal) : '<p>Native-language summary unavailable</p>') + '</div><p class="label">IPA phonetics</p><p class="headline phonetics summary-phonetics" data-summary-phonetics>' + escapeHtml(row.articleSummaryOriginal ? 'Generating phonetics…' : '—') + '</p><p class="label">English translation</p><div class="article-body">' + renderColoredArticle(row.articleSummary) + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · ' + escapeHtml(row.articleSummaryTranslationNote || 'Source summary') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></section>' : '') +
       source + '</article>';
   }).join('');
 
@@ -59,13 +77,13 @@ function render() {
         if (version !== renderVersion) return;
         const card = list.querySelector('[data-row-index="' + index + '"]');
         const target = card && card.querySelector('[data-phonetics]');
-        if (target) target.textContent = value || row.headline;
+        if (target) target.innerHTML = renderWordTrack(value || row.headline);
       })
       .catch(error => {
         console.warn('Phonetic rendering failed:', error);
         const card = list.querySelector('[data-row-index="' + index + '"]');
         const target = card && card.querySelector('[data-phonetics]');
-        if (target) target.textContent = row.headline;
+        if (target) target.innerHTML = renderWordTrack(row.headline);
       });
     if (row.articleSummaryOriginal) {
       Promise.resolve(window.toIpaDisplay ? window.toIpaDisplay(row.articleSummaryOriginal, row.language || '') : row.articleSummaryOriginal)
@@ -73,13 +91,13 @@ function render() {
           if (version !== renderVersion) return;
           const card = list.querySelector('[data-row-index="' + index + '"]');
           const target = card && card.querySelector('[data-summary-phonetics]');
-          if (target) target.textContent = value || row.articleSummaryOriginal;
+          if (target) target.innerHTML = renderWordTrack(value || row.articleSummaryOriginal);
         })
         .catch(error => {
           console.warn('Summary phonetic rendering failed:', error);
           const card = list.querySelector('[data-row-index="' + index + '"]');
           const target = card && card.querySelector('[data-summary-phonetics]');
-          if (target) target.textContent = row.articleSummaryOriginal;
+          if (target) target.innerHTML = renderWordTrack(row.articleSummaryOriginal);
         });
     }
   });

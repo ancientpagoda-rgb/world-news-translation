@@ -10,6 +10,7 @@ Licensed-text companion to World (https://github.com/ancientpagoda-rgb/world). I
 - Offline English headline translations
 - Language-aware IPA phonetics for source headlines and summaries
 - CMUdict-backed English pronunciation lookup with a rule-based fallback
+- Position-matched word colors across original text, IPA, and translations
 - A searchable, filterable text-only browser
 - GitHub Actions refreshes every six hours
 
