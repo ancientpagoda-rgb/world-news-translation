@@ -135,11 +135,12 @@ def main():
 
     for row in rows:
         row.update({
-            "headline": None,
-            "headlineUrl": None,
-            "headlinePublishedAt": None,
-            "englishHeadline": None,
-            "language": "en",
+            # Keep the separately sourced headline, language, IPA input, and
+            # offline English translation. Global Voices supplies the licensed
+            # article summary, not a replacement for the country's headline.
+            "articleHeadline": None,
+            "articleUrl": None,
+            "articlePublishedAt": None,
             "articleText": None,
             "articleSummary": None,
             "articleAuthor": None,
@@ -170,14 +171,12 @@ def main():
             categories = item_categories(item)
             for index in matching_rows(rows, categories, title):
                 row = rows[index]
-                if row.get("headlinePublishedAt") and (row["headlinePublishedAt"] >= (published or "")):
+                if row.get("articlePublishedAt") and (row["articlePublishedAt"] >= (published or "")):
                     continue
                 row.update({
-                    "headline": title,
-                    "headlineUrl": link,
-                    "headlinePublishedAt": published,
-                    "englishHeadline": title,
-                    "language": "en",
+                    "articleHeadline": title,
+                    "articleUrl": link,
+                    "articlePublishedAt": published,
                     "articleText": article_text,
                     "articleSummary": article_summary,
                     "articleAuthor": creator,

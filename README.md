@@ -5,7 +5,8 @@ Licensed-text companion to World (https://github.com/ancientpagoda-rgb/world). I
 ## Included
 
 - Country identity and source-language metadata
-- Current Global Voices headline text, concise article summary, author, and source URL
+- Country-source headline in its original language, IPA phonetics, and English translation
+- Concise Global Voices article summary, author, and licensed source URL
 - Offline English headline translations
 - Language-aware IPA phonetics for source headlines
 - A searchable, filterable text-only browser
@@ -26,7 +27,7 @@ Run python -m http.server 8000, then open http://localhost:8000.
 
 Run npm run check:syntax and npm run check:data.
 
-The refresh workflow reads Global Voices' general feed plus the India country feed, strips images and embedded media, stores the licensed article text, and derives a one- or two-paragraph summary for display. It records the author, source link, and reuse-policy link.
+The refresh workflow preserves the country-source headline and language fields separately from Global Voices. Global Voices supplies the licensed article summary, including a dedicated India country feed, while images and embedded media are stripped. The summary records its author, source link, and reuse-policy link.
 
 ## Source and license
 

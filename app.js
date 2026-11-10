@@ -36,8 +36,9 @@ function render() {
     return;
   }
   list.innerHTML = rows.map((row, index) => {
-    const source = /^https?:\/\//i.test(row.headlineUrl || '')
-      ? '<a class="source" href="' + escapeHtml(row.headlineUrl) + '" target="_blank" rel="noopener noreferrer nofollow">Open source</a>' : '';
+    const sourceUrl = row.articleUrl || row.headlineUrl || '';
+    const source = /^https?:\/\//i.test(sourceUrl)
+      ? '<a class="source" href="' + escapeHtml(sourceUrl) + '" target="_blank" rel="noopener noreferrer nofollow">Open source</a>' : '';
     const date = formatDate(row.headlinePublishedAt);
     const original = row.headline || 'No headline available.';
     const phonetics = row.headline ? 'Generating phonetics…' : '—';
