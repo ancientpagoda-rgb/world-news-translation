@@ -17,8 +17,12 @@ function formatDate(value) {
   return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(date);
 }
 
+function renderArticle(text) {
+  return String(text || '').split(/\n{2,}/).filter(Boolean).map(paragraph => '<p>' + escapeHtml(paragraph) + '</p>').join('');
+}
+
 function matches(row) {
-  const haystack = [row.name, row.iso2, row.nativeLanguage, row.language, row.headline, row.englishHeadline]
+  const haystack = [row.name, row.iso2, row.nativeLanguage, row.language, row.headline, row.englishHeadline, row.articleText]
     .filter(Boolean).join(' ').toLowerCase();
   return (state.language === 'all' || row.language === state.language) && haystack.includes(state.query);
 }
@@ -43,6 +47,7 @@ function render() {
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + escapeHtml(original) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
       '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + escapeHtml(row.englishHeadline || 'English translation unavailable') + '</p></div>' +
+      (row.articleText ? '<details class="article-details" open><summary>Full article</summary><div class="article-body">' + renderArticle(row.articleText) + '</div><p class="attribution">' + escapeHtml(row.articleAttribution || row.articleSource || '') + ' · <a href="' + escapeHtml(row.articleLicenseUrl || '') + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(row.articleLicense || 'Reuse policy') + '</a></p></details>' : '') +
       source + '</article>';
   }).join('');
 

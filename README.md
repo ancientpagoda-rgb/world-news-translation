@@ -1,11 +1,11 @@
 # World News Translation
 
-Text-only companion to World (https://github.com/ancientpagoda-rgb/world). It keeps the country news and translation pipeline while intentionally excluding the globe, imagery, weather layers, geometry, star data, and other visualizations.
+Licensed-text companion to World (https://github.com/ancientpagoda-rgb/world). It uses Global Voices' CC-BY story feed and keeps the country articles, attribution, translations, and source links while excluding the globe, imagery, weather layers, geometry, star data, and other visualizations.
 
 ## Included
 
 - Country identity and source-language metadata
-- Current headline text and source URL
+- Current Global Voices headline text, full article text, author, and source URL
 - Offline English headline translations
 - Language-aware IPA phonetics for source headlines
 - A searchable, filterable text-only browser
@@ -26,8 +26,8 @@ Run python -m http.server 8000, then open http://localhost:8000.
 
 Run npm run check:syntax and npm run check:data.
 
-The refresh workflow uses the source project's headline selection rules and offline NLLB/Argos translation stages. Translation output is labeled as unavailable rather than silently inventing text when a source cannot be translated.
+The refresh workflow reads Global Voices' full-story RSS feed, strips images and embedded media, stores text-only article bodies, and records the author, source link, and reuse-policy link. Global Voices permits reuse and translation under its attribution policy unless an article says otherwise.
 
-## Source policy
+## Source and license
 
-Headlines are accepted only when the publisher suffix matches the curated reputable-source allowlist in `scripts/update_headlines_only.py`. Social platforms, aggregators, and unknown publishers are rejected. When no approved source is available, the country remains in the dataset with no headline instead of showing an unverified item.
+Global Voices content is reused under its Creative Commons Attribution policy. Each article includes the author, original source link, and attribution-policy link. Images, video, and audio are intentionally excluded because they may have separate rights.
