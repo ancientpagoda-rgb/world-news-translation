@@ -21,4 +21,7 @@ if india.get('language') != 'hi' or not re.search(r'[\u0900-\u097f]', india.get(
     raise SystemExit('India original headline is not preserved in Hindi')
 if india.get('englishHeadline') in (None, '', 'English translation unavailable'):
     raise SystemExit('India English headline translation is unavailable')
-print(f'Global Voices checks passed: {len(article_rows)} concise licensed summaries; India Hindi headline and English translation present')
+china = next((row for row in article_rows if row.get('name') == 'China'), None)
+if not china or not re.search(r'[\u4e00-\u9fff]', china.get('headline') or '') or china.get('englishHeadline') in (None, '', 'English translation unavailable'):
+    raise SystemExit('China Chinese headline or English translation is unavailable')
+print(f'Global Voices checks passed: {len(article_rows)} concise licensed summaries; India and China headline translations present')
