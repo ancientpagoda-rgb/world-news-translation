@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Country-by-country news headlines with English translations." />
+    <title>World News Translation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <p class="eyebrow">Ancient Pagoda Labs</p>
+      <h1>World News Translation</h1>
+      <p class="lede">Country-by-country headlines, original text, English translations, and source links.</p>
+    </header>
+    <main>
+      <section class="controls" aria-label="News filters">
+        <label>Search countries or headlines<input id="search" type="search" placeholder="Try Japan, climate, election..." autocomplete="off" /></label>
+        <label>Source language<select id="language"><option value="all">All languages</option></select></label>
+        <p id="status" class="status" aria-live="polite">Loading...</p>
+      </section>
+      <section id="news-list" class="news-list" aria-live="polite"></section>
+    </main>
+    <footer class="site-footer"><a href="https://github.com/ancientpagoda-rgb/world-news-translation">View the source on GitHub</a></footer>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
