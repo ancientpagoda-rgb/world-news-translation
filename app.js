@@ -1,4 +1,4 @@
-const DATA_URL = './data/world-news.json';
+const DATA_URL = './data/world-news.json?rev=' + Date.now();
 const state = { rows: [], query: '', language: 'all', showAllCountries: false };
 const list = document.querySelector('#news-list');
 const status = document.querySelector('#status');
