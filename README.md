@@ -1,20 +1,16 @@
 # World News Translation
 
-Licensed-text companion to World (https://github.com/ancientpagoda-rgb/world). It uses Global Voices' CC-BY story feeds and shows a concise one- or two-paragraph summary with attribution, translation, and source links while excluding the globe, imagery, weather layers, geometry, star data, and other visualizations.
+Headline-focused companion to World (https://github.com/ancientpagoda-rgb/world). It shows country headlines, original text, pronunciation, English translations, and source links while excluding the globe, imagery, weather layers, geometry, star data, and other visualizations.
 
-## Included
+## Includes
 
-- Country identity and source-language metadata
-- Country-source headline in its original language, IPA phonetics, and English translation
-- Concise Global Voices summary in the country language, IPA phonetics, English translation, author, and licensed source URL
-- Offline English headline translations
-- Language-aware IPA phonetics for source headlines and summaries
-- CMUdict-backed English pronunciation lookup with a rule-based fallback
+- Country-source headline in its original language
+- IPA pronunciation for the headline
+- English headline translation when available
 - Position-matched word colors across original text, IPA, and translations
-- Explicit phrase alignment for translations where one source word expands into multiple English words
-- Global Voices summaries are visibly labeled as separate licensed articles, with both headline and article links shown
+- Explicit phrase alignment where one source word expands into multiple English words
 - A searchable, filterable text-only browser
-- GitHub Actions refreshes every six hours
+- GitHub Actions refreshes country headlines every six hours
 
 ## Excluded
 

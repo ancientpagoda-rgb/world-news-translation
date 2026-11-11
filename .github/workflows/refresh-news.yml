@@ -1,4 +1,4 @@
-name: Refresh Global Voices articles
+name: Refresh country headlines
 
 on:
   workflow_dispatch:
@@ -9,31 +9,29 @@ permissions:
   contents: write
 
 concurrency:
-  group: refresh-global-voices
+  group: refresh-country-headlines
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh licensed articles
-        run: python scripts/update_global_voices.py
-      - name: Apply native-language summary translations
-        run: python scripts/apply_summary_translations.py
+      - name: Refresh country headlines
+        run: python scripts/update_headlines_only.py
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null
-          python -m py_compile scripts/update_global_voices.py scripts/apply_summary_translations.py scripts/global-voices-smoke.py
-          python scripts/global-voices-smoke.py
+          python -m py_compile scripts/update_headlines_only.py scripts/source-policy-smoke.py
+          python scripts/source-policy-smoke.py
           npm run check:syntax
           npm run check:data
-      - name: Commit refreshed data
+      - name: Commit refreshed headlines
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "data: refresh Global Voices articles"
-          file_pattern: data/world-news.json scripts/summary-translations.json
+          commit_message: "data: refresh country headlines"
+          file_pattern: data/world-news.json
