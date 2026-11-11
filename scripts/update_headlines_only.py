@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "world-news.json"
 GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 GDELT_MIN_INTERVAL = float(os.environ.get("GDELT_MIN_INTERVAL", "30"))
+GDELT_MAX_RECORDS = int(os.environ.get("GDELT_MAX_RECORDS", "1"))
 HEADERS = {"User-Agent": "WorldNewsTranslation-GDELT/1.0", "Accept": "application/json"}
 
 LANGUAGE_NAMES = {
@@ -147,10 +148,11 @@ def fetch_headline(row):
     language = row.get("nativeLanguage") or row.get("language") or ""
     if str(language).lower() not in LANGUAGE_NAMES:
         return None
+    language_name = LANGUAGE_NAMES[str(language).lower()][0].lower().replace(" ", "")
     payload = request_json({
-        "query": "sourcecountry:" + str(row.get("iso2") or "").upper(),
+        "query": "sourcecountry:" + str(row.get("iso2") or "").lower() + " sourcelang:" + language_name,
         "mode": "artlist",
-        "maxrecords": "250",
+        "maxrecords": str(GDELT_MAX_RECORDS),
         "format": "json",
         "sort": "datedesc",
         "timespan": "72h",

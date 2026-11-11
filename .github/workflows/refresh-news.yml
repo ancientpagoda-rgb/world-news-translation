@@ -15,6 +15,10 @@ on:
         description: "Seconds between GDELT requests"
         required: false
         default: "30"
+      maxrecords:
+        description: "Articles requested per country"
+        required: false
+        default: "1"
 
 permissions:
   contents: write
@@ -35,6 +39,7 @@ jobs:
       - name: Refresh headlines from GDELT
         env:
           GDELT_MIN_INTERVAL: ${{ inputs.interval }}
+          GDELT_MAX_RECORDS: ${{ inputs.maxrecords }}
         run: python scripts/update_headlines_only.py --allow-partial --start ${{ inputs.start }} --count ${{ inputs.count }}
       - name: Validate
         run: |
