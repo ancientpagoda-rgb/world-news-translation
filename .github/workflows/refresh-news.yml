@@ -2,6 +2,19 @@ name: Refresh GDELT headlines
 
 on:
   workflow_dispatch:
+    inputs:
+      start:
+        description: "Zero-based country row index"
+        required: false
+        default: "0"
+      count:
+        description: "Number of rows to process"
+        required: false
+        default: "1"
+      interval:
+        description: "Seconds between GDELT requests"
+        required: false
+        default: "30"
 
 permissions:
   contents: write
@@ -20,7 +33,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Refresh headlines from GDELT
-        run: python scripts/update_headlines_only.py --allow-partial
+        env:
+          GDELT_MIN_INTERVAL: ${{ inputs.interval }}
+        run: python scripts/update_headlines_only.py --allow-partial --start ${{ inputs.start }} --count ${{ inputs.count }}
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null

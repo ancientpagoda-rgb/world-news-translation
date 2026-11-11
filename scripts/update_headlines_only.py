@@ -10,6 +10,7 @@ import argparse
 import copy
 import html
 import json
+import os
 import re
 import time
 import urllib.error
@@ -22,7 +23,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "world-news.json"
 GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
-GDELT_MIN_INTERVAL = 5.2
+GDELT_MIN_INTERVAL = float(os.environ.get("GDELT_MIN_INTERVAL", "30"))
 HEADERS = {"User-Agent": "WorldNewsTranslation-GDELT/1.0", "Accept": "application/json"}
 
 LANGUAGE_NAMES = {
@@ -100,6 +101,11 @@ def language_matches(value, language):
     return actual in {normalize(expected[0]), normalize(expected[1]), normalize(language)}
 
 
+def country_matches(value, row):
+    actual = normalize(value)
+    return actual in {normalize(row.get("name")), normalize(row.get("iso2")), normalize(row.get("iso3"))}
+
+
 def article_is_usable(article, row):
     title = clean_title(article.get("title"))
     url = str(article.get("url") or "").strip()
@@ -108,7 +114,7 @@ def article_is_usable(article, row):
         return False
     if blocked_domain(domain) or BAD_TITLE_PATTERNS.search(title) or SPORTS_TITLE_PATTERNS.search(title):
         return False
-    if str(article.get("sourcecountry") or "").upper() != str(row.get("iso2") or "").upper():
+    if not country_matches(article.get("sourcecountry"), row):
         return False
     return language_matches(article.get("language"), row.get("nativeLanguage") or row.get("language"))
 
@@ -188,16 +194,25 @@ def main():
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--allow-partial", action="store_true", help="write successful rows even when some GDELT requests fail")
     parser.add_argument("--limit", type=int, default=0, help="test only the first N rows; requires --dry-run")
+    parser.add_argument("--start", type=int, default=0, help="zero-based row index to begin with")
+    parser.add_argument("--count", type=int, default=0, help="number of rows to process from --start")
     args = parser.parse_args()
     if args.limit and not args.dry_run:
         raise SystemExit("--limit requires --dry-run")
+    if args.start < 0 or args.count < 0:
+        raise SystemExit("--start and --count must be non-negative")
 
     rows = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     candidate_rows = copy.deepcopy(rows)
     baseline = sum(bool(row.get("headline")) for row in rows)
-    targets = candidate_rows[:args.limit] if args.limit else candidate_rows
+    end = args.start + args.count if args.count else len(candidate_rows)
+    if args.start >= len(candidate_rows):
+        raise SystemExit("--start is outside the dataset")
+    targets = candidate_rows[args.start:end]
+    if args.limit:
+        targets = candidate_rows[:args.limit]
     failures = []
-    for index, row in enumerate(targets, start=1):
+    for index, row in enumerate(targets, start=args.start + 1 if not args.limit else 1):
         try:
             candidate = fetch_headline(row)
             apply_candidate(row, candidate)
@@ -217,7 +232,7 @@ def main():
     if coverage < floor and not args.allow_partial:
         raise SystemExit(f"GDELT refresh aborted: headline coverage {coverage} is below safety floor {floor}")
     if not args.dry_run:
-        DATA_PATH.write_text(json.dumps(candidate_rows, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        DATA_PATH.write_text(json.dumps(candidate_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"GDELT refresh accepted: {coverage}/{len(candidate_rows)} headlines; safety floor {floor}")
 
 
