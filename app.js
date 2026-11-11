@@ -52,7 +52,11 @@ function matches(row) {
 }
 
 function render() {
-  const rows = state.rows.filter(matches);
+  const rows = state.rows.filter(matches).sort((a, b) => {
+    const aSpeakers = Number.isFinite(Number(a.nativeSpeakerMillions)) ? Number(a.nativeSpeakerMillions) : -1;
+    const bSpeakers = Number.isFinite(Number(b.nativeSpeakerMillions)) ? Number(b.nativeSpeakerMillions) : -1;
+    return bSpeakers - aSpeakers || String(a.name || '').localeCompare(String(b.name || ''));
+  });
   const version = ++renderVersion;
   status.textContent = rows.length + ' of ' + state.rows.length + ' countries';
   if (!rows.length) {
@@ -63,10 +67,11 @@ function render() {
     const source = /^https?:\/\//i.test(row.headlineUrl || '')
       ? '<a class="source" href="' + escapeHtml(row.headlineUrl) + '" target="_blank" rel="noopener noreferrer nofollow">Open headline source</a>' : '';
     const date = formatDate(row.headlinePublishedAt);
+    const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M native speakers' : '';
     const original = row.headline || 'No headline available.';
     const phonetics = row.headline ? 'Generating phonetics…' : '—';
     return '<article class="news-card" data-row-index="' + index + '">' +
-      '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">' + escapeHtml(row.iso3 || row.iso2) + ' · ' + escapeHtml(row.language || row.nativeLanguage || 'Unknown language') + (row.headlineSource ? ' · ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
+      '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">' + escapeHtml(row.iso3 || row.iso2) + ' · ' + escapeHtml(row.language || row.nativeLanguage || 'Unknown language') + speakerMeta + (row.headlineSource ? ' · ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
