@@ -12,7 +12,7 @@ Headline-focused companion to World (https://github.com/ancientpagoda-rgb/world)
 - A searchable, filterable text-only browser
 - Default view shows one representative country per language, ordered by estimated native-speaker count
 - Optional “Show all countries” view preserves the full country dataset
-- GitHub Actions refreshes from approved direct publisher feeds discovered via Ground News; partial successful runs are allowed, with GDELT only for unregistered countries
+- GitHub Actions refreshes only from approved direct publisher feeds; unregistered countries are left unchanged and no aggregator/provider fallback is used
 
 ## Excluded
 
@@ -29,7 +29,7 @@ Run python -m http.server 8000, then open http://localhost:8000.
 
 Run npm run check:syntax and npm run check:data.
 
-The refresh workflow preserves the country-source headline and language fields separately from Global Voices. Global Voices supplies the licensed article summary, including a dedicated India country feed, while images and embedded media are stripped. The display provides the summary in the country language, its IPA phonetics, and the English source text. Machine-translated summaries are applied only when their source text matches the current article snapshot.
+The refresh workflow preserves the country-source headline and language fields separately from Global Voices. Headlines are refreshed only from country-approved direct publisher feeds; unregistered countries remain unchanged. Global Voices supplies the licensed article summary, including a dedicated India country feed, while images and embedded media are stripped. The display provides the summary in the country language, its IPA phonetics, and the English source text. Machine-translated summaries are applied only when their source text matches the current article snapshot.
 
 ## Source and license
 

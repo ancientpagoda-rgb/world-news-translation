@@ -28,6 +28,84 @@
           "status": "approved"
         }
       ]
+    },
+    "MX": {
+      "name": "Mexico",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "Excélsior",
+          "domain": "excelsior.com.mx",
+          "feed": "https://www.excelsior.com.mx/rss",
+          "feedDirectory": "https://www.excelsior.com.mx/rss",
+          "status": "approved"
+        }
+      ]
+    },
+    "BR": {
+      "name": "Brazil",
+      "language": "pt",
+      "publishers": [
+        {
+          "name": "G1",
+          "domain": "g1.globo.com",
+          "feed": "https://g1.globo.com/rss/g1/",
+          "feedDirectory": "https://g1.globo.com/rss/",
+          "status": "approved"
+        }
+      ]
+    },
+    "JP": {
+      "name": "Japan",
+      "language": "ja",
+      "publishers": [
+        {
+          "name": "Mainichi Shimbun",
+          "domain": "mainichi.jp",
+          "feed": "https://mainichi.jp/rss/etc/mainichi-flash.rss",
+          "feedDirectory": "https://mainichi.jp/rss/",
+          "status": "approved"
+        }
+      ]
+    },
+    "CN": {
+      "name": "China",
+      "language": "zh",
+      "publishers": [
+        {
+          "name": "China News Service",
+          "domain": "chinanews.com.cn",
+          "feed": "https://www.chinanews.com.cn/rss/scroll-news.xml",
+          "feedDirectory": "https://www.chinanews.com.cn/rss/",
+          "status": "approved"
+        }
+      ]
+    },
+    "TR": {
+      "name": "Turkiye",
+      "language": "tr",
+      "publishers": [
+        {
+          "name": "TRT Haber",
+          "domain": "trthaber.com",
+          "feed": "https://www.trthaber.com/sondakika.rss",
+          "feedDirectory": "https://www.trthaber.com/rss/",
+          "status": "approved"
+        }
+      ]
+    },
+    "US": {
+      "name": "United States",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "NPR",
+          "domain": "npr.org",
+          "feed": "https://feeds.npr.org/1001/rss.xml",
+          "feedDirectory": "https://www.npr.org/rss/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }

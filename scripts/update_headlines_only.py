@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Refresh country headlines from approved direct publisher feeds.
 
-Feeds discovered through Ground News are stored in the source registry; GDELT
-is retained only for countries without a registered direct feed.
+Unregistered countries are left unchanged; there is no aggregator or provider
+fallback.
 """
 from __future__ import annotations
 
@@ -13,9 +13,6 @@ import html
 import json
 import os
 import re
-import time
-import urllib.error
-import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -25,126 +22,47 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "world-news.json"
 SOURCE_REGISTRY_PATH = ROOT / "data" / "approved-sources.json"
-GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
-GDELT_MIN_INTERVAL = float(os.environ.get("GDELT_MIN_INTERVAL", "30"))
-GDELT_MAX_RECORDS = int(os.environ.get("GDELT_MAX_RECORDS", "1"))
-HEADERS = {"User-Agent": "WorldNewsTranslation-GDELT/1.0", "Accept": "application/json"}
-
-LANGUAGE_NAMES = {
-    "af": ("Afrikaans", "afr"), "am": ("Amharic", "amh"), "ar": ("Arabic", "ara"),
-    "az": ("Azerbaijani", "aze"), "be": ("Belarusian", "bel"), "bg": ("Bulgarian", "bul"),
-    "bn": ("Bengali", "ben"), "bs": ("Bosnian", "bos"), "ca": ("Catalan", "cat"),
-    "cs": ("Czech", "ces"), "da": ("Danish", "dan"), "de": ("German", "deu"),
-    "el": ("Greek", "ell"), "en": ("English", "eng"), "es": ("Spanish", "spa"),
-    "et": ("Estonian", "est"), "fa": ("Persian", "fas"), "fi": ("Finnish", "fin"),
-    "fr": ("French", "fra"), "ga": ("Irish", "gle"), "gn": ("Guarani", "grn"),
-    "he": ("Hebrew", "heb"), "hi": ("Hindi", "hin"), "hr": ("Croatian", "hrv"),
-    "hu": ("Hungarian", "hun"), "hy": ("Armenian", "hye"), "id": ("Indonesian", "ind"),
-    "is": ("Icelandic", "isl"), "it": ("Italian", "ita"), "ja": ("Japanese", "jpn"),
-    "ka": ("Georgian", "kat"), "kk": ("Kazakh", "kaz"), "km": ("Khmer", "khm"),
-    "ko": ("Korean", "kor"), "ky": ("Kyrgyz", "kir"), "lo": ("Lao", "lao"),
-    "lt": ("Lithuanian", "lit"), "lv": ("Latvian", "lav"), "mk": ("Macedonian", "mkd"),
-    "mn": ("Mongolian", "mon"), "ms": ("Malay", "msa"), "my": ("Burmese", "mya"),
-    "ne": ("Nepali", "nep"), "nl": ("Dutch", "nld"), "no": ("Norwegian", "nor"),
-    "pl": ("Polish", "pol"), "pt": ("Portuguese", "por"), "ro": ("Romanian", "ron"),
-    "ru": ("Russian", "rus"), "si": ("Sinhala", "sin"), "sk": ("Slovak", "slk"),
-    "sl": ("Slovenian", "slv"), "sq": ("Albanian", "sqi"), "sr": ("Serbian", "srp"),
-    "st": ("Southern Sotho", "sot"), "sv": ("Swedish", "swe"), "sw": ("Swahili", "swa"),
-    "ta": ("Tamil", "tam"), "th": ("Thai", "tha"), "tr": ("Turkish", "tur"),
-    "uk": ("Ukrainian", "ukr"), "ur": ("Urdu", "urd"), "uz": ("Uzbek", "uzb"),
-    "vi": ("Vietnamese", "vie"), "zh": ("Chinese", "zho"),
-}
+FEED_TIMEOUT = float(os.environ.get("FEED_TIMEOUT", "20"))
+HEADERS = {"User-Agent": "WorldNewsTranslation-feed-refresh/1.0", "Accept": "application/rss+xml, application/xml, text/xml"}
 
 BLOCKED_DOMAIN_MARKERS = {
     "facebook.com", "instagram.com", "tiktok.com", "youtube.com", "x.com", "twitter.com",
     "telegram.org", "reddit.com", "whatsapp.com", "news.google.com", "google.com",
 }
-BAD_TITLE_PATTERNS = re.compile(r"\\b(?:live score|live stream|travel guide|best hotels|head[- ]to[- ]head|friendly|friendlies)\\b", re.I)
-SPORTS_TITLE_PATTERNS = re.compile(r"\\b(?:cricket|football|soccer|baseball|basketball|hockey|tennis|rugby|golf|boxing|match|score|semifinal|final|league|tournament|championship)\\b|क्रिकेट|फुटबॉल|मैच|टीम|सेमीफाइनल|फाइनल|गोल|विकेट|खेल", re.I)
-_last_request = 0.0
-
+BAD_TITLE_PATTERNS = re.compile(r"\b(?:live score|live stream|travel guide|best hotels|head[- ]to[- ]head|friendly|friendlies)\b", re.I)
+SPORTS_TITLE_PATTERNS = re.compile(r"\b(?:cricket|football|soccer|baseball|basketball|hockey|tennis|rugby|golf|boxing|match|score|semifinal|final|league|tournament|championship)\b|क्रिकेट|फुटबॉल|मैच|टीम|सेमीफाइनल|फाइनल|गोल|विकेट|खेल", re.I)
 
 def normalize(value):
-    return re.sub(r"\\s+", " ", re.sub(r"[^a-z0-9]+", " ", str(value or "").casefold())).strip()
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", str(value or "").casefold())).strip()
 
 
 def clean_title(value):
-    return re.sub(r"\\s+", " ", html.unescape(str(value or "")).strip())
-
-
-def parse_gdelt_date(value):
-    text = str(value or "").strip()
-    if not text:
-        return None
-    try:
-        parsed = datetime.strptime(text[:15], "%Y%m%dT%H%M%S").replace(tzinfo=timezone.utc)
-        return parsed.isoformat().replace("+00:00", "Z")
-    except ValueError:
-        return None
-
-
-def domain_from(article):
-    domain = str(article.get("domain") or "").strip().lower()
-    if domain:
-        return domain.removeprefix("www.")
-    try:
-        return (urlparse(str(article.get("url") or "")).hostname or "").lower().removeprefix("www.")
-    except ValueError:
-        return ""
+    return re.sub(r"\s+", " ", html.unescape(str(value or "")).strip())
 
 
 def blocked_domain(domain):
     return any(domain == marker or domain.endswith("." + marker) for marker in BLOCKED_DOMAIN_MARKERS)
 
 
-def language_matches(value, language):
-    expected = LANGUAGE_NAMES.get(str(language or "").lower())
-    if not expected:
-        return False
-    actual = normalize(value)
-    return actual in {normalize(expected[0]), normalize(expected[1]), normalize(language)}
+def feed_text(element, names):
+    wanted = set(names)
+    for child in list(element):
+        if child.tag.rsplit("}", 1)[-1] in wanted:
+            return (child.text or "").strip()
+    return ""
 
 
-def country_matches(value, row):
-    actual = normalize(value)
-    return actual in {normalize(row.get("name")), normalize(row.get("iso2")), normalize(row.get("iso3"))}
-
-
-def article_is_usable(article, row):
-    title = clean_title(article.get("title"))
-    url = str(article.get("url") or "").strip()
-    domain = domain_from(article)
-    if len(title) < 12 or not url.startswith("http") or not domain:
-        return False
-    if blocked_domain(domain) or BAD_TITLE_PATTERNS.search(title) or SPORTS_TITLE_PATTERNS.search(title):
-        return False
-    if not country_matches(article.get("sourcecountry"), row):
-        return False
-    return language_matches(article.get("language"), row.get("nativeLanguage") or row.get("language"))
-
-
-def request_json(params):
-    global _last_request
-    delay = GDELT_MIN_INTERVAL - (time.monotonic() - _last_request)
-    if delay > 0:
-        time.sleep(delay)
-    url = GDELT_URL + "?" + urllib.parse.urlencode(params)
-    for attempt in range(1):
-        _last_request = time.monotonic()
-        request = urllib.request.Request(url, headers=HEADERS)
+def parse_feed_date(value):
+    text = str(value or "").strip()
+    if not text:
+        return None
+    try:
+        return email.utils.parsedate_to_datetime(text).astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+    except (TypeError, ValueError, OverflowError):
         try:
-            with urllib.request.urlopen(request, timeout=20) as response:
-                return json.loads(response.read().decode("utf-8"))
-        except urllib.error.HTTPError as error:
-            if error.code != 429 or attempt == 0:
-                raise
-            retry_after = error.headers.get("Retry-After")
-            try:
-                wait = max(float(retry_after or 0), GDELT_MIN_INTERVAL * (attempt + 2))
-            except ValueError:
-                wait = GDELT_MIN_INTERVAL * (attempt + 2)
-            time.sleep(wait)
-    raise RuntimeError("unreachable")
+            return datetime.fromisoformat(text.replace("Z", "+00:00")).astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+        except ValueError:
+            return None
 
 
 def direct_feed_candidate(row):
@@ -158,55 +76,32 @@ def direct_feed_candidate(row):
         if not feed_url or not domain:
             continue
         request = urllib.request.Request(feed_url, headers=HEADERS)
-        with urllib.request.urlopen(request, timeout=20) as response:
+        with urllib.request.urlopen(request, timeout=FEED_TIMEOUT) as response:
             root = ET.fromstring(response.read())
-        for item in root.findall(".//item"):
-            title = clean_title(item.findtext("title"))
-            url = str(item.findtext("link") or "").strip()
+        items = root.findall(".//item") + root.findall(".//{*}item")
+        seen = set()
+        for item in items:
+            if id(item) in seen:
+                continue
+            seen.add(id(item))
+            title = clean_title(feed_text(item, {"title"}))
+            url = feed_text(item, {"link"})
             host = (urlparse(url).hostname or "").lower().removeprefix("www.")
             if len(title) < 12 or not url.startswith("http") or (host != domain and not host.endswith("." + domain)):
                 continue
             if blocked_domain(host) or BAD_TITLE_PATTERNS.search(title) or SPORTS_TITLE_PATTERNS.search(title):
                 continue
-            published = item.findtext("pubDate") or item.findtext("published") or item.findtext("updated")
-            try:
-                timestamp = email.utils.parsedate_to_datetime(published).astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
-            except (TypeError, ValueError, OverflowError):
-                timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+            published = feed_text(item, {"pubDate", "published", "updated", "date"})
+            timestamp = parse_feed_date(published)
+            if not timestamp:
+                continue
             return {"headline": title, "headlineUrl": url, "headlinePublishedAt": timestamp, "headlineSource": host}, True
     return None, True
 
 
 def fetch_headline(row):
     direct, registered = direct_feed_candidate(row)
-    if registered:
-        return direct
-    language = row.get("nativeLanguage") or row.get("language") or ""
-    if str(language).lower() not in LANGUAGE_NAMES:
-        return None
-    language_name = LANGUAGE_NAMES[str(language).lower()][0].lower().replace(" ", "")
-    payload = request_json({
-        "query": "sourcecountry:" + str(row.get("iso2") or "").lower() + " sourcelang:" + language_name,
-        "mode": "artlist",
-        "maxrecords": str(GDELT_MAX_RECORDS),
-        "format": "json",
-        "sort": "datedesc",
-        "timespan": "72h",
-    })
-    candidates = []
-    for article in payload.get("articles", []):
-        if not article_is_usable(article, row):
-            continue
-        published = parse_gdelt_date(article.get("seendate"))
-        if not published:
-            continue
-        candidates.append({
-            "headline": clean_title(article.get("title")),
-            "headlineUrl": str(article.get("url")).strip(),
-            "headlinePublishedAt": published,
-            "headlineSource": domain_from(article),
-        })
-    return candidates[0] if candidates else None
+    return direct, registered
 
 
 def apply_candidate(row, candidate):
@@ -230,7 +125,7 @@ def apply_candidate(row, candidate):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--allow-partial", action="store_true", help="write successful rows even when some GDELT requests fail")
+    parser.add_argument("--allow-partial", action="store_true", help="write successful rows while retaining failed rows")
     parser.add_argument("--limit", type=int, default=0, help="test only the first N rows; requires --dry-run")
     parser.add_argument("--start", type=int, default=0, help="zero-based row index to begin with")
     parser.add_argument("--count", type=int, default=0, help="number of rows to process from --start")
@@ -252,9 +147,12 @@ def main():
     failures = []
     for index, row in enumerate(targets, start=args.start + 1 if not args.limit else 1):
         try:
-            candidate = fetch_headline(row)
+            candidate, registered = fetch_headline(row)
+            if not registered:
+                print(f"{index:03d}/{len(targets)} {row.get('name')} no approved direct source; unchanged", flush=True)
+                continue
             apply_candidate(row, candidate)
-            print(f"{index:03d}/{len(targets)} {row.get('name')} {'headline' if candidate else 'no GDELT match'}", flush=True)
+            print(f"{index:03d}/{len(targets)} {row.get('name')} {'headline' if candidate else 'no feed match'}", flush=True)
         except Exception as error:
             failures.append(f"{row.get('name')}: {error}")
             print(f"{index:03d}/{len(targets)} {row.get('name')} ERROR {error}", flush=True)
@@ -263,15 +161,15 @@ def main():
         print("Dry-run only; dataset was not changed")
         return 0 if not failures else 1
     if failures and not args.allow_partial:
-        raise SystemExit("GDELT refresh aborted; API failures:\\n" + "\\n".join(failures[:20]))
+        raise SystemExit("Direct-feed refresh aborted; feed failures:\\n" + "\\n".join(failures[:20]))
 
     coverage = sum(bool(row.get("headline")) for row in candidate_rows)
     floor = max(1, int(baseline * 0.9)) if baseline else 1
     if coverage < floor and not args.allow_partial:
-        raise SystemExit(f"GDELT refresh aborted: headline coverage {coverage} is below safety floor {floor}")
+        raise SystemExit(f"Direct-feed refresh aborted: headline coverage {coverage} is below safety floor {floor}")
     if not args.dry_run:
         DATA_PATH.write_text(json.dumps(candidate_rows, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"GDELT refresh accepted: {coverage}/{len(candidate_rows)} headlines; safety floor {floor}")
+    print(f"Direct-feed refresh accepted: {coverage}/{len(candidate_rows)} headlines; safety floor {floor}")
 
 
 if __name__ == "__main__":

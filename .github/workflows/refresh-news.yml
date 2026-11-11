@@ -1,4 +1,4 @@
-name: Refresh GDELT headlines
+name: Refresh approved direct-feed headlines
 
 on:
   workflow_dispatch:
@@ -11,20 +11,16 @@ on:
         description: "Number of rows to process"
         required: false
         default: "1"
-      interval:
-        description: "Seconds between GDELT requests"
+      timeout:
+        description: "Per-feed request timeout in seconds"
         required: false
-        default: "30"
-      maxrecords:
-        description: "Articles requested per country"
-        required: false
-        default: "1"
+        default: "20"
 
 permissions:
   contents: write
 
 concurrency:
-  group: refresh-gdelt-headlines
+  group: refresh-approved-direct-feeds
   cancel-in-progress: false
 
 jobs:
@@ -36,10 +32,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh headlines from GDELT
+      - name: Refresh headlines from approved direct feeds
         env:
-          GDELT_MIN_INTERVAL: ${{ inputs.interval }}
-          GDELT_MAX_RECORDS: ${{ inputs.maxrecords }}
+          FEED_TIMEOUT: ${{ inputs.timeout }}
         run: python scripts/update_headlines_only.py --allow-partial --start ${{ inputs.start }} --count ${{ inputs.count }}
       - name: Validate
         run: |
