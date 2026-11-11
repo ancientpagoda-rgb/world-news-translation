@@ -60,13 +60,30 @@ function matches(row) {
 }
 
 function render() {
-  const rows = state.rows.filter(matches).sort((a, b) => {
-    const aSpeakers = Number.isFinite(Number(a.nativeSpeakerMillions)) ? Number(a.nativeSpeakerMillions) : -1;
-    const bSpeakers = Number.isFinite(Number(b.nativeSpeakerMillions)) ? Number(b.nativeSpeakerMillions) : -1;
-    const aCountryRank = Number.isFinite(Number(a.countryPopulationRank)) ? Number(a.countryPopulationRank) : Number.POSITIVE_INFINITY;
-    const bCountryRank = Number.isFinite(Number(b.countryPopulationRank)) ? Number(b.countryPopulationRank) : Number.POSITIVE_INFINITY;
-    return bSpeakers - aSpeakers || aCountryRank - bCountryRank || String(a.name || '').localeCompare(String(b.name || ''));
+  const languageGroups = new Map();
+  state.rows.filter(matches).forEach(row => {
+    const key = String(row.nativeLanguage || row.language || 'unknown').toLowerCase();
+    if (!languageGroups.has(key)) {
+      languageGroups.set(key, {
+        key,
+        label: displayLanguage(row),
+        speakers: Number.isFinite(Number(row.nativeSpeakerMillions)) ? Number(row.nativeSpeakerMillions) : -1,
+        rows: []
+      });
+    }
+    languageGroups.get(key).rows.push(row);
   });
+  const rows = [...languageGroups.values()]
+    .sort((a, b) => {
+      const aRanked = a.speakers >= 0;
+      const bRanked = b.speakers >= 0;
+      return (aRanked === bRanked ? b.speakers - a.speakers || a.label.localeCompare(b.label) : aRanked ? -1 : 1);
+    })
+    .flatMap(group => group.rows.sort((a, b) => {
+      const aCountryRank = Number.isFinite(Number(a.countryPopulationRank)) ? Number(a.countryPopulationRank) : Number.POSITIVE_INFINITY;
+      const bCountryRank = Number.isFinite(Number(b.countryPopulationRank)) ? Number(b.countryPopulationRank) : Number.POSITIVE_INFINITY;
+      return aCountryRank - bCountryRank || String(a.name || '').localeCompare(String(b.name || ''));
+    }));
   const groupCounts = new Map();
   rows.forEach(row => {
     const key = String(row.nativeLanguage || row.language || 'unknown').toLowerCase();
