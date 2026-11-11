@@ -310,6 +310,7 @@
       counters.failures += 1;
       console.warn("Language-aware IPA fallback:", error);
     }
+    if (scriptOf(sourceText) !== "latin") return "IPA unavailable";
     counters.fallback += 1;
     return fallbackIpaDisplay(input, language);
   }
