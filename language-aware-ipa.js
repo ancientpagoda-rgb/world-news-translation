@@ -296,7 +296,7 @@
     const { body, suffix } = typeof splitSourceSuffix === "function" ? splitSourceSuffix(text) : { body: text, suffix: "" };
     const sourceText = body || text;
     const lang = primaryLanguage(language);
-    if (lang === "en" || (typeof isProbablyEnglishText === "function" && isProbablyEnglishText(sourceText))) {
+    if (lang === "en" || (lang === "auto" && typeof isProbablyEnglishText === "function" && isProbablyEnglishText(sourceText))) {
       counters.fallback += 1;
       return fallbackIpaDisplay(input, language);
     }
