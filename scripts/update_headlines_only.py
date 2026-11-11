@@ -132,23 +132,33 @@ def main():
     parser.add_argument("--limit", type=int, default=0, help="test only the first N rows; requires --dry-run")
     parser.add_argument("--start", type=int, default=0, help="zero-based row index to begin with")
     parser.add_argument("--count", type=int, default=0, help="number of rows to process from --start")
+    parser.add_argument("--country", action="append", dest="countries", help="ISO2 country to refresh; may be repeated")
     args = parser.parse_args()
     if args.limit and not args.dry_run:
         raise SystemExit("--limit requires --dry-run")
     if args.start < 0 or args.count < 0:
         raise SystemExit("--start and --count must be non-negative")
+    if args.countries and (args.start or args.count):
+        raise SystemExit("--country cannot be combined with --start or --count")
 
     rows = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     candidate_rows = copy.deepcopy(rows)
     baseline = sum(bool(row.get("headline")) for row in rows)
-    end = args.start + args.count if args.count else len(candidate_rows)
-    if args.start >= len(candidate_rows):
-        raise SystemExit("--start is outside the dataset")
-    targets = candidate_rows[args.start:end]
+    if args.countries:
+        wanted = {str(value).upper() for value in args.countries}
+        targets = [row for row in candidate_rows if str(row.get("iso2") or "").upper() in wanted]
+        if len(targets) != len(wanted):
+            missing = sorted(wanted - {str(row.get("iso2") or "").upper() for row in targets})
+            raise SystemExit("unknown --country value(s): " + ", ".join(missing))
+    else:
+        end = args.start + args.count if args.count else len(candidate_rows)
+        if args.start >= len(candidate_rows):
+            raise SystemExit("--start is outside the dataset")
+        targets = candidate_rows[args.start:end]
     if args.limit:
-        targets = candidate_rows[:args.limit]
+        targets = targets[:args.limit]
     failures = []
-    for index, row in enumerate(targets, start=args.start + 1 if not args.limit else 1):
+    for index, row in enumerate(targets, start=1):
         try:
             candidate, registered = fetch_headline(row)
             if not registered:
