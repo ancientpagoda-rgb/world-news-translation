@@ -37,7 +37,10 @@ def normalize(value):
 
 
 def clean_title(value):
-    return re.sub(r"\s+", " ", html.unescape(str(value or "")).strip())
+    text = html.unescape(str(value or "")).strip()
+    if text.startswith("<![CDATA[") and text.endswith("]]>"):
+        text = text[9:-3].strip()
+    return re.sub(r"\s+", " ", text)
 
 
 def blocked_domain(domain):
