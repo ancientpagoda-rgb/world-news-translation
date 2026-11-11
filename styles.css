@@ -11,6 +11,9 @@ label { display: grid; gap: .45rem; color: #c9d4e8; font-size: .9rem; }
 input, select { width: 100%; border: 1px solid #3a4d75; border-radius: 9px; background: #0b1020; color: #eef4ff; padding: .78rem .85rem; font: inherit; }
 .status { grid-column: 1 / -1; margin: 0; }
 .news-list { display: grid; gap: 1rem; padding: 1.5rem 0 4rem; }
+.language-group { margin-top: 1.25rem; padding: .35rem .25rem 0; }
+.language-group h2 { margin: 0; color: #dbe7ff; font-size: 1.05rem; }
+.language-group p { margin: .25rem 0 0; color: #8fa6cf; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
 .news-card { padding: 1.25rem; border: 1px solid #263658; border-radius: 14px; background: #111a2d; }
 .card-heading { display: flex; gap: 1rem; justify-content: space-between; align-items: start; border-bottom: 1px solid #263658; padding-bottom: .8rem; }
 h2 { margin: 0; font-size: 1.25rem; }

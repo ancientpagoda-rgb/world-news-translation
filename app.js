@@ -65,6 +65,12 @@ function render() {
     const bSpeakers = Number.isFinite(Number(b.nativeSpeakerMillions)) ? Number(b.nativeSpeakerMillions) : -1;
     return bSpeakers - aSpeakers || String(a.name || '').localeCompare(String(b.name || ''));
   });
+  const groupCounts = new Map();
+  rows.forEach(row => {
+    const key = String(row.nativeLanguage || row.language || 'unknown').toLowerCase();
+    groupCounts.set(key, (groupCounts.get(key) || 0) + 1);
+  });
+  let activeGroup = null;
   const version = ++renderVersion;
   status.textContent = rows.length + ' of ' + state.rows.length + ' countries';
   if (!rows.length) {
@@ -77,10 +83,15 @@ function render() {
     const date = formatDate(row.headlinePublishedAt);
     const code = String(row.nativeLanguage || row.language || '').toLowerCase();
     const languageLabel = displayLanguage(row);
+    const groupKey = code || 'unknown';
+    const groupCount = groupCounts.get(groupKey) || 1;
+    const groupSpeakers = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M native speakers' : ' · native-speaker count not sourced';
+    const groupHeading = activeGroup === groupKey ? '' : '<div class="language-group"><h2>Language: ' + escapeHtml(languageLabel) + '</h2><p>' + escapeHtml(String(groupCount)) + ' countr' + (groupCount === 1 ? 'y' : 'ies') + groupSpeakers + '</p></div>';
+    activeGroup = groupKey;
     const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
     const original = row.headline || 'No headline available.';
     const phonetics = row.headline ? 'Generating phonetics…' : '—';
-    return '<article class="news-card" data-row-index="' + index + '">' +
+    return groupHeading + '<article class="news-card" data-row-index="' + index + '">' +
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
