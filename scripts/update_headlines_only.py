@@ -119,14 +119,14 @@ def request_json(params):
     if delay > 0:
         time.sleep(delay)
     url = GDELT_URL + "?" + urllib.parse.urlencode(params)
-    for attempt in range(3):
+    for attempt in range(1):
         _last_request = time.monotonic()
         request = urllib.request.Request(url, headers=HEADERS)
         try:
-            with urllib.request.urlopen(request, timeout=45) as response:
+            with urllib.request.urlopen(request, timeout=20) as response:
                 return json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as error:
-            if error.code != 429 or attempt == 2:
+            if error.code != 429 or attempt == 0:
                 raise
             retry_after = error.headers.get("Retry-After")
             try:
