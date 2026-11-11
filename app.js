@@ -23,6 +23,14 @@ function renderArticle(text) {
 
 const WORD_COLORS = ['52 211 153', '248 113 113', '250 204 21', '96 165 250', '192 132 252', '34 211 238', '251 146 60'];
 
+const LANGUAGE_OVERRIDES = { zh: 'Mandarin Chinese', pa: 'Western Punjabi', fa: 'Iranian Persian', jv: 'Javanese' };
+const LANGUAGE_NAMES = new Intl.DisplayNames(['en'], { type: 'language' });
+
+function displayLanguage(row) {
+  const code = String(row.nativeLanguage || row.language || '').toLowerCase();
+  return LANGUAGE_OVERRIDES[code] || LANGUAGE_NAMES.of(code) || code.toUpperCase() || 'Unknown';
+}
+
 function renderWordTrack(text, language = '', colorIndices = null) {
   const value = String(text || '');
   const hasHan = /\p{Script=Han}/u.test(value);
@@ -67,11 +75,13 @@ function render() {
     const source = /^https?:\/\//i.test(row.headlineUrl || '')
       ? '<a class="source" href="' + escapeHtml(row.headlineUrl) + '" target="_blank" rel="noopener noreferrer nofollow">Open headline source</a>' : '';
     const date = formatDate(row.headlinePublishedAt);
-    const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M native speakers' : '';
+    const code = String(row.nativeLanguage || row.language || '').toLowerCase();
+    const languageLabel = displayLanguage(row);
+    const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
     const original = row.headline || 'No headline available.';
     const phonetics = row.headline ? 'Generating phonetics…' : '—';
     return '<article class="news-card" data-row-index="' + index + '">' +
-      '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">' + escapeHtml(row.iso3 || row.iso2) + ' · ' + escapeHtml(row.language || row.nativeLanguage || 'Unknown language') + speakerMeta + (row.headlineSource ? ' · ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
+      '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
