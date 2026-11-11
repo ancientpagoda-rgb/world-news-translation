@@ -15,6 +15,19 @@
           "status": "approved"
         }
       ]
+    },
+    "ID": {
+      "name": "Indonesia",
+      "language": "id",
+      "publishers": [
+        {
+          "name": "CNBC Indonesia",
+          "domain": "cnbcindonesia.com",
+          "feed": "https://www.cnbcindonesia.com/rss",
+          "discoveredFrom": "https://ground.news/interest/indonesia",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
