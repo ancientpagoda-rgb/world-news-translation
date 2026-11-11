@@ -32,7 +32,7 @@ The refresh workflow preserves the country-source headline and language fields s
 
 ## Source and license
 
-Cards are ordered by estimated native-speaker count when a sourced count is available; languages without a defensible count appear afterward alphabetically. The ranking source is recorded in `data/language-speakers.json`.
+Cards are grouped by estimated native-speaker count when a sourced count is available; countries within each language group use country population rank as the tie-breaker. Languages without a defensible count appear afterward alphabetically. The ranking source is recorded in `data/language-speakers.json`.
 
 Ground News is used only to discover candidate publishers. Displayed headline URLs point to approved original publishers, never Ground News. The approved source registry records the discovery page, publisher domain, and feed URL.
 

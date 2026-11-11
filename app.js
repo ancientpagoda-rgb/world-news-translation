@@ -63,7 +63,9 @@ function render() {
   const rows = state.rows.filter(matches).sort((a, b) => {
     const aSpeakers = Number.isFinite(Number(a.nativeSpeakerMillions)) ? Number(a.nativeSpeakerMillions) : -1;
     const bSpeakers = Number.isFinite(Number(b.nativeSpeakerMillions)) ? Number(b.nativeSpeakerMillions) : -1;
-    return bSpeakers - aSpeakers || String(a.name || '').localeCompare(String(b.name || ''));
+    const aCountryRank = Number.isFinite(Number(a.countryPopulationRank)) ? Number(a.countryPopulationRank) : Number.POSITIVE_INFINITY;
+    const bCountryRank = Number.isFinite(Number(b.countryPopulationRank)) ? Number(b.countryPopulationRank) : Number.POSITIVE_INFINITY;
+    return bSpeakers - aSpeakers || aCountryRank - bCountryRank || String(a.name || '').localeCompare(String(b.name || ''));
   });
   const groupCounts = new Map();
   rows.forEach(row => {
