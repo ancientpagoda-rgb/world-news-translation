@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "policy": "Ground News is discovery-only; displayed headlines come from direct approved publisher feeds.",
+  "countries": {
+    "IN": {
+      "name": "India",
+      "language": "hi",
+      "publishers": [
+        {
+          "name": "Dainik Bhaskar",
+          "domain": "bhaskar.com",
+          "feed": "https://www.bhaskar.com/rss-v1--category-1061.xml",
+          "discoveredFrom": "https://ground.news/interest/india",
+          "feedDirectory": "https://www.bhaskar.com/rss",
+          "status": "approved"
+        }
+      ]
+    }
+  }
+}

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Refresh country headlines from GDELT DOC API only.
+"""Refresh country headlines from approved direct publisher feeds.
 
-There is deliberately no secondary news provider. A failed or lower-coverage
-GDELT refresh is rejected so the last-known-good dataset remains intact.
+Feeds discovered through Ground News are stored in the source registry; GDELT
+is retained only for countries without a registered direct feed.
 """
 from __future__ import annotations
 
 import argparse
 import copy
+import email.utils
 import html
 import json
 import os
@@ -16,12 +17,14 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "world-news.json"
+SOURCE_REGISTRY_PATH = ROOT / "data" / "approved-sources.json"
 GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
 GDELT_MIN_INTERVAL = float(os.environ.get("GDELT_MIN_INTERVAL", "30"))
 GDELT_MAX_RECORDS = int(os.environ.get("GDELT_MAX_RECORDS", "1"))
@@ -144,7 +147,40 @@ def request_json(params):
     raise RuntimeError("unreachable")
 
 
+def direct_feed_candidate(row):
+    registry = json.loads(SOURCE_REGISTRY_PATH.read_text(encoding="utf-8"))
+    config = registry.get("countries", {}).get(str(row.get("iso2") or "").upper())
+    if not config:
+        return None, False
+    for source in config.get("publishers", []):
+        feed_url = str(source.get("feed") or "").strip()
+        domain = str(source.get("domain") or "").strip().lower().removeprefix("www.")
+        if not feed_url or not domain:
+            continue
+        request = urllib.request.Request(feed_url, headers=HEADERS)
+        with urllib.request.urlopen(request, timeout=20) as response:
+            root = ET.fromstring(response.read())
+        for item in root.findall(".//item"):
+            title = clean_title(item.findtext("title"))
+            url = str(item.findtext("link") or "").strip()
+            host = (urlparse(url).hostname or "").lower().removeprefix("www.")
+            if len(title) < 12 or not url.startswith("http") or (host != domain and not host.endswith("." + domain)):
+                continue
+            if blocked_domain(host) or BAD_TITLE_PATTERNS.search(title) or SPORTS_TITLE_PATTERNS.search(title):
+                continue
+            published = item.findtext("pubDate") or item.findtext("published") or item.findtext("updated")
+            try:
+                timestamp = email.utils.parsedate_to_datetime(published).astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+            except (TypeError, ValueError, OverflowError):
+                timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+            return {"headline": title, "headlineUrl": url, "headlinePublishedAt": timestamp, "headlineSource": host}, True
+    return None, True
+
+
 def fetch_headline(row):
+    direct, registered = direct_feed_candidate(row)
+    if registered:
+        return direct
     language = row.get("nativeLanguage") or row.get("language") or ""
     if str(language).lower() not in LANGUAGE_NAMES:
         return None
