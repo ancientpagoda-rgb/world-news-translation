@@ -1,305 +1,224 @@
 #!/usr/bin/env python3
+"""Refresh country headlines from GDELT DOC API only.
 
+There is deliberately no secondary news provider. A failed or lower-coverage
+GDELT refresh is rejected so the last-known-good dataset remains intact.
+"""
+from __future__ import annotations
+
+import argparse
+import copy
 import html
 import json
 import re
 import time
-import unicodedata
+import urllib.error
 import urllib.parse
 import urllib.request
-import xml.etree.ElementTree as ET
-from datetime import timezone
-from email.utils import parsedate_to_datetime
+from datetime import datetime, timezone
 from pathlib import Path
-
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "world-news.json"
+GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
+GDELT_MIN_INTERVAL = 5.2
+HEADERS = {"User-Agent": "WorldNewsTranslation-GDELT/1.0", "Accept": "application/json"}
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (WorldHeadlineUpdater/1.0)",
-    "Accept": "application/rss+xml,application/xml;q=0.9,*/*;q=0.8",
+LANGUAGE_NAMES = {
+    "af": ("Afrikaans", "afr"), "am": ("Amharic", "amh"), "ar": ("Arabic", "ara"),
+    "az": ("Azerbaijani", "aze"), "be": ("Belarusian", "bel"), "bg": ("Bulgarian", "bul"),
+    "bn": ("Bengali", "ben"), "bs": ("Bosnian", "bos"), "ca": ("Catalan", "cat"),
+    "cs": ("Czech", "ces"), "da": ("Danish", "dan"), "de": ("German", "deu"),
+    "el": ("Greek", "ell"), "en": ("English", "eng"), "es": ("Spanish", "spa"),
+    "et": ("Estonian", "est"), "fa": ("Persian", "fas"), "fi": ("Finnish", "fin"),
+    "fr": ("French", "fra"), "ga": ("Irish", "gle"), "gn": ("Guarani", "grn"),
+    "he": ("Hebrew", "heb"), "hi": ("Hindi", "hin"), "hr": ("Croatian", "hrv"),
+    "hu": ("Hungarian", "hun"), "hy": ("Armenian", "hye"), "id": ("Indonesian", "ind"),
+    "is": ("Icelandic", "isl"), "it": ("Italian", "ita"), "ja": ("Japanese", "jpn"),
+    "ka": ("Georgian", "kat"), "kk": ("Kazakh", "kaz"), "km": ("Khmer", "khm"),
+    "ko": ("Korean", "kor"), "ky": ("Kyrgyz", "kir"), "lo": ("Lao", "lao"),
+    "lt": ("Lithuanian", "lit"), "lv": ("Latvian", "lav"), "mk": ("Macedonian", "mkd"),
+    "mn": ("Mongolian", "mon"), "ms": ("Malay", "msa"), "my": ("Burmese", "mya"),
+    "ne": ("Nepali", "nep"), "nl": ("Dutch", "nld"), "no": ("Norwegian", "nor"),
+    "pl": ("Polish", "pol"), "pt": ("Portuguese", "por"), "ro": ("Romanian", "ron"),
+    "ru": ("Russian", "rus"), "si": ("Sinhala", "sin"), "sk": ("Slovak", "slk"),
+    "sl": ("Slovenian", "slv"), "sq": ("Albanian", "sqi"), "sr": ("Serbian", "srp"),
+    "st": ("Southern Sotho", "sot"), "sv": ("Swedish", "swe"), "sw": ("Swahili", "swa"),
+    "ta": ("Tamil", "tam"), "th": ("Thai", "tha"), "tr": ("Turkish", "tur"),
+    "uk": ("Ukrainian", "ukr"), "ur": ("Urdu", "urd"), "uz": ("Uzbek", "uzb"),
+    "vi": ("Vietnamese", "vie"), "zh": ("Chinese", "zho"),
 }
 
-SPECIAL_ALIASES = {
-    "CD": ["Democratic Republic of Congo", "DR Congo", "DRC", "Congo-Kinshasa"],
-    "CG": ["Republic of Congo", "Congo-Brazzaville"],
-    "EG": ["Egypt"],
-    "FM": ["Federated States of Micronesia", "Micronesia"],
-    "HK": ["Hong Kong"],
-    "IR": ["Iran"],
-    "KR": ["South Korea"],
-    "KP": ["North Korea"],
-    "LA": ["Laos", "Lao PDR"],
-    "MO": ["Macao", "Macau"],
-    "PS": ["West Bank and Gaza", "Palestine", "Palestinian territories"],
-    "RU": ["Russia", "Russian Federation"],
-    "SK": ["Slovak Republic", "Slovakia"],
-    "TR": ["Turkiye", "Türkiye", "Turkey"],
-    "US": ["United States", "U.S.", "USA"],
-    "VE": ["Venezuela"],
-    "VI": ["U.S. Virgin Islands", "Virgin Islands"],
-    "VG": ["British Virgin Islands"],
-    "MF": ["Saint Martin", "St. Martin French part"],
-    "SX": ["Sint Maarten"],
-    "LC": ["Saint Lucia", "St. Lucia"],
-    "VC": ["Saint Vincent and the Grenadines", "St. Vincent and the Grenadines"],
-    "KN": ["Saint Kitts and Nevis", "St. Kitts and Nevis"],
+BLOCKED_DOMAIN_MARKERS = {
+    "facebook.com", "instagram.com", "tiktok.com", "youtube.com", "x.com", "twitter.com",
+    "telegram.org", "reddit.com", "whatsapp.com", "news.google.com", "google.com",
 }
-
-BLOCKED_SOURCES = {
-    "facebook",
-    "instagram",
-    "tiktok",
-    "youtube",
-    "x.com",
-    "twitter",
-    "telegram",
-    "reddit",
-    "whatsapp",
-    "statista",
-    "city fukuoka",
-    "futbol24",
-    "dazn",
-    "yahoo news",
-    "google news",
-}
-
-# Google News may return a social post or a low-quality aggregator unless the
-# publisher is checked explicitly. This allowlist favors established national,
-# regional, public-service, and international news organizations. Unknown
-# publishers are rejected instead of being presented as trusted news.
-REPUTABLE_SOURCES = {
-    "reuters", "associated press", "ap news", "bbc", "npr", "pbs",
-    "al jazeera", "france 24", "dw", "deutsche welle", "afp",
-    "agence france presse", "efe", "voa", "rfi", "nhk", "kyodo",
-    "the guardian", "new york times", "washington post", "financial times",
-    "bloomberg", "the economist", "politico", "cnn", "abc news", "cbs news",
-    "nbc news", "sky news", "the telegraph", "le monde", "le figaro",
-    "der spiegel", "süddeutsche", "tagesschau", "el pais", "el mundo",
-    "globo", "folha", "estadao", "la nacion", "clarin", "el universal",
-    "milenio", "rtve", "the hindu", "indian express", "times of india",
-    "hindustan times", "ndtv", "news18", "deccan herald", "press trust of india",
-    "the japan times", "asahi shimbun", "yomiuri shimbun", "mainichi",
-    "channel news asia", "straits times", "south china morning post", "scmp",
-    "the national", "arab news", "times of israel", "haaretz", "anadolu agency",
-    "ukrinform", "kyiv independent", "tass", "interfax", "news24",
-    "daily maverick", "mail guardian", "the eastafrican", "dawn", "rappler",
-    "the daily star", "the irrawaddy", "allafrica", "wion", "the wire",
-    "scroll.in", "the quint", "tribune india",
-}
-
-BAD_TITLE_PATTERNS = [
-    r"\bvs\.?\b",
-    r"\blive score\b",
-    r"\bh2h\b",
-    r"\bhead-to-head\b",
-    r"\bfriendly|friendlies\b",
-    r"\blive stream\b",
-    r"\btravel guide\b",
-    r"\bbest hotels\b",
-    r"\bcanal saint martin\b",
-    r"\bsaint martin lars\b",
-]
-
-SPORTS_TITLE_PATTERNS = [
-    r"\bcricket\b",
-    r"\bfootball\b",
-    r"\bsoccer\b",
-    r"\bbaseball\b",
-    r"\bbasketball\b",
-    r"\bhockey\b",
-    r"\btennis\b",
-    r"\brugby\b",
-    r"\bgolf\b",
-    r"\bboxing\b",
-    r"\b(?:t20|odi)\b",
-    r"\bmatch(?:es)?\b",
-    r"\bscore\b",
-    r"\b(?:semifinal|final|highlights?|medals?\s+tally)\b",
-    r"\b(?:asian|olympic|commonwealth) games\b",
-    r"\b(?:league|tournament|championship)\b",
-    r"\b(?:goal|goals|wicket|wickets|innings|runs?)\b",
-    r"\b(?:playing 11|starting xi|line[- ]?up)\b",
-    r"क्रिकेट|फुटबॉल|मैच|टीम|सेमीफाइनल|फाइनल|गोल|विकेट|मेडल|पदक|एशियन गेम्स|खेल",
-]
+BAD_TITLE_PATTERNS = re.compile(r"\\b(?:live score|live stream|travel guide|best hotels|head[- ]to[- ]head|friendly|friendlies)\\b", re.I)
+SPORTS_TITLE_PATTERNS = re.compile(r"\\b(?:cricket|football|soccer|baseball|basketball|hockey|tennis|rugby|golf|boxing|match|score|semifinal|final|league|tournament|championship)\\b|क्रिकेट|फुटबॉल|मैच|टीम|सेमीफाइनल|फाइनल|गोल|विकेट|खेल", re.I)
+_last_request = 0.0
 
 
-def write_rows(rows):
-    DATA_PATH.write_text(json.dumps(rows, ensure_ascii=False) + "\n", encoding="utf-8")
+def normalize(value):
+    return re.sub(r"\\s+", " ", re.sub(r"[^a-z0-9]+", " ", str(value or "").casefold())).strip()
 
 
-def strip_text(text: str) -> str:
-    text = html.unescape(text)
-    text = re.sub(r"<[^>]+>", " ", text)
-    text = re.sub(r"\s+", " ", text)
-    return text.strip()
+def clean_title(value):
+    return re.sub(r"\\s+", " ", html.unescape(str(value or "")).strip())
 
 
-def normalize_text(text: str) -> str:
-    text = unicodedata.normalize("NFKD", text)
-    text = "".join(ch for ch in text if not unicodedata.combining(ch))
-    text = text.lower()
-    text = re.sub(r"[^a-z0-9]+", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def country_aliases(name: str, iso2: str) -> list[str]:
-    aliases = [name]
-    aliases.extend(SPECIAL_ALIASES.get(iso2, []))
-
-    if "," in name:
-        aliases.append(name.split(",", 1)[0])
-    if "(" in name:
-        aliases.append(re.sub(r"\s*\([^)]*\)", "", name).strip())
-    if "St." in name:
-        aliases.append(name.replace("St.", "Saint"))
-
-    clean = []
-    seen = set()
-    for alias in aliases:
-        alias = re.sub(r"\s+", " ", alias).strip()
-        key = normalize_text(alias)
-        if key and key not in seen:
-            clean.append(alias)
-            seen.add(key)
-    return clean
-
-
-def headline_is_usable(title: str, aliases: list[str]) -> bool:
-    if re.match(r"^[a-z]+(?:-[a-z]+){2,}\s+-\s+", title.lower()):
-        return False
-
-    title_norm = normalize_text(title)
-    source_norm = normalize_text(title.rsplit(" - ", 1)[-1] if " - " in title else "")
-
-    if any(normalize_text(blocked) in title_norm or normalize_text(blocked) in source_norm for blocked in BLOCKED_SOURCES):
-        return False
-    if not source_norm or not any(normalize_text(source) in source_norm for source in REPUTABLE_SOURCES):
-        return False
-    if any(re.search(pattern, title_norm, re.IGNORECASE) for pattern in BAD_TITLE_PATTERNS):
-        return False
-    if any(re.search(pattern, title, re.IGNORECASE) for pattern in SPORTS_TITLE_PATTERNS):
-        return False
-
-    return any(normalize_text(alias) in title_norm for alias in aliases)
-
-
-def headline_matches_place(title: str, iso2: str, aliases: list[str]) -> bool:
-    if not headline_is_usable(title, aliases):
-        return False
-
-    title_norm = normalize_text(title)
-    if iso2 == "MF":
-        return any(
-            token in title_norm
-            for token in [
-                "saint martin french",
-                "saint martin island",
-                "sint maarten",
-                "caribbean",
-                "collectivite",
-                "guadeloupe",
-            ]
-        )
-    return True
-
-
-def normalize_pub_date(value: str | None) -> str | None:
-    if not value:
+def parse_gdelt_date(value):
+    text = str(value or "").strip()
+    if not text:
         return None
     try:
-        parsed = parsedate_to_datetime(value)
-        if parsed.tzinfo is None:
-            parsed = parsed.replace(tzinfo=timezone.utc)
-        return parsed.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
-    except (TypeError, ValueError, OverflowError):
+        parsed = datetime.strptime(text[:15], "%Y%m%dT%H%M%S").replace(tzinfo=timezone.utc)
+        return parsed.isoformat().replace("+00:00", "Z")
+    except ValueError:
         return None
 
 
-def fetch_top_headline(name: str, iso2: str, language: str) -> tuple[str | None, str | None, str | None, str]:
-    aliases = country_aliases(name, iso2)
-    language_hint = f"{language}-{iso2}"
-    candidates = []
+def domain_from(article):
+    domain = str(article.get("domain") or "").strip().lower()
+    if domain:
+        return domain.removeprefix("www.")
+    try:
+        return (urlparse(str(article.get("url") or "")).hostname or "").lower().removeprefix("www.")
+    except ValueError:
+        return ""
 
-    for alias in aliases[:4]:
-        query = urllib.parse.quote(f'"{alias}" when:30d')
-        rss_url = (
-            f"https://news.google.com/rss/search?q={query}&hl={language_hint}&gl={iso2}&ceid={iso2}:{language}"
-        )
-        request = urllib.request.Request(rss_url, headers=HEADERS)
 
+def blocked_domain(domain):
+    return any(domain == marker or domain.endswith("." + marker) for marker in BLOCKED_DOMAIN_MARKERS)
+
+
+def language_matches(value, language):
+    expected = LANGUAGE_NAMES.get(str(language or "").lower())
+    if not expected:
+        return False
+    actual = normalize(value)
+    return actual in {normalize(expected[0]), normalize(expected[1]), normalize(language)}
+
+
+def article_is_usable(article, row):
+    title = clean_title(article.get("title"))
+    url = str(article.get("url") or "").strip()
+    domain = domain_from(article)
+    if len(title) < 12 or not url.startswith("http") or not domain:
+        return False
+    if blocked_domain(domain) or BAD_TITLE_PATTERNS.search(title) or SPORTS_TITLE_PATTERNS.search(title):
+        return False
+    if str(article.get("sourcecountry") or "").upper() != str(row.get("iso2") or "").upper():
+        return False
+    return language_matches(article.get("language"), row.get("nativeLanguage") or row.get("language"))
+
+
+def request_json(params):
+    global _last_request
+    delay = GDELT_MIN_INTERVAL - (time.monotonic() - _last_request)
+    if delay > 0:
+        time.sleep(delay)
+    url = GDELT_URL + "?" + urllib.parse.urlencode(params)
+    for attempt in range(3):
+        _last_request = time.monotonic()
+        request = urllib.request.Request(url, headers=HEADERS)
         try:
-            with urllib.request.urlopen(request, timeout=20) as response:
-                root = ET.fromstring(response.read())
-            channel = root.find("channel")
-            if channel is None:
-                continue
-            for item_index, item in enumerate(channel.findall("item")):
-                title = item.findtext("title")
-                if not title:
-                    continue
-                title = strip_text(title)
-                if headline_matches_place(title, iso2, aliases):
-                    link = (item.findtext("link") or "").strip()
-                    if not link.startswith("https://"):
-                        link = None
-                    published_at = normalize_pub_date(
-                        item.findtext("pubDate")
-                        or item.findtext("{http://purl.org/dc/elements/1.1/}date")
-                    )
-                    candidates.append((published_at or "", -item_index, title, link))
-        except Exception:
+            with urllib.request.urlopen(request, timeout=45) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as error:
+            if error.code != 429 or attempt == 2:
+                raise
+            retry_after = error.headers.get("Retry-After")
+            try:
+                wait = max(float(retry_after or 0), GDELT_MIN_INTERVAL * (attempt + 2))
+            except ValueError:
+                wait = GDELT_MIN_INTERVAL * (attempt + 2)
+            time.sleep(wait)
+    raise RuntimeError("unreachable")
+
+
+def fetch_headline(row):
+    language = row.get("nativeLanguage") or row.get("language") or ""
+    if str(language).lower() not in LANGUAGE_NAMES:
+        return None
+    payload = request_json({
+        "query": "sourcecountry:" + str(row.get("iso2") or "").upper(),
+        "mode": "artlist",
+        "maxrecords": "250",
+        "format": "json",
+        "sort": "datedesc",
+        "timespan": "72h",
+    })
+    candidates = []
+    for article in payload.get("articles", []):
+        if not article_is_usable(article, row):
             continue
+        published = parse_gdelt_date(article.get("seendate"))
+        if not published:
+            continue
+        candidates.append({
+            "headline": clean_title(article.get("title")),
+            "headlineUrl": str(article.get("url")).strip(),
+            "headlinePublishedAt": published,
+            "headlineSource": domain_from(article),
+        })
+    return candidates[0] if candidates else None
 
-    if candidates:
-        published_at, _, title, link = max(candidates, key=lambda candidate: (candidate[0], candidate[1]))
-        return title, link, published_at or None, language
-    return None, None, None, language
+
+def apply_candidate(row, candidate):
+    previous = row.get("headline")
+    previous_english = row.get("englishHeadline")
+    previous_mapping = row.get("headlineTranslationWordIndices")
+    if candidate is None:
+        row.update({"headline": None, "headlineUrl": None, "headlinePublishedAt": None, "headlineSource": None, "englishHeadline": None})
+        row.pop("headlineTranslationWordIndices", None)
+        return
+    row.update(candidate)
+    if candidate["headline"] == previous and previous_english:
+        row["englishHeadline"] = previous_english
+        if previous_mapping is not None:
+            row["headlineTranslationWordIndices"] = previous_mapping
+    else:
+        row["englishHeadline"] = "English translation unavailable"
+        row.pop("headlineTranslationWordIndices", None)
 
 
-def main() -> int:
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--limit", type=int, default=0, help="test only the first N rows; requires --dry-run")
+    args = parser.parse_args()
+    if args.limit and not args.dry_run:
+        raise SystemExit("--limit requires --dry-run")
+
     rows = json.loads(DATA_PATH.read_text(encoding="utf-8"))
-    if not isinstance(rows, list):
-        raise SystemExit("data/world-news.json is not a list")
+    candidate_rows = copy.deepcopy(rows)
+    baseline = sum(bool(row.get("headline")) for row in rows)
+    targets = candidate_rows[:args.limit] if args.limit else candidate_rows
+    failures = []
+    for index, row in enumerate(targets, start=1):
+        try:
+            candidate = fetch_headline(row)
+            apply_candidate(row, candidate)
+            print(f"{index:03d}/{len(targets)} {row.get('name')} {'headline' if candidate else 'no GDELT match'}", flush=True)
+        except Exception as error:
+            failures.append(f"{row.get('name')}: {error}")
+            print(f"{index:03d}/{len(targets)} {row.get('name')} ERROR {error}", flush=True)
 
-    updated = 0
-    for index, row in enumerate(rows, start=1):
-        if not isinstance(row, dict):
-            continue
-        name = row.get("name")
-        iso2 = row.get("iso2")
-        native_language = row.get("nativeLanguage") or row.get("language") or "en"
-        if not name or not iso2:
-            continue
+    if args.limit:
+        print("Dry-run only; dataset was not changed")
+        return 0 if not failures else 1
+    if failures:
+        raise SystemExit("GDELT refresh aborted; API failures:\\n" + "\\n".join(failures[:20]))
 
-        previous_headline = row.get("headline")
-        previous_english = row.get("englishHeadline")
-        previous_published_at = row.get("headlinePublishedAt")
-        headline, headline_url, headline_published_at, headline_language = fetch_top_headline(name, iso2, native_language)
-        # English headlines are filled by the offline Argos/NLLB stage after
-        # this feed refresh. Never call an undocumented hosted translator here.
-        english_headline = None
-        if not english_headline and headline == previous_headline and previous_english:
-            english_headline = previous_english
-        row["headline"] = headline
-        row["headlineUrl"] = headline_url
-        row["headlinePublishedAt"] = headline_published_at or (
-            previous_published_at if headline and headline == previous_headline else None
-        )
-        row["englishHeadline"] = english_headline or ("English translation unavailable" if headline else None)
-        row["language"] = headline_language
-        row["nativeLanguage"] = native_language
-        if headline:
-            updated += 1
-
-        write_rows(rows)
-        print(f"{index:03d}/{len(rows)} {name} [{row.get('language', 'en')}]", flush=True)
-        time.sleep(0.08)
-
-    print(f"Updated headlines for {updated} rows")
-    return 0
+    coverage = sum(bool(row.get("headline")) for row in candidate_rows)
+    floor = max(1, int(baseline * 0.9)) if baseline else 1
+    if coverage < floor:
+        raise SystemExit(f"GDELT refresh aborted: headline coverage {coverage} is below safety floor {floor}")
+    if not args.dry_run:
+        DATA_PATH.write_text(json.dumps(candidate_rows, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    print(f"GDELT refresh accepted: {coverage}/{len(candidate_rows)} headlines; safety floor {floor}")
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()

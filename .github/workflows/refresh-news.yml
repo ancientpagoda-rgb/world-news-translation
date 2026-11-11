@@ -1,4 +1,4 @@
-name: Refresh country headlines
+name: Refresh GDELT headlines
 
 on:
   workflow_dispatch:
@@ -7,19 +7,19 @@ permissions:
   contents: write
 
 concurrency:
-  group: refresh-country-headlines
+  group: refresh-gdelt-headlines
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh country headlines
+      - name: Refresh headlines from GDELT
         run: python scripts/update_headlines_only.py
       - name: Validate
         run: |
