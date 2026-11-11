@@ -2,6 +2,8 @@ name: Refresh GDELT headlines
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
 
 permissions:
   contents: write
@@ -20,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Refresh headlines from GDELT
-        run: python scripts/update_headlines_only.py
+        run: python scripts/update_headlines_only.py --allow-partial
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null

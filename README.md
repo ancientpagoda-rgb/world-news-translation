@@ -10,7 +10,7 @@ Headline-focused companion to World (https://github.com/ancientpagoda-rgb/world)
 - Position-matched word colors across original text, IPA, and translations
 - Explicit phrase alignment where one source word expands into multiple English words
 - A searchable, filterable text-only browser
-- A manual GitHub Actions workflow refreshes headlines from GDELT only; lower-coverage refreshes are rejected
+- GitHub Actions refreshes headlines from GDELT only; partial successful runs are allowed and never use another provider
 
 ## Excluded
 

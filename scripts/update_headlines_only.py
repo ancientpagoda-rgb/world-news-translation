@@ -186,6 +186,7 @@ def apply_candidate(row, candidate):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--allow-partial", action="store_true", help="write successful rows even when some GDELT requests fail")
     parser.add_argument("--limit", type=int, default=0, help="test only the first N rows; requires --dry-run")
     args = parser.parse_args()
     if args.limit and not args.dry_run:
@@ -208,12 +209,12 @@ def main():
     if args.limit:
         print("Dry-run only; dataset was not changed")
         return 0 if not failures else 1
-    if failures:
+    if failures and not args.allow_partial:
         raise SystemExit("GDELT refresh aborted; API failures:\\n" + "\\n".join(failures[:20]))
 
     coverage = sum(bool(row.get("headline")) for row in candidate_rows)
     floor = max(1, int(baseline * 0.9)) if baseline else 1
-    if coverage < floor:
+    if coverage < floor and not args.allow_partial:
         raise SystemExit(f"GDELT refresh aborted: headline coverage {coverage} is below safety floor {floor}")
     if not args.dry_run:
         DATA_PATH.write_text(json.dumps(candidate_rows, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
