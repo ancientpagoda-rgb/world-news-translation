@@ -10,7 +10,8 @@ Headline-focused companion to World (https://github.com/ancientpagoda-rgb/world)
 - Position-matched word colors across original text, IPA, and translations
 - Explicit phrase alignment where one source word expands into multiple English words
 - A searchable, filterable text-only browser
-- Default ordering by estimated native-speaker count, descending
+- Default view shows one representative country per language, ordered by estimated native-speaker count
+- Optional “Show all countries” view preserves the full country dataset
 - GitHub Actions refreshes from approved direct publisher feeds discovered via Ground News; partial successful runs are allowed, with GDELT only for unregistered countries
 
 ## Excluded

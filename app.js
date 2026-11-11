@@ -1,9 +1,10 @@
 const DATA_URL = './data/world-news.json';
-const state = { rows: [], query: '', language: 'all' };
+const state = { rows: [], query: '', language: 'all', showAllCountries: false };
 const list = document.querySelector('#news-list');
 const status = document.querySelector('#status');
 const search = document.querySelector('#search');
 const language = document.querySelector('#language');
+const showAll = document.querySelector('#show-all');
 let renderVersion = 0;
 
 function escapeHtml(value) {
@@ -61,7 +62,7 @@ function matches(row) {
 
 function render() {
   const languageGroups = new Map();
-  state.rows.filter(matches).forEach(row => {
+  state.rows.filter(row => (state.showAllCountries || row.isRepresentative) && matches(row)).forEach(row => {
     const key = String(row.nativeLanguage || row.language || 'unknown').toLowerCase();
     if (!languageGroups.has(key)) {
       languageGroups.set(key, {
@@ -91,7 +92,7 @@ function render() {
   });
   let activeGroup = null;
   const version = ++renderVersion;
-  status.textContent = rows.length + ' of ' + state.rows.length + ' countries';
+  status.textContent = groupCounts.size + ' languages · ' + rows.length + (state.showAllCountries ? ' countries shown' : ' representative countries shown') + ' · ' + state.rows.length + ' total countries';
   if (!rows.length) {
     list.innerHTML = '<p class="empty">No matching countries or headlines.</p>';
     return;
@@ -144,6 +145,7 @@ function populateLanguages() {
 
 search.addEventListener('input', () => { state.query = search.value.trim().toLowerCase(); render(); });
 language.addEventListener('change', () => { state.language = language.value; render(); });
+showAll.addEventListener('change', () => { state.showAllCountries = showAll.checked; render(); });
 
 try {
   state.rows = await (await fetch(DATA_URL)).json();

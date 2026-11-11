@@ -51,7 +51,8 @@
     ],
     "headlineTranslationNote": "machine translation",
     "nativeSpeakerMillions": 347,
-    "countryPopulationRank": 1
+    "countryPopulationRank": 1,
+    "isRepresentative": true
   },
   {
     "rank": 2,
@@ -100,7 +101,8 @@
       21
     ],
     "nativeSpeakerMillions": 988,
-    "countryPopulationRank": 2
+    "countryPopulationRank": 2,
+    "isRepresentative": true
   },
   {
     "rank": 3,
@@ -127,7 +129,8 @@
     "articleSummaryOriginal": "After being defeated in the elections, the senator fled to the US with his family",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 3
+    "countryPopulationRank": 3,
+    "isRepresentative": true
   },
   {
     "rank": 4,
@@ -155,7 +158,8 @@
     "articleSummaryTranslationNote": "machine translation",
     "headlineSource": "cnbcindonesia.com",
     "nativeSpeakerMillions": 78,
-    "countryPopulationRank": 4
+    "countryPopulationRank": 4,
+    "isRepresentative": true
   },
   {
     "rank": 5,
@@ -182,7 +186,8 @@
     "articleSummaryOriginal": "انتخابات ان اہم چیلنجز کو نمایاں کر دیتی ہیں جن کا سامنا ٹرانس افراد ہر روز کرتے ہیں۔",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 78,
-    "countryPopulationRank": 5
+    "countryPopulationRank": 5,
+    "isRepresentative": true
   },
   {
     "rank": 6,
@@ -209,7 +214,8 @@
     "articleSummaryOriginal": "How much control do people retain over their personal information in a world increasingly shaped by AI?",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 6
+    "countryPopulationRank": 6,
+    "isRepresentative": false
   },
   {
     "rank": 7,
@@ -236,7 +242,8 @@
     "articleSummaryOriginal": "Depois de ser derrotado nas eleições, o senador fugiu para os EUA com a família.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 7
+    "countryPopulationRank": 7,
+    "isRepresentative": true
   },
   {
     "rank": 8,
@@ -263,7 +270,8 @@
     "articleSummaryOriginal": "রাশিয়ার যুদ্ধে নিয়োগ পাওয়া বাংলাদেশি শ্রমিকদের জন্য কোনো ন্যায়বিচার নেই।",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 232,
-    "countryPopulationRank": 8
+    "countryPopulationRank": 8,
+    "isRepresentative": true
   },
   {
     "rank": 9,
@@ -290,7 +298,8 @@
     "articleSummaryOriginal": "Участники октябрьского спецпроекта осветили целый ряд политических, экономических и географических контекстов.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 133,
-    "countryPopulationRank": 9
+    "countryPopulationRank": 9,
+    "isRepresentative": true
   },
   {
     "rank": 10,
@@ -317,7 +326,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 39,
-    "countryPopulationRank": 10
+    "countryPopulationRank": 10,
+    "isRepresentative": true
   },
   {
     "rank": 11,
@@ -344,7 +354,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 11
+    "countryPopulationRank": 11,
+    "isRepresentative": true
   },
   {
     "rank": 12,
@@ -371,7 +382,8 @@
     "articleSummaryOriginal": "抗議は、民主主義の約束と、私たちが実際に持っている公式な仕組みとの隔たりを埋めるのに役立つ。",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 124,
-    "countryPopulationRank": 12
+    "countryPopulationRank": 12,
+    "isRepresentative": true
   },
   {
     "rank": 13,
@@ -397,7 +409,8 @@
     "articleUrl": "https://globalvoices.org/2026/11/03/egypts-crackdown-on-independent-media-reaches-mada-masr-as-editor-faces-trial/",
     "articleSummaryOriginal": "أدانت مصر لينا عطالله من مدى مصر في جلسة شابتها انتهاكات، وأمرت بإغلاقها.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 13
+    "countryPopulationRank": 13,
+    "isRepresentative": true
   },
   {
     "rank": 14,
@@ -424,7 +437,8 @@
     "articleSummaryOriginal": "Kenya, the Dominican Republic, Nepal, Tuvalu, Yemen, Brazil — people are fighting the good fight all over the world",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 14
+    "countryPopulationRank": 14,
+    "isRepresentative": false
   },
   {
     "rank": 15,
@@ -451,7 +465,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 15
+    "countryPopulationRank": 15,
+    "isRepresentative": true
   },
   {
     "rank": 16,
@@ -478,7 +493,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 86,
-    "countryPopulationRank": 16
+    "countryPopulationRank": 16,
+    "isRepresentative": true
   },
   {
     "rank": 17,
@@ -505,7 +521,8 @@
     "articleSummaryOriginal": "مشارکت‌کنندگان در پرونده ویژه اکتبر، طیفی از زمینه‌های سیاسی، اقتصادی و جغرافیایی را روشن کردند.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 65,
-    "countryPopulationRank": 17
+    "countryPopulationRank": 17,
+    "isRepresentative": true
   },
   {
     "rank": 18,
@@ -532,7 +549,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 86,
-    "countryPopulationRank": 18
+    "countryPopulationRank": 18,
+    "isRepresentative": true
   },
   {
     "rank": 19,
@@ -559,7 +577,8 @@
     "articleSummaryOriginal": "Wahlen verschärfen die zentralen Herausforderungen, denen trans Menschen jeden Tag gegenüberstehen.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 19
+    "countryPopulationRank": 19,
+    "isRepresentative": true
   },
   {
     "rank": 20,
@@ -586,7 +605,8 @@
     "articleSummaryOriginal": "การเลือกตั้งทำให้ความท้าทายสำคัญที่คนข้ามเพศต้องเผชิญทุกวันเด่นชัดขึ้น",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 27,
-    "countryPopulationRank": 20
+    "countryPopulationRank": 20,
+    "isRepresentative": true
   },
   {
     "rank": 21,
@@ -613,7 +633,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 4,
-    "countryPopulationRank": 21
+    "countryPopulationRank": 21,
+    "isRepresentative": true
   },
   {
     "rank": 22,
@@ -640,7 +661,8 @@
     "articleSummaryOriginal": "A systematic effort seems to be underway to dismantle the support systems established to advance gender justice worldwide",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 22
+    "countryPopulationRank": 22,
+    "isRepresentative": false
   },
   {
     "rank": 23,
@@ -667,7 +689,8 @@
     "articleSummaryOriginal": "Les élections amplifient les principaux défis auxquels les personnes trans sont confrontées chaque jour.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 23
+    "countryPopulationRank": 23,
+    "isRepresentative": false
   },
   {
     "rank": 24,
@@ -693,7 +716,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 24
+    "countryPopulationRank": 24,
+    "isRepresentative": true
   },
   {
     "rank": 25,
@@ -720,7 +744,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 60,
-    "countryPopulationRank": 25
+    "countryPopulationRank": 25,
+    "isRepresentative": true
   },
   {
     "rank": 26,
@@ -747,7 +772,8 @@
     "articleSummaryOriginal": "Kenya, Jamhuri ya Dominika, Nepal, Tuvalu, Yemen, Brazili — watu wanapigania yaliyo mema kote ulimwenguni.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 4,
-    "countryPopulationRank": 26
+    "countryPopulationRank": 26,
+    "isRepresentative": false
   },
   {
     "rank": 27,
@@ -773,7 +799,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 27
+    "countryPopulationRank": 27,
+    "isRepresentative": true
   },
   {
     "rank": 28,
@@ -800,7 +827,8 @@
     "articleSummaryOriginal": "Las elecciones amplifican los principales desafíos que enfrentan las personas trans cada día.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 28
+    "countryPopulationRank": 28,
+    "isRepresentative": false
   },
   {
     "rank": 29,
@@ -827,7 +855,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 82,
-    "countryPopulationRank": 29
+    "countryPopulationRank": 29,
+    "isRepresentative": true
   },
   {
     "rank": 30,
@@ -853,7 +882,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 30
+    "countryPopulationRank": 30,
+    "isRepresentative": false
   },
   {
     "rank": 31,
@@ -880,7 +910,8 @@
     "articleSummaryOriginal": "Chaguzi zinakuza changamoto kuu ambazo watu waliobadili jinsia hukabili kila siku.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 4,
-    "countryPopulationRank": 31
+    "countryPopulationRank": 31,
+    "isRepresentative": false
   },
   {
     "rank": 32,
@@ -907,7 +938,8 @@
     "articleSummaryOriginal": "Las elecciones amplifican los principales desafíos que enfrentan las personas trans cada día.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 32
+    "countryPopulationRank": 32,
+    "isRepresentative": false
   },
   {
     "rank": 33,
@@ -933,7 +965,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 33
+    "countryPopulationRank": 33,
+    "isRepresentative": false
   },
   {
     "rank": 34,
@@ -959,7 +992,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 34
+    "countryPopulationRank": 34,
+    "isRepresentative": false
   },
   {
     "rank": 35,
@@ -985,7 +1019,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 35
+    "countryPopulationRank": 35,
+    "isRepresentative": true
   },
   {
     "rank": 36,
@@ -1012,7 +1047,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 65,
-    "countryPopulationRank": 36
+    "countryPopulationRank": 36,
+    "isRepresentative": false
   },
   {
     "rank": 37,
@@ -1038,7 +1074,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 37
+    "countryPopulationRank": 37,
+    "isRepresentative": false
   },
   {
     "rank": 38,
@@ -1065,7 +1102,8 @@
     "articleSummaryOriginal": "Les élections amplifient les principaux défis auxquels les personnes trans sont confrontées chaque jour.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 38
+    "countryPopulationRank": 38,
+    "isRepresentative": false
   },
   {
     "rank": 39,
@@ -1092,7 +1130,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 39
+    "countryPopulationRank": 39,
+    "isRepresentative": false
   },
   {
     "rank": 40,
@@ -1118,7 +1157,8 @@
     "articleUrl": "https://globalvoices.org/2026/11/10/in-ukraine-youth-are-finding-their-voices-in-the-digital-democracy/",
     "articleSummaryOriginal": "Вони вчаться бути рушіями змін на місцевому рівні.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 40
+    "countryPopulationRank": 40,
+    "isRepresentative": true
   },
   {
     "rank": 41,
@@ -1144,7 +1184,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 41
+    "countryPopulationRank": 41,
+    "isRepresentative": false
   },
   {
     "rank": 42,
@@ -1171,7 +1212,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 133,
-    "countryPopulationRank": 42
+    "countryPopulationRank": 42,
+    "isRepresentative": false
   },
   {
     "rank": 43,
@@ -1197,7 +1239,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 43
+    "countryPopulationRank": 43,
+    "isRepresentative": false
   },
   {
     "rank": 44,
@@ -1223,7 +1266,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 44
+    "countryPopulationRank": 44,
+    "isRepresentative": true
   },
   {
     "rank": 45,
@@ -1249,7 +1293,8 @@
     "articleUrl": "https://globalvoices.org/2026/05/28/countless-endangered-species-are-making-a-comeback-due-to-global-conservation-efforts/",
     "articleSummaryOriginal": "Sebuah karya kolaboratif dalam Sorotan Mei 2026 Global Voices, “Krisis global, penyelesaian tempatan”.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 45
+    "countryPopulationRank": 45,
+    "isRepresentative": true
   },
   {
     "rank": 46,
@@ -1276,7 +1321,8 @@
     "articleSummaryOriginal": "Quénia, República Dominicana, Nepal, Tuvalu, Iémen, Brasil — pessoas estão a lutar pelo que é certo em todo o mundo.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 46
+    "countryPopulationRank": 46,
+    "isRepresentative": false
   },
   {
     "rank": 47,
@@ -1303,7 +1349,8 @@
     "articleSummaryOriginal": "Elections amplify the key challenges that trans people face every day",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 47
+    "countryPopulationRank": 47,
+    "isRepresentative": false
   },
   {
     "rank": 48,
@@ -1329,7 +1376,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 48
+    "countryPopulationRank": 48,
+    "isRepresentative": true
   },
   {
     "rank": 49,
@@ -1356,7 +1404,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 49
+    "countryPopulationRank": 49,
+    "isRepresentative": false
   },
   {
     "rank": 50,
@@ -1383,7 +1432,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 50
+    "countryPopulationRank": 50,
+    "isRepresentative": false
   },
   {
     "rank": 51,
@@ -1410,7 +1460,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 51
+    "countryPopulationRank": 51,
+    "isRepresentative": false
   },
   {
     "rank": 52,
@@ -1436,7 +1487,8 @@
     "articleUrl": "https://globalvoices.org/2026/11/09/the-dreamer-who-wants-the-world-to-read-nepali-literature/",
     "articleSummaryOriginal": "‘नेपाली साहित्यलाई भौगोलिक सीमाभित्र सीमित केही कुराका रूपमा हामी अब हेर्दैनौँ।’",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 52
+    "countryPopulationRank": 52,
+    "isRepresentative": true
   },
   {
     "rank": 53,
@@ -1463,7 +1515,8 @@
     "articleSummaryOriginal": "Machado regresa a una nación esperanzada y cautelosa.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 53
+    "countryPopulationRank": 53,
+    "isRepresentative": false
   },
   {
     "rank": 54,
@@ -1490,7 +1543,8 @@
     "articleSummaryOriginal": "Dans un monde de plus en plus façonné par l’IA, dans quelle mesure les gens gardent-ils le contrôle de leurs informations personnelles ?",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 54
+    "countryPopulationRank": 54,
+    "isRepresentative": false
   },
   {
     "rank": 55,
@@ -1517,7 +1571,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 55
+    "countryPopulationRank": 55,
+    "isRepresentative": false
   },
   {
     "rank": 56,
@@ -1544,7 +1599,8 @@
     "articleSummaryOriginal": "10월 스포트라이트 기고자들은 다양한 정치적·경제적·지리적 맥락을 조명했다.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 82,
-    "countryPopulationRank": 56
+    "countryPopulationRank": 56,
+    "isRepresentative": false
   },
   {
     "rank": 57,
@@ -1570,7 +1626,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 57
+    "countryPopulationRank": 57,
+    "isRepresentative": false
   },
   {
     "rank": 58,
@@ -1597,7 +1654,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 58
+    "countryPopulationRank": 58,
+    "isRepresentative": false
   },
   {
     "rank": 59,
@@ -1624,7 +1682,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 59
+    "countryPopulationRank": 59,
+    "isRepresentative": false
   },
   {
     "rank": 60,
@@ -1651,7 +1710,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 60
+    "countryPopulationRank": 60,
+    "isRepresentative": false
   },
   {
     "rank": 61,
@@ -1678,7 +1738,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 61
+    "countryPopulationRank": 61,
+    "isRepresentative": false
   },
   {
     "rank": 62,
@@ -1704,7 +1765,8 @@
     "articleUrl": "https://globalvoices.org/2026/06/01/a-global-shift-from-gender-movements-is-directly-impacting-lbqt-communities/",
     "articleSummaryOriginal": "ස්ත්‍රී පුරුෂ සමානාත්මතාවය ඉදිරියට ගෙන යාම සඳහා පිහිටුවා ඇති ආධාරක පද්ධති විසුරුවා හැරීමට ක්‍රමානුකූල උත්සාහයක් සිදුවෙමින් පවතින බව පෙනේ.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 62
+    "countryPopulationRank": 62,
+    "isRepresentative": true
   },
   {
     "rank": 63,
@@ -1730,7 +1792,8 @@
     "articleUrl": "https://globalvoices.org/2026/11/06/venezuela-welcomes-opposition-leader-maria-corina-machado-home/",
     "articleSummaryOriginal": "تعود ماتشادو إلى أمة يملؤها الأمل والحذر.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 63
+    "countryPopulationRank": 63,
+    "isRepresentative": false
   },
   {
     "rank": 64,
@@ -1756,7 +1819,8 @@
     "articleUrl": "https://globalvoices.org/2026/06/07/climate-success-stories-a-pleasant-surprise/",
     "articleSummaryOriginal": "Кения, Доминикан Республикасы, Непал, Тувалу, Йемен, Бразилия — бүкіл әлемде адамдар игі іс үшін күресіп жатыр.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 64
+    "countryPopulationRank": 64,
+    "isRepresentative": true
   },
   {
     "rank": 65,
@@ -1783,7 +1847,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 65
+    "countryPopulationRank": 65,
+    "isRepresentative": false
   },
   {
     "rank": 66,
@@ -1809,7 +1874,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 66
+    "countryPopulationRank": 66,
+    "isRepresentative": false
   },
   {
     "rank": 67,
@@ -1835,7 +1901,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 67
+    "countryPopulationRank": 67,
+    "isRepresentative": true
   },
   {
     "rank": 68,
@@ -1862,7 +1929,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 68
+    "countryPopulationRank": 68,
+    "isRepresentative": false
   },
   {
     "rank": 69,
@@ -1889,7 +1957,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 69
+    "countryPopulationRank": 69,
+    "isRepresentative": false
   },
   {
     "rank": 70,
@@ -1916,7 +1985,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 70
+    "countryPopulationRank": 70,
+    "isRepresentative": false
   },
   {
     "rank": 71,
@@ -1942,7 +2012,8 @@
     "articleUrl": "https://globalvoices.org/2026/06/01/a-global-shift-from-gender-movements-is-directly-impacting-lbqt-communities/",
     "articleSummaryOriginal": "Er lijkt een systematische poging gaande om de ondersteuningssystemen die wereldwijd zijn opgezet om genderrechtvaardigheid te bevorderen, af te breken.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 71
+    "countryPopulationRank": 71,
+    "isRepresentative": true
   },
   {
     "rank": 72,
@@ -1968,7 +2039,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 72
+    "countryPopulationRank": 72,
+    "isRepresentative": true
   },
   {
     "rank": 73,
@@ -1994,7 +2066,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 73
+    "countryPopulationRank": 73,
+    "isRepresentative": true
   },
   {
     "rank": 74,
@@ -2021,7 +2094,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 74
+    "countryPopulationRank": 74,
+    "isRepresentative": false
   },
   {
     "rank": 75,
@@ -2048,7 +2122,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 75
+    "countryPopulationRank": 75,
+    "isRepresentative": false
   },
   {
     "rank": 76,
@@ -2075,7 +2150,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 76
+    "countryPopulationRank": 76,
+    "isRepresentative": false
   },
   {
     "rank": 77,
@@ -2102,7 +2178,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 77
+    "countryPopulationRank": 77,
+    "isRepresentative": false
   },
   {
     "rank": 78,
@@ -2128,7 +2205,8 @@
     "articleUrl": "https://globalvoices.org/2026/06/07/climate-success-stories-a-pleasant-surprise/",
     "articleSummaryOriginal": "Kenia, República Dominicana, Nepal, Tuvalu, Yemen, Brasil — jaqiwa uraqpachan suma luräwiru chʼamanchasipxi.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 78
+    "countryPopulationRank": 78,
+    "isRepresentative": false
   },
   {
     "rank": 79,
@@ -2154,7 +2232,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 79
+    "countryPopulationRank": 79,
+    "isRepresentative": false
   },
   {
     "rank": 80,
@@ -2181,7 +2260,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 80
+    "countryPopulationRank": 80,
+    "isRepresentative": false
   },
   {
     "rank": 81,
@@ -2208,7 +2288,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 81
+    "countryPopulationRank": 81,
+    "isRepresentative": false
   },
   {
     "rank": 82,
@@ -2235,7 +2316,8 @@
     "articleSummaryOriginal": "Le 19 octobre, une unité de soldats salvadoriens a également été prise en embuscade ; la situation reste tendue.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 82
+    "countryPopulationRank": 82,
+    "isRepresentative": false
   },
   {
     "rank": 83,
@@ -2261,7 +2343,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 83
+    "countryPopulationRank": 83,
+    "isRepresentative": false
   },
   {
     "rank": 84,
@@ -2288,7 +2371,8 @@
     "articleSummaryOriginal": "El desafío no consiste únicamente en declarar nuevas áreas protegidas, sino en garantizar que tengan una gestión eficaz.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 84
+    "countryPopulationRank": 84,
+    "isRepresentative": false
   },
   {
     "rank": 85,
@@ -2314,7 +2398,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 85
+    "countryPopulationRank": 85,
+    "isRepresentative": false
   },
   {
     "rank": 86,
@@ -2341,7 +2426,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 86
+    "countryPopulationRank": 86,
+    "isRepresentative": false
   },
   {
     "rank": 87,
@@ -2368,7 +2454,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 87
+    "countryPopulationRank": 87,
+    "isRepresentative": false
   },
   {
     "rank": 88,
@@ -2394,7 +2481,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 88
+    "countryPopulationRank": 88,
+    "isRepresentative": true
   },
   {
     "rank": 89,
@@ -2421,7 +2509,8 @@
     "articleSummaryOriginal": "O representante jurídico internacional de Au Kam San chamou o julgamento de uma “farsa” com “acusações fabricadas”.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 89
+    "countryPopulationRank": 89,
+    "isRepresentative": false
   },
   {
     "rank": 90,
@@ -2448,7 +2537,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 133,
-    "countryPopulationRank": 90
+    "countryPopulationRank": 90,
+    "isRepresentative": false
   },
   {
     "rank": 91,
@@ -2475,7 +2565,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 91
+    "countryPopulationRank": 91,
+    "isRepresentative": false
   },
   {
     "rank": 92,
@@ -2501,7 +2592,8 @@
     "articleUrl": "https://globalvoices.org/2026/06/01/a-global-shift-from-gender-movements-is-directly-impacting-lbqt-communities/",
     "articleSummaryOriginal": "Ett systematiskt försök tycks pågå för att avveckla de stödsystem som har inrättats för att främja jämställdhet globalt.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 92
+    "countryPopulationRank": 92,
+    "isRepresentative": true
   },
   {
     "rank": 93,
@@ -2527,7 +2619,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 93
+    "countryPopulationRank": 93,
+    "isRepresentative": true
   },
   {
     "rank": 94,
@@ -2553,7 +2646,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 94
+    "countryPopulationRank": 94,
+    "isRepresentative": true
   },
   {
     "rank": 95,
@@ -2579,7 +2673,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 95
+    "countryPopulationRank": 95,
+    "isRepresentative": false
   },
   {
     "rank": 96,
@@ -2605,7 +2700,8 @@
     "articleUrl": "https://globalvoices.org/2026/07/04/hate-on-the-ballot-transphobia-and-elections/",
     "articleSummaryOriginal": "A választások felerősítik azokat a legfontosabb kihívásokat, amelyekkel a transz emberek nap mint nap szembesülnek.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 96
+    "countryPopulationRank": 96,
+    "isRepresentative": true
   },
   {
     "rank": 97,
@@ -2632,7 +2728,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 97
+    "countryPopulationRank": 97,
+    "isRepresentative": false
   },
   {
     "rank": 98,
@@ -2659,7 +2756,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 98
+    "countryPopulationRank": 98,
+    "isRepresentative": false
   },
   {
     "rank": 99,
@@ -2685,7 +2783,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 99
+    "countryPopulationRank": 99,
+    "isRepresentative": true
   },
   {
     "rank": 100,
@@ -2712,7 +2811,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 100
+    "countryPopulationRank": 100,
+    "isRepresentative": false
   },
   {
     "rank": 101,
@@ -2739,7 +2839,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 101
+    "countryPopulationRank": 101,
+    "isRepresentative": false
   },
   {
     "rank": 102,
@@ -2765,7 +2866,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 102
+    "countryPopulationRank": 102,
+    "isRepresentative": true
   },
   {
     "rank": 103,
@@ -2792,7 +2894,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 133,
-    "countryPopulationRank": 103
+    "countryPopulationRank": 103,
+    "isRepresentative": false
   },
   {
     "rank": 104,
@@ -2819,7 +2922,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 988,
-    "countryPopulationRank": 104
+    "countryPopulationRank": 104,
+    "isRepresentative": false
   },
   {
     "rank": 105,
@@ -2845,7 +2949,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 105
+    "countryPopulationRank": 105,
+    "isRepresentative": false
   },
   {
     "rank": 106,
@@ -2871,7 +2976,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 106
+    "countryPopulationRank": 106,
+    "isRepresentative": true
   },
   {
     "rank": 107,
@@ -2897,7 +3003,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 107
+    "countryPopulationRank": 107,
+    "isRepresentative": false
   },
   {
     "rank": 108,
@@ -2924,7 +3031,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 108
+    "countryPopulationRank": 108,
+    "isRepresentative": false
   },
   {
     "rank": 109,
@@ -2950,7 +3058,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 109
+    "countryPopulationRank": 109,
+    "isRepresentative": true
   },
   {
     "rank": 110,
@@ -2977,7 +3086,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 110
+    "countryPopulationRank": 110,
+    "isRepresentative": false
   },
   {
     "rank": 111,
@@ -3003,7 +3113,8 @@
     "articleUrl": "https://globalvoices.org/2026/07/04/hate-on-the-ballot-transphobia-and-elections/",
     "articleSummaryOriginal": "Изборите засилват основните предизвикателства, пред които транс хората се изправят всеки ден.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 111
+    "countryPopulationRank": 111,
+    "isRepresentative": true
   },
   {
     "rank": 112,
@@ -3030,7 +3141,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 112
+    "countryPopulationRank": 112,
+    "isRepresentative": false
   },
   {
     "rank": 113,
@@ -3056,7 +3168,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 113
+    "countryPopulationRank": 113,
+    "isRepresentative": false
   },
   {
     "rank": 114,
@@ -3082,7 +3195,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 114
+    "countryPopulationRank": 114,
+    "isRepresentative": true
   },
   {
     "rank": 115,
@@ -3108,7 +3222,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 115
+    "countryPopulationRank": 115,
+    "isRepresentative": false
   },
   {
     "rank": 116,
@@ -3135,7 +3250,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 116
+    "countryPopulationRank": 116,
+    "isRepresentative": false
   },
   {
     "rank": 117,
@@ -3161,7 +3277,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 117
+    "countryPopulationRank": 117,
+    "isRepresentative": true
   },
   {
     "rank": 118,
@@ -3187,7 +3304,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 118
+    "countryPopulationRank": 118,
+    "isRepresentative": true
   },
   {
     "rank": 119,
@@ -3214,7 +3332,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 119
+    "countryPopulationRank": 119,
+    "isRepresentative": false
   },
   {
     "rank": 120,
@@ -3240,7 +3359,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 120
+    "countryPopulationRank": 120,
+    "isRepresentative": false
   },
   {
     "rank": 121,
@@ -3266,7 +3386,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 121
+    "countryPopulationRank": 121,
+    "isRepresentative": true
   },
   {
     "rank": 122,
@@ -3292,7 +3413,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 122
+    "countryPopulationRank": 122,
+    "isRepresentative": true
   },
   {
     "rank": 123,
@@ -3318,7 +3440,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 123
+    "countryPopulationRank": 123,
+    "isRepresentative": false
   },
   {
     "rank": 124,
@@ -3344,7 +3467,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 124
+    "countryPopulationRank": 124,
+    "isRepresentative": true
   },
   {
     "rank": 125,
@@ -3370,7 +3494,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 125
+    "countryPopulationRank": 125,
+    "isRepresentative": false
   },
   {
     "rank": 126,
@@ -3397,7 +3522,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 126
+    "countryPopulationRank": 126,
+    "isRepresentative": false
   },
   {
     "rank": 127,
@@ -3423,7 +3549,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 127
+    "countryPopulationRank": 127,
+    "isRepresentative": false
   },
   {
     "rank": 128,
@@ -3450,7 +3577,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 128
+    "countryPopulationRank": 128,
+    "isRepresentative": false
   },
   {
     "rank": 129,
@@ -3476,7 +3604,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 129
+    "countryPopulationRank": 129,
+    "isRepresentative": true
   },
   {
     "rank": 130,
@@ -3502,7 +3631,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 130
+    "countryPopulationRank": 130,
+    "isRepresentative": true
   },
   {
     "rank": 131,
@@ -3528,7 +3658,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 131
+    "countryPopulationRank": 131,
+    "isRepresentative": false
   },
   {
     "rank": 132,
@@ -3554,7 +3685,8 @@
     "articleUrl": "https://globalvoices.org/2026/05/28/countless-endangered-species-are-making-a-comeback-due-to-global-conservation-efforts/",
     "articleSummaryOriginal": "Global Voices-ийн 2026 оны тавдугаар сарын “Дэлхийн хямрал, орон нутгийн шийдэл” сэдэвт Spotlight-ийн хүрээнд хийсэн хамтын бүтээл.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 132
+    "countryPopulationRank": 132,
+    "isRepresentative": true
   },
   {
     "rank": 133,
@@ -3581,7 +3713,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 133
+    "countryPopulationRank": 133,
+    "isRepresentative": false
   },
   {
     "rank": 134,
@@ -3608,7 +3741,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 134
+    "countryPopulationRank": 134,
+    "isRepresentative": false
   },
   {
     "rank": 135,
@@ -3634,7 +3768,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 135
+    "countryPopulationRank": 135,
+    "isRepresentative": true
   },
   {
     "rank": 136,
@@ -3660,7 +3795,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 136
+    "countryPopulationRank": 136,
+    "isRepresentative": false
   },
   {
     "rank": 137,
@@ -3686,7 +3822,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 137
+    "countryPopulationRank": 137,
+    "isRepresentative": true
   },
   {
     "rank": 138,
@@ -3712,7 +3849,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 138
+    "countryPopulationRank": 138,
+    "isRepresentative": false
   },
   {
     "rank": 139,
@@ -3738,7 +3876,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 139
+    "countryPopulationRank": 139,
+    "isRepresentative": true
   },
   {
     "rank": 140,
@@ -3765,7 +3904,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 140
+    "countryPopulationRank": 140,
+    "isRepresentative": false
   },
   {
     "rank": 141,
@@ -3792,7 +3932,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 141
+    "countryPopulationRank": 141,
+    "isRepresentative": false
   },
   {
     "rank": 142,
@@ -3819,7 +3960,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 142
+    "countryPopulationRank": 142,
+    "isRepresentative": false
   },
   {
     "rank": 143,
@@ -3845,7 +3987,8 @@
     "articleUrl": "https://globalvoices.org/2026/07/04/hate-on-the-ballot-transphobia-and-elections/",
     "articleSummaryOriginal": "Ditlhopho di godisa dikgwetlho tse dikgolo tse batho ba ba trans ba lebanang le tsone letsatsi le letsatsi.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 143
+    "countryPopulationRank": 143,
+    "isRepresentative": true
   },
   {
     "rank": 144,
@@ -3871,7 +4014,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 144
+    "countryPopulationRank": 144,
+    "isRepresentative": false
   },
   {
     "rank": 145,
@@ -3897,7 +4041,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 145
+    "countryPopulationRank": 145,
+    "isRepresentative": false
   },
   {
     "rank": 146,
@@ -3923,7 +4068,8 @@
     "articleUrl": "https://globalvoices.org/2026/11/06/global-voices-condemns-the-attacks-on-albanian-fact-checking-service-faktoje/",
     "articleSummaryOriginal": "Faktoje është një anëtar i respektuar i komunitetit ndërkombëtar të verifikimit të fakteve.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 146
+    "countryPopulationRank": 146,
+    "isRepresentative": true
   },
   {
     "rank": 147,
@@ -3950,7 +4096,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 147
+    "countryPopulationRank": 147,
+    "isRepresentative": false
   },
   {
     "rank": 148,
@@ -3976,7 +4123,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 148
+    "countryPopulationRank": 148,
+    "isRepresentative": true
   },
   {
     "rank": 149,
@@ -4003,7 +4151,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 149
+    "countryPopulationRank": 149,
+    "isRepresentative": false
   },
   {
     "rank": 150,
@@ -4029,7 +4178,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 150
+    "countryPopulationRank": 150,
+    "isRepresentative": true
   },
   {
     "rank": 151,
@@ -4055,7 +4205,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 151
+    "countryPopulationRank": 151,
+    "isRepresentative": true
   },
   {
     "rank": 152,
@@ -4081,7 +4232,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 152
+    "countryPopulationRank": 152,
+    "isRepresentative": false
   },
   {
     "rank": 153,
@@ -4107,7 +4259,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 153
+    "countryPopulationRank": 153,
+    "isRepresentative": false
   },
   {
     "rank": 154,
@@ -4134,7 +4287,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 154
+    "countryPopulationRank": 154,
+    "isRepresentative": false
   },
   {
     "rank": 155,
@@ -4160,7 +4314,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 155
+    "countryPopulationRank": 155,
+    "isRepresentative": false
   },
   {
     "rank": 156,
@@ -4187,7 +4342,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 156
+    "countryPopulationRank": 156,
+    "isRepresentative": false
   },
   {
     "rank": 157,
@@ -4213,7 +4369,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 157
+    "countryPopulationRank": 157,
+    "isRepresentative": true
   },
   {
     "rank": 158,
@@ -4240,7 +4397,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 158
+    "countryPopulationRank": 158,
+    "isRepresentative": false
   },
   {
     "rank": 159,
@@ -4267,7 +4425,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 159
+    "countryPopulationRank": 159,
+    "isRepresentative": false
   },
   {
     "rank": 160,
@@ -4293,7 +4452,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 160
+    "countryPopulationRank": 160,
+    "isRepresentative": false
   },
   {
     "rank": 161,
@@ -4319,7 +4479,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 161
+    "countryPopulationRank": 161,
+    "isRepresentative": true
   },
   {
     "rank": 162,
@@ -4345,7 +4506,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 162
+    "countryPopulationRank": 162,
+    "isRepresentative": false
   },
   {
     "rank": 163,
@@ -4372,7 +4534,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 163
+    "countryPopulationRank": 163,
+    "isRepresentative": false
   },
   {
     "rank": 164,
@@ -4399,7 +4562,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 164
+    "countryPopulationRank": 164,
+    "isRepresentative": false
   },
   {
     "rank": 165,
@@ -4425,7 +4589,8 @@
     "articleUrl": "https://globalvoices.org/2026/07/04/hate-on-the-ballot-transphobia-and-elections/",
     "articleSummaryOriginal": "འོས་བསྡུ་ཁང་གིས་ ཕོ་མོའི་ངོ་བོ་སོར་མི་ཚུ་གིས་ ཉིན་ལྟར་འཕྲད་པའི་གདོང་ལེན་གཙོ་བོ་ཚུ་སྦོམ་སྟོནམ་ཨིན།",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 165
+    "countryPopulationRank": 165,
+    "isRepresentative": true
   },
   {
     "rank": 166,
@@ -4452,7 +4617,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 166
+    "countryPopulationRank": 166,
+    "isRepresentative": false
   },
   {
     "rank": 167,
@@ -4479,7 +4645,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 167
+    "countryPopulationRank": 167,
+    "isRepresentative": false
   },
   {
     "rank": 168,
@@ -4505,7 +4672,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 168
+    "countryPopulationRank": 168,
+    "isRepresentative": false
   },
   {
     "rank": 169,
@@ -4531,7 +4699,8 @@
     "articleUrl": "https://globalvoices.org/2026/11/07/how-people-in-montenegro-are-making-their-country-cleaner/",
     "articleSummaryOriginal": "I pomaže da ciljevi pristupanja EU postanu ostvarivi.",
     "articleSummaryTranslationNote": "machine translation",
-    "countryPopulationRank": 169
+    "countryPopulationRank": 169,
+    "isRepresentative": false
   },
   {
     "rank": 170,
@@ -4557,7 +4726,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 170
+    "countryPopulationRank": 170,
+    "isRepresentative": true
   },
   {
     "rank": 171,
@@ -4583,7 +4753,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 171
+    "countryPopulationRank": 171,
+    "isRepresentative": true
   },
   {
     "rank": 172,
@@ -4610,7 +4781,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 172
+    "countryPopulationRank": 172,
+    "isRepresentative": false
   },
   {
     "rank": 173,
@@ -4636,7 +4808,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 173
+    "countryPopulationRank": 173,
+    "isRepresentative": false
   },
   {
     "rank": 174,
@@ -4663,7 +4836,8 @@
     "articleSummaryOriginal": "Parece estar en marcha un esfuerzo sistemático para desmantelar los sistemas de apoyo establecidos para promover la justicia de género en todo el mundo.",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 174
+    "countryPopulationRank": 174,
+    "isRepresentative": false
   },
   {
     "rank": 175,
@@ -4690,7 +4864,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 175
+    "countryPopulationRank": 175,
+    "isRepresentative": false
   },
   {
     "rank": 176,
@@ -4716,7 +4891,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 176
+    "countryPopulationRank": 176,
+    "isRepresentative": true
   },
   {
     "rank": 177,
@@ -4742,7 +4918,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 177
+    "countryPopulationRank": 177,
+    "isRepresentative": true
   },
   {
     "rank": 178,
@@ -4769,7 +4946,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 178
+    "countryPopulationRank": 178,
+    "isRepresentative": false
   },
   {
     "rank": 179,
@@ -4796,7 +4974,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 179
+    "countryPopulationRank": 179,
+    "isRepresentative": false
   },
   {
     "rank": 180,
@@ -4823,7 +5002,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 180
+    "countryPopulationRank": 180,
+    "isRepresentative": false
   },
   {
     "rank": 181,
@@ -4850,7 +5030,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 252,
-    "countryPopulationRank": 181
+    "countryPopulationRank": 181,
+    "isRepresentative": false
   },
   {
     "rank": 182,
@@ -4876,7 +5057,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 182
+    "countryPopulationRank": 182,
+    "isRepresentative": true
   },
   {
     "rank": 183,
@@ -4903,7 +5085,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 183
+    "countryPopulationRank": 183,
+    "isRepresentative": false
   },
   {
     "rank": 184,
@@ -4930,7 +5113,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 487,
-    "countryPopulationRank": 184
+    "countryPopulationRank": 184,
+    "isRepresentative": false
   },
   {
     "rank": 185,
@@ -4957,7 +5141,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 185
+    "countryPopulationRank": 185,
+    "isRepresentative": false
   },
   {
     "rank": 186,
@@ -4983,7 +5168,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 186
+    "countryPopulationRank": 186,
+    "isRepresentative": false
   },
   {
     "rank": 187,
@@ -5010,7 +5196,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 187
+    "countryPopulationRank": 187,
+    "isRepresentative": false
   },
   {
     "rank": 188,
@@ -5037,7 +5224,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 188
+    "countryPopulationRank": 188,
+    "isRepresentative": false
   },
   {
     "rank": 189,
@@ -5064,7 +5252,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 189
+    "countryPopulationRank": 189,
+    "isRepresentative": false
   },
   {
     "rank": 190,
@@ -5091,7 +5280,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 190
+    "countryPopulationRank": 190,
+    "isRepresentative": false
   },
   {
     "rank": 191,
@@ -5117,7 +5307,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 191
+    "countryPopulationRank": 191,
+    "isRepresentative": false
   },
   {
     "rank": 192,
@@ -5144,7 +5335,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 192
+    "countryPopulationRank": 192,
+    "isRepresentative": false
   },
   {
     "rank": 193,
@@ -5171,7 +5363,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 193
+    "countryPopulationRank": 193,
+    "isRepresentative": false
   },
   {
     "rank": 194,
@@ -5198,7 +5391,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 194
+    "countryPopulationRank": 194,
+    "isRepresentative": false
   },
   {
     "rank": 195,
@@ -5225,7 +5419,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 195
+    "countryPopulationRank": 195,
+    "isRepresentative": false
   },
   {
     "rank": 196,
@@ -5252,7 +5447,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 196
+    "countryPopulationRank": 196,
+    "isRepresentative": false
   },
   {
     "rank": 197,
@@ -5278,7 +5474,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 197
+    "countryPopulationRank": 197,
+    "isRepresentative": true
   },
   {
     "rank": 198,
@@ -5305,7 +5502,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 198
+    "countryPopulationRank": 198,
+    "isRepresentative": false
   },
   {
     "rank": 199,
@@ -5332,7 +5530,8 @@
     "articleSummaryOriginal": "The challenge is not solely to declare new protected areas, but ensure they have effective management",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 199
+    "countryPopulationRank": 199,
+    "isRepresentative": false
   },
   {
     "rank": 200,
@@ -5359,7 +5558,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 200
+    "countryPopulationRank": 200,
+    "isRepresentative": false
   },
   {
     "rank": 201,
@@ -5385,7 +5585,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 201
+    "countryPopulationRank": 201,
+    "isRepresentative": true
   },
   {
     "rank": 202,
@@ -5411,7 +5612,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 202
+    "countryPopulationRank": 202,
+    "isRepresentative": false
   },
   {
     "rank": 203,
@@ -5438,7 +5640,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 203
+    "countryPopulationRank": 203,
+    "isRepresentative": false
   },
   {
     "rank": 204,
@@ -5465,7 +5668,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 204
+    "countryPopulationRank": 204,
+    "isRepresentative": false
   },
   {
     "rank": 205,
@@ -5491,7 +5695,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 205
+    "countryPopulationRank": 205,
+    "isRepresentative": false
   },
   {
     "rank": 206,
@@ -5518,7 +5723,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 206
+    "countryPopulationRank": 206,
+    "isRepresentative": false
   },
   {
     "rank": 207,
@@ -5545,7 +5751,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 207
+    "countryPopulationRank": 207,
+    "isRepresentative": false
   },
   {
     "rank": 208,
@@ -5572,7 +5779,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 208
+    "countryPopulationRank": 208,
+    "isRepresentative": false
   },
   {
     "rank": 209,
@@ -5599,7 +5807,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 209
+    "countryPopulationRank": 209,
+    "isRepresentative": false
   },
   {
     "rank": 210,
@@ -5626,7 +5835,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 210
+    "countryPopulationRank": 210,
+    "isRepresentative": false
   },
   {
     "rank": 211,
@@ -5653,7 +5863,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 211
+    "countryPopulationRank": 211,
+    "isRepresentative": false
   },
   {
     "rank": 212,
@@ -5680,7 +5891,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 212
+    "countryPopulationRank": 212,
+    "isRepresentative": false
   },
   {
     "rank": 213,
@@ -5707,7 +5919,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 60,
-    "countryPopulationRank": 213
+    "countryPopulationRank": 213,
+    "isRepresentative": false
   },
   {
     "rank": 214,
@@ -5734,7 +5947,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "nativeSpeakerMillions": 76,
-    "countryPopulationRank": 214
+    "countryPopulationRank": 214,
+    "isRepresentative": false
   },
   {
     "rank": 215,
@@ -5761,7 +5975,8 @@
     "articleSummaryOriginal": "A collaborative piece under Global Voices’ May 2026 Spotlight ‘Global crisis, local solutions’",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 215
+    "countryPopulationRank": 215,
+    "isRepresentative": false
   },
   {
     "rank": 216,
@@ -5787,7 +6002,8 @@
     "articleUrl": null,
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
-    "countryPopulationRank": 216
+    "countryPopulationRank": 216,
+    "isRepresentative": true
   },
   {
     "rank": 217,
@@ -5814,6 +6030,7 @@
     "articleSummaryOriginal": "Kenya, the Dominican Republic, Nepal, Tuvalu, Yemen, Brazil — people are fighting the good fight all over the world",
     "articleSummaryTranslationNote": "machine translation",
     "nativeSpeakerMillions": 372,
-    "countryPopulationRank": 217
+    "countryPopulationRank": 217,
+    "isRepresentative": false
   }
 ]
