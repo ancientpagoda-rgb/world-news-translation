@@ -22,7 +22,7 @@ function renderArticle(text) {
   return String(text || '').split(/\n{2,}/).filter(Boolean).map(paragraph => '<p>' + escapeHtml(paragraph) + '</p>').join('');
 }
 
-const WORD_COLORS = ['52 211 153', '248 113 113', '250 204 21', '96 165 250', '192 132 252', '34 211 238', '251 146 60'];
+const WORD_COLORS = ['237 110 110', '237 138 110', '237 166 110', '237 195 110', '237 223 110', '223 237 110', '195 237 110', '166 237 110', '138 237 110', '110 237 110', '110 237 138', '110 237 166', '110 237 195', '110 237 223', '110 223 237', '110 195 237', '110 166 237', '110 138 237', '110 110 237', '138 110 237', '166 110 237', '195 110 237', '223 110 237', '237 110 223', '237 110 195', '237 110 166', '237 110 138'];
 
 const LANGUAGE_OVERRIDES = { zh: 'Mandarin Chinese', pa: 'Western Punjabi', fa: 'Iranian Persian', jv: 'Javanese' };
 const LANGUAGE_NAMES = new Intl.DisplayNames(['en'], { type: 'language' });
