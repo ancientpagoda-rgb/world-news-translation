@@ -1177,7 +1177,7 @@
     "headline": "美민주, 트럼프 부패 조사에 '어둠의 공주' 모금책 정조준",
     "description": "South Korea, officially the Republic of Korea (ROK), is a country in East Asia. It constitutes the southern half of the Korean Peninsula and borders North Korea along the Korean Demilitarized Zone, with the Yellow Sea to the west and the Sea of Japan to the east. South Korea claims to be the sole legitimate government of the entire peninsula and adjacent islands. It has a population of about 52 million, of which half live in the Seoul metropolitan area, the ninth most populous metropolitan area in the world, with other major cities being Busan, Daegu, and Incheon.",
     "headlineUrl": "https://www.yna.co.kr/view/AKR20261113019300071",
-    "englishHeadline": "U.S. Democrats take aim at the “dark princess” fundraiser in the Trump corruption investigation",
+    "englishHeadline": "U.S. Democrats zero in on “Princess of Darkness,” a fundraiser in Trump’s corruption probe",
     "headlinePublishedAt": "2026-11-12T22:49:01Z",
     "articleText": null,
     "articleAuthor": null,
@@ -1262,6 +1262,17 @@
         ],
         "ipa": "tɕˈʌŋdʑodʑˌun"
       }
+    ],
+    "headlineTranslationWordIndices": [
+      0,
+      2,
+      12,
+      13,
+      11,
+      6,
+      6,
+      10,
+      3
     ]
   },
   {
