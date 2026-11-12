@@ -7,6 +7,28 @@ const language = document.querySelector('#language');
 const showAll = document.querySelector('#show-all');
 let renderVersion = 0;
 
+function coordinatedTokens(card, index) {
+  return [...card.querySelectorAll('.word-token[data-word-index], .coordinated-word[data-word-index]')]
+    .filter(token => token.dataset.wordIndex === index);
+}
+
+list.addEventListener('pointerover', event => {
+  const token = event.target.closest?.('[data-word-index]');
+  if (!token || !list.contains(token)) return;
+  const card = token.closest('.news-card');
+  if (!card) return;
+  card.querySelectorAll('.is-coordinated-hover').forEach(item => item.classList.remove('is-coordinated-hover'));
+  coordinatedTokens(card, token.dataset.wordIndex).forEach(item => item.classList.add('is-coordinated-hover'));
+});
+
+list.addEventListener('pointerout', event => {
+  const token = event.target.closest?.('[data-word-index]');
+  if (!token || !list.contains(token)) return;
+  if (event.relatedTarget && token.contains(event.relatedTarget)) return;
+  const card = token.closest('.news-card');
+  if (card) card.querySelectorAll('.is-coordinated-hover').forEach(item => item.classList.remove('is-coordinated-hover'));
+});
+
 function escapeHtml(value) {
   return String(value == null ? '' : value)
     .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
