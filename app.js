@@ -9,7 +9,10 @@ let renderVersion = 0;
 
 function coordinatedTokens(card, index) {
   return [...card.querySelectorAll('.word-token[data-word-index], .coordinated-word[data-word-index]')]
-    .filter(token => token.dataset.wordIndex === index);
+    .filter(token => {
+      const indices = String(token.dataset.wordIndices || token.dataset.wordIndex).split(',');
+      return indices.includes(index);
+    });
 }
 
 list.addEventListener('pointerover', event => {
@@ -259,6 +262,15 @@ function renderWordTrack(text, language = '', colorIndices = null) {
   }).join('');
 }
 
+function renderIpaGroups(groups) {
+  return (Array.isArray(groups) ? groups : []).map(group => {
+    const indices = Array.isArray(group.indices) ? group.indices : [];
+    const index = Number.isInteger(indices[0]) ? indices[0] : 0;
+    const color = WORD_COLORS[((index % WORD_COLORS.length) + WORD_COLORS.length) % WORD_COLORS.length];
+    return '<span class="word-token" data-word-index="' + index + '" data-word-indices="' + indices.join(',') + '" role="button" tabindex="0" title="Click to hear" style="--word-color: ' + color + '">' + escapeHtml(group.ipa || '') + '</span>';
+  }).join(' ');
+}
+
 function renderColoredArticle(text, language = '') {
   return String(text || '').split(/\n{2,}/).filter(Boolean).map(paragraph => '<p>' + renderWordTrack(paragraph, language) + '</p>').join('');
 }
@@ -320,17 +332,18 @@ function render() {
     const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
     const original = row.headline || 'No headline available.';
     const phonetics = row.headline ? (Array.isArray(row.speechIpaWords) ? row.speechIpaWords.join(' ') : 'Generating phonetics…') : '—';
-    return groupHeading + '<article class="news-card" data-row-index="' + index + '" data-language="' + escapeHtml(row.language || '') + '" data-speech-text="' + escapeHtml(row.speechText || '') + '" data-speech-words="' + escapeHtml((row.speechWords || []).join('|')) + '">' +
+    return groupHeading + '<article class="news-card" data-row-index="' + index + '" data-language="' + escapeHtml(row.language || '') + '" data-speech-text="' + escapeHtml(row.speechText || '') + '" data-speech-words="' + escapeHtml((row.speechWords || []).join('|')) + '" data-speech-ipa-groups="' + escapeHtml(JSON.stringify(row.speechIpaGroups || [])) + '">' +
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
-      '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + escapeHtml(phonetics) + '</p></div>' +
+      '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + (Array.isArray(row.speechIpaGroups) ? renderIpaGroups(row.speechIpaGroups) : escapeHtml(phonetics)) + '</p></div>' +
       '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderWordTrack(row.englishHeadline, 'en', row.headlineTranslationWordIndices) : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
       source + '</article>';
   }).join('');
 
   rows.forEach((row, index) => {
     if (!row.headline) return;
+    if (Array.isArray(row.speechIpaGroups)) return;
     Promise.resolve(Array.isArray(row.speechIpaWords)
       ? row.speechIpaWords.join(' ')
       : (window.toIpaDisplay ? window.toIpaDisplay(row.headline, row.language || '') : row.headline))

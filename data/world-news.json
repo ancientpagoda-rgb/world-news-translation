@@ -509,6 +509,89 @@
       "kʲˌo̞ɯᵝɽʲäˈo̞kɯᵝ",
       "kʲo̞ˈɯᵝkä",
       "kʲo̞ˈɯᵝkä"
+    ],
+    "speechIpaGroups": [
+      {
+        "indices": [
+          0,
+          1
+        ],
+        "ipa": "bˌe̞itɕˈɯᵝɯᵝ"
+      },
+      {
+        "indices": [
+          2,
+          3
+        ],
+        "ipa": "ɡˌäiɕˈo̞ɯᵝ"
+      },
+      {
+        "indices": [
+          4
+        ],
+        "ipa": "ˌe̞ipˌe̞kkɯᵝdˈe̞no̞"
+      },
+      {
+        "indices": [
+          5,
+          6
+        ],
+        "ipa": "ɕɯᵝnˈo̞ɯᵝ"
+      },
+      {
+        "indices": [
+          7,
+          8
+        ],
+        "ipa": "käˈidäɴ"
+      },
+      {
+        "indices": [
+          9,
+          10
+        ],
+        "ipa": "tɕˌo̞ɯᵝsˈe̞i"
+      },
+      {
+        "indices": [
+          11
+        ],
+        "ipa": "kˈä"
+      },
+      {
+        "indices": [
+          12,
+          13,
+          14
+        ],
+        "ipa": "ˌo̞ɯᵝkˈiɕi"
+      },
+      {
+        "indices": [
+          15
+        ],
+        "ipa": "bˈe̞i"
+      },
+      {
+        "indices": [
+          16
+        ],
+        "ipa": "tˈo̞"
+      },
+      {
+        "indices": [
+          17,
+          18
+        ],
+        "ipa": "kʲˌo̞ɯᵝɽʲäˈo̞kɯᵝ"
+      },
+      {
+        "indices": [
+          19,
+          20
+        ],
+        "ipa": "kʲo̞ˈɯᵝkä"
+      }
     ]
   },
   {
