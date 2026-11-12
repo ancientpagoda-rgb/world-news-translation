@@ -275,6 +275,19 @@
           "status": "approved"
         }
       ]
+    },
+    "CD": {
+      "name": "Congo, Dem. Rep.",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "Actualite.cd",
+          "domain": "actualite.cd",
+          "feed": "https://actualite.cd/rss.xml",
+          "feedDirectory": "https://actualite.cd/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }

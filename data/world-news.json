@@ -658,11 +658,11 @@
     "name": "Congo, Dem. Rep.",
     "nativeLanguage": "fr",
     "language": "fr",
-    "headline": null,
+    "headline": "SAKIMA : le député Pacquis Nganini convoque le directeur général devant l'Assemblée nationale",
     "description": "Le Congo, en forme longue la république démocratique du Congo, aussi appelée plus simplement RDC, RD Congo ou de manière informelle Congo-Kinshasa, est un pays d'Afrique centrale. C'est le quatrième pays le plus peuplé d'Afrique, ainsi que le pays francophone le plus peuplé.",
-    "headlineUrl": null,
-    "englishHeadline": null,
-    "headlinePublishedAt": null,
+    "headlineUrl": "https://actualite.cd/2026/11/12/sakima-le-depute-pacquis-nganini-convoque-le-directeur-general-devant-lassemblee",
+    "englishHeadline": "SAKIMA: MP Pacquis Nganini summons the director general before the National Assembly",
+    "headlinePublishedAt": "2026-11-12T21:50:21Z",
     "articleText": null,
     "articleAuthor": null,
     "articleSource": null,
@@ -678,7 +678,8 @@
     "nativeSpeakerMillions": 76,
     "countryPopulationRank": 15,
     "isRepresentative": true,
-    "headlineSource": null
+    "headlineSource": "actualite.cd",
+    "headlineTranslationNote": "manual translation"
   },
   {
     "rank": 16,
