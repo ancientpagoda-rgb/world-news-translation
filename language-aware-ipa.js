@@ -20,6 +20,7 @@
     if (/\p{Script=Cyrillic}/u.test(input)) return "cyrillic";
     if (/\p{Script=Greek}/u.test(input)) return "greek";
     if (/\p{Script=Arabic}/u.test(input)) return "arabic";
+    if (/\p{Script=Bengali}/u.test(input)) return "bengali";
     if (/\p{Script=Han}/u.test(input)) return "han";
     if (/\p{Script=Latin}/u.test(input)) return "latin";
     return "other";
@@ -200,6 +201,35 @@
     return out.replace(/ə(?=\s|[.,!?;:।]|$)/g, "");
   }
 
+  const BENGALI_VOWELS = { অ:"ɔ", আ:"a", ই:"i", ঈ:"i", উ:"u", ঊ:"u", ঋ:"ri", এ:"e", ঐ:"oi", ও:"o", ঔ:"ou" };
+  const BENGALI_CONSONANTS = {
+    ক:"k", খ:"kʰ", গ:"g", ঘ:"gʱ", ঙ:"ŋ", চ:"tʃ", ছ:"tʃʰ", জ:"dʒ", ঝ:"dʒʱ", ঞ:"ɲ",
+    ট:"ʈ", ঠ:"ʈʰ", ড:"ɖ", ঢ:"ɖʱ", ণ:"ɳ", ত:"t̪", থ:"t̪ʰ", দ:"d̪", ধ:"d̪ʱ", ন:"n",
+    প:"p", ফ:"pʰ", ব:"b", ভ:"bʱ", ম:"m", য:"j", র:"r", ল:"l", শ:"ʃ", ষ:"ʃ", স:"s", হ:"h",
+    ড়:"ɽ", ঢ়:"ɽʱ", য়:"j", ৎ:"t̚",
+  };
+  const BENGALI_MATRAS = { "া":"a", "ি":"i", "ী":"i", "ু":"u", "ূ":"u", "ৃ":"ri", "ে":"e", "ৈ":"oi", "ো":"o", "ৌ":"ou" };
+  const BENGALI_SIGNS = { "ং":"ŋ", "ঁ":"̃", "ঃ":"h" };
+  function bengaliIpa(text) {
+    const chars = Array.from(String(text || ""));
+    let out = "";
+    for (let i = 0; i < chars.length; i += 1) {
+      const ch = chars[i], next = chars[i + 1];
+      if (BENGALI_VOWELS[ch]) { out += BENGALI_VOWELS[ch]; continue; }
+      if (BENGALI_SIGNS[ch]) { out += BENGALI_SIGNS[ch]; continue; }
+      if (BENGALI_CONSONANTS[ch]) {
+        out += BENGALI_CONSONANTS[ch];
+        if (next === "্") { i += 1; continue; }
+        if (BENGALI_MATRAS[next]) { out += BENGALI_MATRAS[next]; i += 1; continue; }
+        out += "ɔ";
+        continue;
+      }
+      if (BENGALI_MATRAS[ch]) { out += BENGALI_MATRAS[ch]; continue; }
+      out += ch;
+    }
+    return out.replace(/ɔ(?=\s|[.,!?;:।]|$)/gu, "");
+  }
+
   const ARABIC_BASE = {
     "ا":"aː","آ":"aː","أ":"ʔa","إ":"ʔi","ب":"b","پ":"p","ت":"t","ٹ":"ʈ","ث":"θ","ج":"dʒ","چ":"tʃ",
     "ح":"ħ","خ":"x","د":"d","ڈ":"ɖ","ذ":"ð","ر":"r","ڑ":"ɽ","ز":"z","ژ":"ʒ","س":"s","ش":"ʃ",
@@ -284,6 +314,7 @@
     if (script === "greek" && lang === "el") return greekIpa(text);
     if (script === "devanagari" && ["hi","ne"].includes(lang)) return devanagariIpa(text);
     if (script === "arabic" && ["ar","fa","ur"].includes(lang)) return arabicIpa(text, lang);
+    if (script === "bengali" && lang === "bn") return bengaliIpa(text);
     if (script === "hangul" && lang === "ko") return hangulIpa(text);
     if (script === "han" && lang === "zh") return chineseIpa(text);
     return null;
