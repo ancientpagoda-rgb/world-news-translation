@@ -193,10 +193,13 @@ function speakToken(token, card) {
   } else if (label === 'ENGLISH TRANSLATION') {
     language = 'en-US';
   }
-  if (String(language).toLowerCase().startsWith('ja') && label !== 'ENGLISH TRANSLATION') {
-    // Use the reading for the selected Japanese word/compound, not the whole headline.
+  if (label !== 'ENGLISH TRANSLATION') {
     const readings = String(card.dataset.speechWords || '').split('|');
-    text = readings[Number(index)] || card.dataset.speechText || card.querySelector('.original')?.textContent.trim() || text;
+    text = readings[Number(index)] || text;
+    if (String(language).toLowerCase().startsWith('ja')) {
+      // Japanese needs the compound reading when no per-word reading is available.
+      text = readings[Number(index)] || card.dataset.speechText || card.querySelector('.original')?.textContent.trim() || text;
+    }
   }
   if (!text) return;
   const synth = window.speechSynthesis;

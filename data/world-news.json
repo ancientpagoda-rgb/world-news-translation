@@ -705,7 +705,116 @@
     "countryPopulationRank": 16,
     "isRepresentative": true,
     "headlineSource": "vnexpress.net",
-    "headlineTranslationNote": "manual translation"
+    "headlineTranslationNote": "manual translation",
+    "speechWords": [
+      "Nhà",
+      "đầu",
+      "tư",
+      "lo",
+      "số",
+      "phận",
+      "cổ",
+      "phiếu",
+      "AI",
+      "sau",
+      "bê",
+      "bối",
+      "của",
+      "Jensen",
+      "Huang"
+    ],
+    "speechIpaGroups": [
+      {
+        "indices": [
+          0
+        ],
+        "ipa": "ɲˈaː2"
+      },
+      {
+        "indices": [
+          1
+        ],
+        "ipa": "ɗˈə2w"
+      },
+      {
+        "indices": [
+          2
+        ],
+        "ipa": "t̪ˈy"
+      },
+      {
+        "indices": [
+          3
+        ],
+        "ipa": "lˈɔ"
+      },
+      {
+        "indices": [
+          4
+        ],
+        "ipa": "sˈoɜ"
+      },
+      {
+        "indices": [
+          5
+        ],
+        "ipa": "fˈə6n"
+      },
+      {
+        "indices": [
+          6
+        ],
+        "ipa": "kˈo4"
+      },
+      {
+        "indices": [
+          7
+        ],
+        "ipa": "fˈiɛɜw"
+      },
+      {
+        "indices": [
+          8
+        ],
+        "ipa": "ˈaːj"
+      },
+      {
+        "indices": [
+          9
+        ],
+        "ipa": "sˈaw"
+      },
+      {
+        "indices": [
+          10
+        ],
+        "ipa": "bˈe"
+      },
+      {
+        "indices": [
+          11
+        ],
+        "ipa": "bˈoɜj"
+      },
+      {
+        "indices": [
+          12
+        ],
+        "ipa": "kˌuə4"
+      },
+      {
+        "indices": [
+          13
+        ],
+        "ipa": "(en)dʒˈɛnsən(vi)"
+      },
+      {
+        "indices": [
+          14
+        ],
+        "ipa": "hˈuəŋ"
+      }
+    ]
   },
   {
     "rank": 17,
@@ -1086,7 +1195,74 @@
     "countryPopulationRank": 29,
     "isRepresentative": true,
     "headlineSource": "yna.co.kr",
-    "headlineTranslationNote": "manual translation"
+    "headlineTranslationNote": "manual translation",
+    "speechWords": [
+      "미",
+      "민주",
+      "트럼프",
+      "부패",
+      "조사에",
+      "어둠의",
+      "공주",
+      "모금책",
+      "정조준"
+    ],
+    "speechIpaGroups": [
+      {
+        "indices": [
+          0
+        ],
+        "ipa": "mi"
+      },
+      {
+        "indices": [
+          1
+        ],
+        "ipa": "mˈindʑu"
+      },
+      {
+        "indices": [
+          2
+        ],
+        "ipa": "thɯɾˈʌmphɯ"
+      },
+      {
+        "indices": [
+          3
+        ],
+        "ipa": "pˈuphɛ"
+      },
+      {
+        "indices": [
+          4
+        ],
+        "ipa": "tɕˈosɐˌe"
+      },
+      {
+        "indices": [
+          5
+        ],
+        "ipa": "ˈʌdumˌɯj"
+      },
+      {
+        "indices": [
+          6
+        ],
+        "ipa": "ɡˈoŋdʑu"
+      },
+      {
+        "indices": [
+          7
+        ],
+        "ipa": "moqˈɯmtʃhɛq"
+      },
+      {
+        "indices": [
+          8
+        ],
+        "ipa": "tɕˈʌŋdʑodʑˌun"
+      }
+    ]
   },
   {
     "rank": 30,
