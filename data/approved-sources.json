@@ -158,6 +158,45 @@
           "status": "approved"
         }
       ]
+    },
+    "IT": {
+      "name": "Italy",
+      "language": "it",
+      "publishers": [
+        {
+          "name": "ANSA",
+          "domain": "ansa.it",
+          "feed": "https://www.ansa.it/sito/ansait_rss.xml",
+          "feedDirectory": "https://www.ansa.it/",
+          "status": "approved"
+        }
+      ]
+    },
+    "MM": {
+      "name": "Myanmar",
+      "language": "my",
+      "publishers": [
+        {
+          "name": "BBC Burmese",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/burmese/rss.xml",
+          "feedDirectory": "https://www.bbc.com/burmese",
+          "status": "approved"
+        }
+      ]
+    },
+    "UA": {
+      "name": "Ukraine",
+      "language": "uk",
+      "publishers": [
+        {
+          "name": "Ukrainska Pravda",
+          "domain": "pravda.com.ua",
+          "feed": "https://www.pravda.com.ua/rss/",
+          "feedDirectory": "https://www.pravda.com.ua/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
