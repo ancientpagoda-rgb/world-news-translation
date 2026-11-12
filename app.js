@@ -70,6 +70,11 @@ function displayLanguage(row) {
 }
 
 const SPEECH_LANGUAGES = { zh: 'zh-CN', es: 'es-MX', en: 'en-US', hi: 'hi-IN', pt: 'pt-BR', ja: 'ja-JP', tr: 'tr-TR', id: 'id-ID', ko: 'ko-KR' };
+const ESPEAK_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@spelling-creator/spellophone@0.2.1/dist/browser.js';
+const ESPEAK_VOICES = { zh: 'cmn', es: 'es', en: 'en-us', hi: 'hi', pt: 'pt', ja: 'ja', tr: 'tr', id: 'id', ko: 'ko' };
+let espeakEnginePromise = null;
+let activeAudioContext = null;
+let activeAudioSource = null;
 
 function speechLanguage(code) {
   const normalized = String(code || '').toLowerCase().split('-')[0];
@@ -99,11 +104,57 @@ function speakWithBrowserVoice(text, language) {
   synth.speak(utterance);
 }
 
-function speakToken(token, card) {
-  if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== 'function') {
-    announceSpeech('Speech synthesis is unavailable in this browser.');
-    return;
+function espeakVoice(language) {
+  return ESPEAK_VOICES[String(language || '').toLowerCase().split('-')[0]] || 'en-us';
+}
+
+async function getEspeakEngine() {
+  if (!espeakEnginePromise) {
+    espeakEnginePromise = import(ESPEAK_MODULE_URL).then(async module => ({
+      module,
+      engine: await module.createEspeak({ cdn: 'jsdelivr', languages: ['en'] }),
+    }));
   }
+  return espeakEnginePromise;
+}
+
+function stopActiveAudio() {
+  if (activeAudioSource) {
+    try { activeAudioSource.stop(); } catch {}
+    activeAudioSource.disconnect();
+    activeAudioSource = null;
+  }
+}
+
+function speakWithWasmEngine(text, language, fallback) {
+  const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextCtor) return false;
+  if (!activeAudioContext) activeAudioContext = new AudioContextCtor();
+  const context = activeAudioContext;
+  context.resume().catch(() => {});
+  announceSpeech('Loading speech engine…');
+  getEspeakEngine().then(async ({ module, engine }) => {
+    const voice = espeakVoice(language);
+    await engine.loadVoice(voice);
+    const result = engine.synthesize(text, { voice });
+    const wav = module.encodeWav(result.samples, result.sampleRate);
+    const bytes = wav.buffer.slice(wav.byteOffset, wav.byteOffset + wav.byteLength);
+    const buffer = await context.decodeAudioData(bytes);
+    stopActiveAudio();
+    const source = context.createBufferSource();
+    source.buffer = buffer;
+    source.connect(context.destination);
+    source.onended = () => { if (activeAudioSource === source) activeAudioSource = null; };
+    activeAudioSource = source;
+    source.start();
+  }).catch(error => {
+    console.warn('Client TTS failed:', error);
+    fallback();
+  });
+  return true;
+}
+
+function speakToken(token, card) {
   const index = token.dataset.wordIndex;
   const block = token.closest('.headline-block');
   const label = block?.querySelector('.label')?.textContent || '';
@@ -117,9 +168,21 @@ function speakToken(token, card) {
   }
   if (!text) return;
   const synth = window.speechSynthesis;
-  synth.cancel();
-  if (synth.getVoices().length) {
+  synth?.cancel();
+  const browserFallback = () => {
+    if (!synth || typeof window.SpeechSynthesisUtterance !== 'function') {
+      announceSpeech('Speech synthesis is unavailable in this browser.');
+      return;
+    }
     speakWithBrowserVoice(text, language);
+  };
+  if (speakWithWasmEngine(text, language, browserFallback)) return;
+  if (synth && typeof window.SpeechSynthesisUtterance === 'function' && synth.getVoices().length) {
+    speakWithBrowserVoice(text, language);
+    return;
+  }
+  if (!synth || typeof window.SpeechSynthesisUtterance !== 'function') {
+    announceSpeech('No local speech engine is available.');
     return;
   }
   let retried = false;
