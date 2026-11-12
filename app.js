@@ -190,8 +190,8 @@ function speakToken(token, card) {
   } else if (label === 'ENGLISH TRANSLATION') {
     language = 'en-US';
   } else if (String(language).toLowerCase().startsWith('ja')) {
-    // eSpeak cannot disambiguate an isolated kanji; give it the full Japanese headline.
-    text = card.querySelector('.original')?.textContent.trim() || text;
+    // eSpeak cannot read kanji reliably; use a supplied kana reading or the full headline.
+    text = card.dataset.speechText || card.querySelector('.original')?.textContent.trim() || text;
   }
   if (!text) return;
   const synth = window.speechSynthesis;
@@ -210,6 +210,7 @@ function speakToken(token, card) {
       speakWithBrowserVoice(text, language);
       return;
     }
+    if (card.dataset.speechText && speakWithWasmEngine(text, language, browserFallback)) return;
     if (speakWithJapaneseAudio(text, () => speakWithWasmEngine(text, language, browserFallback))) return;
   }
   if (speakWithWasmEngine(text, language, browserFallback)) return;
@@ -317,7 +318,7 @@ function render() {
     const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
     const original = row.headline || 'No headline available.';
     const phonetics = row.headline ? 'Generating phonetics…' : '—';
-    return groupHeading + '<article class="news-card" data-row-index="' + index + '" data-language="' + escapeHtml(row.language || '') + '">' +
+    return groupHeading + '<article class="news-card" data-row-index="' + index + '" data-language="' + escapeHtml(row.language || '') + '" data-speech-text="' + escapeHtml(row.speechText || '') + '">' +
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
