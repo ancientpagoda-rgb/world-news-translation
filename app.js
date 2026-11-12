@@ -165,6 +165,9 @@ function speakToken(token, card) {
     text = original?.textContent.trim() || text;
   } else if (label === 'ENGLISH TRANSLATION') {
     language = 'en-US';
+  } else if (String(language).toLowerCase().startsWith('ja')) {
+    // eSpeak cannot disambiguate an isolated kanji; give it the full Japanese headline.
+    text = card.querySelector('.original')?.textContent.trim() || text;
   }
   if (!text) return;
   const synth = window.speechSynthesis;
