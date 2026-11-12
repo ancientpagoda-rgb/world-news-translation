@@ -197,6 +197,32 @@
           "status": "approved"
         }
       ]
+    },
+    "PL": {
+      "name": "Poland",
+      "language": "pl",
+      "publishers": [
+        {
+          "name": "RMF24",
+          "domain": "rmf24.pl",
+          "feed": "https://www.rmf24.pl/feed",
+          "feedDirectory": "https://www.rmf24.pl/",
+          "status": "approved"
+        }
+      ]
+    },
+    "NL": {
+      "name": "Netherlands",
+      "language": "nl",
+      "publishers": [
+        {
+          "name": "NOS",
+          "domain": "nos.nl",
+          "feed": "https://feeds.nos.nl/nosnieuwsalgemeen",
+          "feedDirectory": "https://nos.nl/nieuws",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
