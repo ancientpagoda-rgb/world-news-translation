@@ -75,6 +75,7 @@ const ESPEAK_VOICES = { zh: 'cmn', es: 'es', en: 'en-us', hi: 'hi', pt: 'pt', ja
 let espeakEnginePromise = null;
 let activeAudioContext = null;
 let activeAudioSource = null;
+let activeHtmlAudio = null;
 
 function speechLanguage(code) {
   const normalized = String(code || '').toLowerCase().split('-')[0];
@@ -124,6 +125,29 @@ function stopActiveAudio() {
     activeAudioSource.disconnect();
     activeAudioSource = null;
   }
+  if (activeHtmlAudio) {
+    activeHtmlAudio.pause();
+    activeHtmlAudio.removeAttribute('src');
+    activeHtmlAudio.load();
+    activeHtmlAudio = null;
+  }
+}
+
+function speakWithJapaneseAudio(text, fallback) {
+  if (!text || text.length > 200) return false;
+  stopActiveAudio();
+  const audio = new Audio('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=ja&q=' + encodeURIComponent(text));
+  audio.preload = 'auto';
+  const fail = () => {
+    if (activeHtmlAudio !== audio) return;
+    activeHtmlAudio = null;
+    fallback();
+  };
+  audio.addEventListener('error', fail, { once: true });
+  audio.addEventListener('ended', () => { if (activeHtmlAudio === audio) activeHtmlAudio = null; }, { once: true });
+  activeHtmlAudio = audio;
+  audio.play()?.catch(fail);
+  return true;
 }
 
 function speakWithWasmEngine(text, language, fallback) {
@@ -179,6 +203,15 @@ function speakToken(token, card) {
     }
     speakWithBrowserVoice(text, language);
   };
+  const baseLanguage = String(language).toLowerCase().split('-')[0];
+  if (baseLanguage === 'ja') {
+    const japaneseVoice = [...(synth?.getVoices?.() || [])].some(voice => voice.lang?.toLowerCase().split('-')[0] === 'ja');
+    if (japaneseVoice) {
+      speakWithBrowserVoice(text, language);
+      return;
+    }
+    if (speakWithJapaneseAudio(text, () => speakWithWasmEngine(text, language, browserFallback))) return;
+  }
   if (speakWithWasmEngine(text, language, browserFallback)) return;
   if (synth && typeof window.SpeechSynthesisUtterance === 'function' && synth.getVoices().length) {
     speakWithBrowserVoice(text, language);
