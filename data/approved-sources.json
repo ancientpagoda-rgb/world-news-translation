@@ -236,6 +236,45 @@
           "status": "approved"
         }
       ]
+    },
+    "FR": {
+      "name": "France",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "France 24",
+          "domain": "france24.com",
+          "feed": "https://www.france24.com/fr/rss",
+          "feedDirectory": "https://www.france24.com/fr/rss",
+          "status": "approved"
+        }
+      ]
+    },
+    "DE": {
+      "name": "Germany",
+      "language": "de",
+      "publishers": [
+        {
+          "name": "Tagesschau",
+          "domain": "tagesschau.de",
+          "feed": "https://www.tagesschau.de/xml/rss2/",
+          "feedDirectory": "https://www.tagesschau.de/infoservices/rssfeeds-100.html",
+          "status": "approved"
+        }
+      ]
+    },
+    "IR": {
+      "name": "Iran, Islamic Rep.",
+      "language": "fa",
+      "publishers": [
+        {
+          "name": "BBC Persian",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/persian/rss.xml",
+          "feedDirectory": "https://www.bbc.com/persian",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
