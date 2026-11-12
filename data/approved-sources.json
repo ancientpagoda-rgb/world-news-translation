@@ -132,6 +132,32 @@
           "status": "approved"
         }
       ]
+    },
+    "VN": {
+      "name": "Viet Nam",
+      "language": "vi",
+      "publishers": [
+        {
+          "name": "VnExpress",
+          "domain": "vnexpress.net",
+          "feed": "https://vnexpress.net/rss/tin-moi-nhat.rss",
+          "feedDirectory": "https://vnexpress.net/rss",
+          "status": "approved"
+        }
+      ]
+    },
+    "KR": {
+      "name": "Korea, Rep.",
+      "language": "ko",
+      "publishers": [
+        {
+          "name": "Yonhap News Agency",
+          "domain": "yna.co.kr",
+          "feed": "https://www.yna.co.kr/rss/news.xml",
+          "feedDirectory": "https://www.yna.co.kr/news",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
