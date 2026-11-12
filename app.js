@@ -71,7 +71,7 @@ function displayLanguage(row) {
 
 const SPEECH_LANGUAGES = { zh: 'zh-CN', es: 'es-MX', en: 'en-US', hi: 'hi-IN', pt: 'pt-BR', ja: 'ja-JP', tr: 'tr-TR', id: 'id-ID', ko: 'ko-KR' };
 const ESPEAK_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@spelling-creator/spellophone@0.2.1/dist/browser.js';
-const ESPEAK_VOICES = { zh: 'cmn', es: 'es', en: 'en-us', hi: 'hi', pt: 'pt', ja: 'ja', tr: 'tr', id: 'id', ko: 'ko' };
+const ESPEAK_VOICES = { zh: 'cmn', es: 'es', en: 'en-us', hi: 'hi', pt: 'pt', ja: 'jpx/ja', tr: 'tr', id: 'id', ko: 'ko' };
 let espeakEnginePromise = null;
 let activeAudioContext = null;
 let activeAudioSource = null;
