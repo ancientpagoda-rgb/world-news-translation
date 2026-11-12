@@ -23,7 +23,8 @@ h2 { margin: 0; font-size: 1.25rem; }
 .headline-block { margin-top: 1rem; }
 .label { margin: 0 0 .3rem; font-size: .7rem; }
 .headline { margin: 0; font-size: 1.15rem; line-height: 1.45; }
-.word-token { color: rgb(var(--word-color)); font-weight: 600; transition: filter .15s ease, text-shadow .15s ease; }
+.word-token { color: rgb(var(--word-color)); font-weight: 600; cursor: pointer; transition: filter .15s ease, text-shadow .15s ease; }
+.word-token:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
 .word-token:hover, .word-token.is-coordinated-hover { filter: brightness(1.2); text-shadow: 0 0 10px rgb(var(--word-color) / .35); }
 .coordinated-word.is-coordinated-hover { filter: brightness(1.2); text-shadow: 0 0 10px rgb(var(--seg-color) / .35); }
 .original { color: #cbd7eb; }

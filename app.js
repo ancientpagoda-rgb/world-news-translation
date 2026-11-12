@@ -29,6 +29,21 @@ list.addEventListener('pointerout', event => {
   if (card) card.querySelectorAll('.is-coordinated-hover').forEach(item => item.classList.remove('is-coordinated-hover'));
 });
 
+list.addEventListener('click', event => {
+  const token = event.target.closest?.('.word-token[data-word-index], .coordinated-word[data-word-index]');
+  const card = token?.closest('.news-card');
+  if (token && card) speakToken(token, card);
+});
+
+list.addEventListener('keydown', event => {
+  if (event.key !== 'Enter' && event.key !== ' ') return;
+  const token = event.target.closest?.('.word-token[data-word-index], .coordinated-word[data-word-index]');
+  const card = token?.closest('.news-card');
+  if (!token || !card) return;
+  event.preventDefault();
+  speakToken(token, card);
+});
+
 function escapeHtml(value) {
   return String(value == null ? '' : value)
     .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
@@ -54,6 +69,34 @@ function displayLanguage(row) {
   return LANGUAGE_OVERRIDES[code] || LANGUAGE_NAMES.of(code) || code.toUpperCase() || 'Unknown';
 }
 
+const SPEECH_LANGUAGES = { zh: 'zh-CN', es: 'es-MX', en: 'en-US', hi: 'hi-IN', pt: 'pt-BR', ja: 'ja-JP', tr: 'tr-TR', id: 'id-ID', ko: 'ko-KR' };
+
+function speechLanguage(code) {
+  const normalized = String(code || '').toLowerCase().split('-')[0];
+  return SPEECH_LANGUAGES[normalized] || normalized || 'en-US';
+}
+
+function speakToken(token, card) {
+  if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== 'function') return;
+  const index = token.dataset.wordIndex;
+  const block = token.closest('.headline-block');
+  const label = block?.querySelector('.label')?.textContent || '';
+  let text = token.textContent.trim();
+  let language = speechLanguage(card.dataset.language);
+  if (label === 'IPA PHONETICS') {
+    const original = [...card.querySelectorAll('.original [data-word-index]')].find(item => item.dataset.wordIndex === index);
+    text = original?.textContent.trim() || text;
+  } else if (label === 'ENGLISH TRANSLATION') {
+    language = 'en-US';
+  }
+  if (!text) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = language;
+  utterance.rate = 0.9;
+  window.speechSynthesis.speak(utterance);
+}
+
 function renderWordTrack(text, language = '', colorIndices = null) {
   const value = String(text || '');
   const hasHan = /\p{Script=Han}/u.test(value);
@@ -66,7 +109,7 @@ function renderWordTrack(text, language = '', colorIndices = null) {
     if (!/[\p{L}\p{M}\p{N}]/u.test(part)) return escapeHtml(part);
     const mappedIndex = Array.isArray(colorIndices) && Number.isInteger(colorIndices[wordIndex]) ? colorIndices[wordIndex] : wordIndex;
     const color = WORD_COLORS[((mappedIndex % WORD_COLORS.length) + WORD_COLORS.length) % WORD_COLORS.length];
-    const html = '<span class="word-token" data-word-index="' + mappedIndex + '" style="--word-color: ' + color + '">' + escapeHtml(part) + '</span>';
+    const html = '<span class="word-token" data-word-index="' + mappedIndex + '" role="button" tabindex="0" title="Click to hear" style="--word-color: ' + color + '">' + escapeHtml(part) + '</span>';
     wordIndex += 1;
     return html;
   }).join('');
@@ -133,7 +176,7 @@ function render() {
     const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
     const original = row.headline || 'No headline available.';
     const phonetics = row.headline ? 'Generating phonetics…' : '—';
-    return groupHeading + '<article class="news-card" data-row-index="' + index + '">' +
+    return groupHeading + '<article class="news-card" data-row-index="' + index + '" data-language="' + escapeHtml(row.language || '') + '">' +
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
