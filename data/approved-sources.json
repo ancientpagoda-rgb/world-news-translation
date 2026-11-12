@@ -223,6 +223,19 @@
           "status": "approved"
         }
       ]
+    },
+    "PK": {
+      "name": "Pakistan",
+      "language": "ur",
+      "publishers": [
+        {
+          "name": "BBC Urdu",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/urdu/rss.xml",
+          "feedDirectory": "https://www.bbc.com/urdu",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
