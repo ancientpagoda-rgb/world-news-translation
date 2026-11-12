@@ -76,8 +76,34 @@ function speechLanguage(code) {
   return SPEECH_LANGUAGES[normalized] || normalized || 'en-US';
 }
 
+function announceSpeech(message) {
+  const previous = status.textContent;
+  status.textContent = message;
+  window.setTimeout(() => {
+    if (status.textContent === message) status.textContent = previous;
+  }, 4000);
+}
+
+function speakWithBrowserVoice(text, language) {
+  const synth = window.speechSynthesis;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = language;
+  utterance.rate = 0.9;
+  const voices = synth.getVoices();
+  const base = language.split('-')[0].toLowerCase();
+  const voice = voices.find(item => item.lang.toLowerCase() === language.toLowerCase())
+    || voices.find(item => item.lang.toLowerCase().split('-')[0] === base)
+    || voices.find(item => item.default);
+  if (voice) utterance.voice = voice;
+  synth.resume();
+  synth.speak(utterance);
+}
+
 function speakToken(token, card) {
-  if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== 'function') return;
+  if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== 'function') {
+    announceSpeech('Speech synthesis is unavailable in this browser.');
+    return;
+  }
   const index = token.dataset.wordIndex;
   const block = token.closest('.headline-block');
   const label = block?.querySelector('.label')?.textContent || '';
@@ -90,11 +116,27 @@ function speakToken(token, card) {
     language = 'en-US';
   }
   if (!text) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = language;
-  utterance.rate = 0.9;
-  window.speechSynthesis.speak(utterance);
+  const synth = window.speechSynthesis;
+  synth.cancel();
+  if (synth.getVoices().length) {
+    speakWithBrowserVoice(text, language);
+    return;
+  }
+  let retried = false;
+  const retry = () => {
+    if (retried) return;
+    retried = true;
+    synth.removeEventListener?.('voiceschanged', retry);
+    speakWithBrowserVoice(text, language);
+  };
+  synth.addEventListener?.('voiceschanged', retry, { once: true });
+  window.setTimeout(() => {
+    if (retried) return;
+    retried = true;
+    synth.removeEventListener?.('voiceschanged', retry);
+    if (!synth.getVoices().length) announceSpeech('No browser speech voice is available.');
+    speakWithBrowserVoice(text, language);
+  }, 1000);
 }
 
 function renderWordTrack(text, language = '', colorIndices = null) {
