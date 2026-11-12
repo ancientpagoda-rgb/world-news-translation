@@ -106,6 +106,32 @@
           "status": "approved"
         }
       ]
+    },
+    "BD": {
+      "name": "Bangladesh",
+      "language": "bn",
+      "publishers": [
+        {
+          "name": "BBC News বাংলা",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/bengali/rss.xml",
+          "feedDirectory": "https://www.bbc.com/bengali",
+          "status": "approved"
+        }
+      ]
+    },
+    "RU": {
+      "name": "Russian Federation",
+      "language": "ru",
+      "publishers": [
+        {
+          "name": "BBC Russian",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/russian/rss.xml",
+          "feedDirectory": "https://www.bbc.com/russian",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
