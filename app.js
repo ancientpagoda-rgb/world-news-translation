@@ -319,7 +319,7 @@ function render() {
     activeGroup = groupKey;
     const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
     const original = row.headline || 'No headline available.';
-    const phonetics = row.headline ? 'Generating phonetics…' : '—';
+    const phonetics = row.headline ? (Array.isArray(row.speechIpaWords) ? row.speechIpaWords.join(' ') : 'Generating phonetics…') : '—';
     return groupHeading + '<article class="news-card" data-row-index="' + index + '" data-language="' + escapeHtml(row.language || '') + '" data-speech-text="' + escapeHtml(row.speechText || '') + '" data-speech-words="' + escapeHtml((row.speechWords || []).join('|')) + '">' +
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
@@ -331,7 +331,9 @@ function render() {
 
   rows.forEach((row, index) => {
     if (!row.headline) return;
-    Promise.resolve(window.toIpaDisplay ? window.toIpaDisplay(row.headline, row.language || '') : row.headline)
+    Promise.resolve(Array.isArray(row.speechIpaWords)
+      ? row.speechIpaWords.join(' ')
+      : (window.toIpaDisplay ? window.toIpaDisplay(row.headline, row.language || '') : row.headline))
       .then(value => {
         if (version !== renderVersion) return;
         const card = list.querySelector('[data-row-index="' + index + '"]');
