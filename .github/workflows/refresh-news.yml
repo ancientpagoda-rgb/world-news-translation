@@ -50,17 +50,19 @@ jobs:
             ~/.cache/huggingface
             ~/.cache/torch
             ~/.cache/pip
-          key: ${{ runner.os }}-nllb-600m-${{ hashFiles('scripts/translate_headlines_offline.py') }}
+          key: ${{ runner.os }}-nllb-align-${{ hashFiles('scripts/translate_headlines_offline.py', 'scripts/align_headline_translations.py') }}
       - name: Install offline translation dependencies
-        run: python -m pip install --disable-pip-version-check torch transformers sentencepiece
+        run: python -m pip install --disable-pip-version-check torch transformers sentencepiece simalign
       - name: Translate new headlines offline
         env:
           NLLB_THREADS: "2"
         run: python scripts/translate_headlines_offline.py
+      - name: Align translation words offline
+        run: python scripts/align_headline_translations.py
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null
-          python -m py_compile scripts/update_headlines_only.py scripts/source-policy-smoke.py
+          python -m py_compile scripts/update_headlines_only.py scripts/translate_headlines_offline.py scripts/align_headline_translations.py scripts/source-policy-smoke.py
           python scripts/source-policy-smoke.py
           npm run check:syntax
           npm run check:data

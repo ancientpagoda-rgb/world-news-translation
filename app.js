@@ -281,8 +281,7 @@ function renderColoredArticle(text, language = '') {
 function renderEnglishHeadline(row) {
   const text = String(row.englishHeadline || '');
   if (Array.isArray(row.headlineTranslationWordIndices)) return renderWordTrack(text, 'en', row.headlineTranslationWordIndices);
-  if (row.headlineTranslationNote === 'offline machine translation') return escapeHtml(text);
-  return renderWordTrack(text, 'en');
+  return escapeHtml(text);
 }
 
 function matches(row) {
