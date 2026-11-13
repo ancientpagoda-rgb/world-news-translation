@@ -6,8 +6,8 @@ Headline-focused companion to World (https://github.com/ancientpagoda-rgb/world)
 
 - Country-source headline in its original language
 - IPA pronunciation for the headline
-- English headline translation when available; new translations are generated offline with NLLB and labeled as machine translations
-- Position-matched word colors across original text, IPA, and translations
+- English headline translation when available; new translations are generated offline with NLLB and word-aligned with SimAlign when confidence is sufficient
+- Position-matched word colors across original text, IPA, and translations when an alignment passes validation
 - Explicit phrase alignment where one source word expands into multiple English words
 - A searchable, filterable text-only browser
 - Default view shows one representative country per language, ordered by estimated native-speaker count

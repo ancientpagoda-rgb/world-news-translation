@@ -38,15 +38,19 @@ def tokenize(text: str) -> list[str]:
             index += 1
             continue
         start = index
+        numeric = char.isdigit()
         index += 1
         while index < len(chars):
-            if is_word_char(chars[index]):
+            if numeric and chars[index].isdigit():
+                index += 1
+                continue
+            if numeric and chars[index] in {".", ","} and index > start and chars[index - 1].isdigit() and index + 1 < len(chars) and chars[index + 1].isdigit():
+                index += 1
+                continue
+            if not numeric and is_word_char(chars[index]):
                 index += 1
                 continue
             if chars[index] in {"'", "’", "-"} and index + 1 < len(chars) and is_word_char(chars[index + 1]):
-                index += 1
-                continue
-            if chars[index] in {".", ","} and index > start and chars[index - 1].isdigit() and index + 1 < len(chars) and chars[index + 1].isdigit():
                 index += 1
                 continue
             break
