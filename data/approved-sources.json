@@ -288,6 +288,32 @@
           "status": "approved"
         }
       ]
+    },
+    "ET": {
+      "name": "Ethiopia",
+      "language": "am",
+      "publishers": [
+        {
+          "name": "BBC Amharic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/amharic/rss.xml",
+          "feedDirectory": "https://www.bbc.com/amharic",
+          "status": "approved"
+        }
+      ]
+    },
+    "TH": {
+      "name": "Thailand",
+      "language": "th",
+      "publishers": [
+        {
+          "name": "Thairath Online",
+          "domain": "thairath.co.th",
+          "feed": "https://www.thairath.co.th/rss/news",
+          "feedDirectory": "https://www.thairath.co.th/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
