@@ -848,7 +848,22 @@
     "countryPopulationRank": 17,
     "isRepresentative": true,
     "headlineSource": "bbc.com",
-    "headlineTranslationNote": "manual translation"
+    "headlineTranslationNote": "manual translation",
+    "headlineTranslationWordIndices": [
+      2,
+      3,
+      1,
+      0,
+      6,
+      5,
+      7,
+      11,
+      9,
+      9,
+      8,
+      8,
+      8
+    ]
   },
   {
     "rank": 18,
