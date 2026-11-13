@@ -20,6 +20,7 @@
     if (/\p{Script=Cyrillic}/u.test(input)) return "cyrillic";
     if (/\p{Script=Greek}/u.test(input)) return "greek";
     if (/\p{Script=Arabic}/u.test(input)) return "arabic";
+    if (/\p{Script=Hebrew}/u.test(input)) return "hebrew";
     if (/\p{Script=Bengali}/u.test(input)) return "bengali";
     if (/\p{Script=Ethiopic}/u.test(input)) return "ethiopic";
     if (/\p{Script=Han}/u.test(input)) return "han";
@@ -333,6 +334,37 @@
     return Array.from(String(text || "")).map(amharicSyllable).join("");
   }
 
+  const HEBREW_MARKS = new Map([
+    ["ַ", "a"], ["ָ", "a"], ["ֶ", "e"], ["ֵ", "e"], ["ִ", "i"], ["ֹ", "o"], ["ֻ", "u"], ["ְ", "ə"],
+    ["ֲ", "a"], ["ֱ", "e"], ["ֳ", "o"], ["ּ", ""], ["ׁ", ""], ["ׂ", ""], ["ֽ", ""],
+  ]);
+  const HEBREW_CONSONANTS = {
+    "א": "ʔ", "ב": "v", "ג": "g", "ד": "d", "ה": "h", "ו": "v", "ז": "z", "ח": "χ", "ט": "t",
+    "י": "j", "כ": "x", "ך": "x", "ל": "l", "מ": "m", "ם": "m", "נ": "n", "ן": "n", "ס": "s",
+    "ע": "ʕ", "פ": "f", "ף": "f", "צ": "ts", "ץ": "ts", "ק": "k", "ר": "ʁ", "ש": "ʃ", "ת": "t",
+  };
+
+  function hebrewIpa(text) {
+    const chars = Array.from(String(text || ""));
+    let output = "";
+    for (let index = 0; index < chars.length; index += 1) {
+      const char = chars[index];
+      const next = chars[index + 1] || "";
+      if (HEBREW_MARKS.has(char)) { output += HEBREW_MARKS.get(char); continue; }
+      if (char === "ש" && next === "ׂ") { output += "s"; continue; }
+      if (char === "ב" && next === "ּ") { output += "b"; continue; }
+      if (char === "כ" && next === "ּ") { output += "k"; continue; }
+      if (char === "ך" && next === "ּ") { output += "k"; continue; }
+      if (char === "פ" && next === "ּ") { output += "p"; continue; }
+      if (char === "ף" && next === "ּ") { output += "p"; continue; }
+      if (char === "ו" && next === "ּ") { output += "u"; continue; }
+      if (char === "ו" && next === "ֹ") { output += "o"; continue; }
+      if (char === "י" && next === "ִ") { output += "i"; continue; }
+      output += HEBREW_CONSONANTS[char] ?? char;
+    }
+    return output;
+  }
+
   async function directIpa(text, language) {
     const lang = primaryLanguage(language);
     const script = scriptOf(text);
@@ -341,6 +373,7 @@
     if (script === "greek" && lang === "el") return greekIpa(text);
     if (script === "devanagari" && ["hi","ne"].includes(lang)) return devanagariIpa(text);
     if (script === "arabic" && ["ar","fa","ur"].includes(lang)) return arabicIpa(text, lang);
+    if (script === "hebrew" && lang === "he") return hebrewIpa(text);
     if (script === "bengali" && lang === "bn") return bengaliIpa(text);
     if (script === "ethiopic" && lang === "am") return amharicIpa(text);
     if (script === "hangul" && lang === "ko") return hangulIpa(text);
