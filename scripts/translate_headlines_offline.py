@@ -107,6 +107,8 @@ NLLB_LANGUAGE_CODES = {
     "zh": "zho_Hans",
 }
 
+NUMBER_PATTERN = re.compile(r"\d+(?:[.,]\d+)?")
+
 ENGLISH_HINTS = {
     "a", "after", "against", "and", "are", "as", "asks", "at", "between", "by", "can",
     "final", "for", "from", "has", "have", "in", "is", "islands", "its", "more", "new",
@@ -153,6 +155,51 @@ def looks_english(text: str, language: str) -> bool:
 def merge_translation(translated: str, source: str) -> str:
     _, suffix = split_source_suffix(source)
     return f"{str(translated or '').strip()}{suffix}".strip()
+
+
+def protect_numeric_tokens(text: str) -> tuple[str, list[str]]:
+    """Replace numeric spans with copy-friendly sentinels before retrying."""
+    numbers = NUMBER_PATTERN.findall(str(text or ""))
+
+    def replace(match: re.Match[str]) -> str:
+        return f"XNUM{match.group(0)}X"
+
+    return NUMBER_PATTERN.sub(replace, str(text or "")), numbers
+
+
+def restore_numeric_tokens(text: str, expected: list[str]) -> str | None:
+    """Restore sentinels and fail closed if the model dropped one."""
+    found: list[str] = []
+    marker = re.compile(r"X\s*NUM\s*(\d+(?:[.,]\d+)?)\s*X", re.IGNORECASE)
+
+    def replace(match: re.Match[str]) -> str:
+        value = match.group(1)
+        found.append(value)
+        return value
+
+    restored = marker.sub(replace, str(text or ""))
+    if Counter(found) != Counter(expected):
+        return None
+    return restored
+
+
+def translate_with_quality(translate_one, source: str, initial: str = "") -> tuple[str, str | None]:
+    """Translate, retrying with protected numbers when raw output drops them."""
+    candidate = merge_translation(initial, source)
+    reason = translation_quality_reason(candidate, source)
+    if reason != "dropped-number":
+        return candidate, reason
+
+    body, _ = split_source_suffix(source)
+    protected, expected = protect_numeric_tokens(body)
+    retry = str(translate_one(protected) or "").strip()
+    restored = restore_numeric_tokens(retry, expected)
+    if restored is not None:
+        repaired = merge_translation(restored, source)
+        repaired_reason = translation_quality_reason(repaired, source)
+        if repaired_reason is None:
+            return repaired, None
+    return candidate, reason
 
 
 def translation_quality_reason(translated: str, source: str) -> str | None:
@@ -350,8 +397,11 @@ def main() -> int:
                 continue
             for (row, headline), translated in zip(items, translations):
                 if translated:
-                    candidate = merge_translation(translated, headline)
-                    quality_reason = translation_quality_reason(candidate, headline)
+                    candidate, quality_reason = translate_with_quality(
+                        lambda text: nllb.translate_batch(language, [text])[0],
+                        headline,
+                        translated,
+                    )
                     if quality_reason is None:
                         row["englishHeadline"] = candidate
                         row["headlineTranslationNote"] = "offline machine translation"
@@ -383,8 +433,11 @@ def main() -> int:
                     print(f"Argos translation failed for {row.get('iso2', '?')}: {error}", file=sys.stderr)
                     translated = ""
                 if translated:
-                    candidate = merge_translation(translated, headline)
-                    quality_reason = translation_quality_reason(candidate, headline)
+                    candidate, quality_reason = translate_with_quality(
+                        translator.translate,
+                        headline,
+                        translated,
+                    )
                     if quality_reason is None:
                         row["englishHeadline"] = candidate
                         row["headlineTranslationNote"] = "offline machine translation"
