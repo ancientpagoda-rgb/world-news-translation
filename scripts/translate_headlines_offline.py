@@ -360,6 +360,8 @@ def main() -> int:
                 )
         row["englishHeadline"] = UNAVAILABLE
         row.pop("headlineTranslationNote", None)
+        row.pop("headlineTranslationWordIndices", None)
+        row.pop("headlineTranslationAlignmentNote", None)
         if looks_english(headline, language):
             row["englishHeadline"] = headline
             row["headlineTranslationNote"] = "source headline is already English"
