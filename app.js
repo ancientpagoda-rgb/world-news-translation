@@ -278,6 +278,13 @@ function renderColoredArticle(text, language = '') {
   return String(text || '').split(/\n{2,}/).filter(Boolean).map(paragraph => '<p>' + renderWordTrack(paragraph, language) + '</p>').join('');
 }
 
+function renderEnglishHeadline(row) {
+  const text = String(row.englishHeadline || '');
+  if (Array.isArray(row.headlineTranslationWordIndices)) return renderWordTrack(text, 'en', row.headlineTranslationWordIndices);
+  if (row.headlineTranslationNote === 'offline machine translation') return escapeHtml(text);
+  return renderWordTrack(text, 'en');
+}
+
 function matches(row) {
   const haystack = [row.name, row.iso2, row.nativeLanguage, row.language, row.headline, row.englishHeadline, row.articleText]
     .filter(Boolean).join(' ').toLowerCase();
@@ -340,7 +347,7 @@ function render() {
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + (Array.isArray(row.speechIpaGroups) ? renderIpaGroups(row.speechIpaGroups) : escapeHtml(phonetics)) + '</p></div>' +
-      '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderWordTrack(row.englishHeadline, 'en', row.headlineTranslationWordIndices) : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
+      '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderEnglishHeadline(row) : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
       source + '</article>';
   }).join('');
 
