@@ -1,6 +1,8 @@
 name: Refresh approved direct-feed headlines
 
 on:
+  schedule:
+    - cron: "17 */6 * * *"
   workflow_dispatch:
     inputs:
       start:
@@ -8,9 +10,9 @@ on:
         required: false
         default: "0"
       count:
-        description: "Number of rows to process"
+        description: "Number of rows to process; 0 refreshes all rows"
         required: false
-        default: "1"
+        default: "0"
       timeout:
         description: "Per-feed request timeout in seconds"
         required: false
@@ -34,8 +36,13 @@ jobs:
           python-version: "3.12"
       - name: Refresh headlines from approved direct feeds
         env:
-          FEED_TIMEOUT: ${{ inputs.timeout }}
-        run: python scripts/update_headlines_only.py --allow-partial --start ${{ inputs.start }} --count ${{ inputs.count }}
+          FEED_TIMEOUT: ${{ inputs.timeout || '20' }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.count }}" != "0" ]; then
+            python scripts/update_headlines_only.py --allow-partial --start "${{ inputs.start }}" --count "${{ inputs.count }}"
+          else
+            python scripts/update_headlines_only.py --allow-partial
+          fi
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null

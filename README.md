@@ -12,7 +12,7 @@ Headline-focused companion to World (https://github.com/ancientpagoda-rgb/world)
 - A searchable, filterable text-only browser
 - Default view shows one representative country per language, ordered by estimated native-speaker count
 - Optional “Show all countries” view preserves the full country dataset
-- GitHub Actions refreshes only from approved direct publisher feeds; unregistered countries are left unchanged and no aggregator/provider fallback is used
+- GitHub Actions refreshes only from approved direct publisher feeds every six hours (scheduled at 17 minutes past the hour in UTC); unregistered countries are left unchanged and no aggregator/provider fallback is used
 
 ## Excluded
 
