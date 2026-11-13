@@ -28,7 +28,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,6 +43,20 @@ jobs:
           else
             python scripts/update_headlines_only.py --allow-partial
           fi
+      - name: Cache offline translation model
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/huggingface
+            ~/.cache/torch
+            ~/.cache/pip
+          key: ${{ runner.os }}-nllb-600m-${{ hashFiles('scripts/translate_headlines_offline.py') }}
+      - name: Install offline translation dependencies
+        run: python -m pip install --disable-pip-version-check torch transformers sentencepiece
+      - name: Translate new headlines offline
+        env:
+          NLLB_THREADS: "2"
+        run: python scripts/translate_headlines_offline.py
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null

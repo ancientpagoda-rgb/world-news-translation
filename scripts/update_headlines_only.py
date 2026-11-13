@@ -114,6 +114,7 @@ def apply_candidate(row, candidate):
     if candidate is None:
         row.update({"headline": None, "headlineUrl": None, "headlinePublishedAt": None, "headlineSource": None, "englishHeadline": None})
         row.pop("headlineTranslationWordIndices", None)
+        row.pop("headlineTranslationNote", None)
         return
     row.update(candidate)
     if candidate["headline"] == previous and previous_english:
@@ -123,6 +124,7 @@ def apply_candidate(row, candidate):
     else:
         row["englishHeadline"] = "English translation unavailable"
         row.pop("headlineTranslationWordIndices", None)
+        row.pop("headlineTranslationNote", None)
 
 
 def main():

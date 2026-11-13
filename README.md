@@ -6,13 +6,13 @@ Headline-focused companion to World (https://github.com/ancientpagoda-rgb/world)
 
 - Country-source headline in its original language
 - IPA pronunciation for the headline
-- English headline translation when available
+- English headline translation when available; new translations are generated offline with NLLB and labeled as machine translations
 - Position-matched word colors across original text, IPA, and translations
 - Explicit phrase alignment where one source word expands into multiple English words
 - A searchable, filterable text-only browser
 - Default view shows one representative country per language, ordered by estimated native-speaker count
 - Optional “Show all countries” view preserves the full country dataset
-- GitHub Actions refreshes only from approved direct publisher feeds every six hours (scheduled at 17 minutes past the hour in UTC); unregistered countries are left unchanged and no aggregator/provider fallback is used
+- GitHub Actions refreshes only from approved direct publisher feeds every six hours (scheduled at 17 minutes past the hour in UTC), then translates new headlines offline; unregistered countries are left unchanged and no aggregator/provider fallback is used
 
 ## Excluded
 

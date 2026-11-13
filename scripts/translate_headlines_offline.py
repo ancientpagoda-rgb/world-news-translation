@@ -307,9 +307,11 @@ def main() -> int:
                     flush=True,
                 )
         row["englishHeadline"] = UNAVAILABLE
+        row.pop("headlineTranslationNote", None)
         language = primary_language(row.get("language") or row.get("nativeLanguage"))
         if looks_english(headline, language):
             row["englishHeadline"] = headline
+            row["headlineTranslationNote"] = "source headline is already English"
             changed += 1
             continue
         pending.append((row, headline, language))
@@ -348,6 +350,7 @@ def main() -> int:
                     quality_reason = translation_quality_reason(candidate, headline)
                     if quality_reason is None:
                         row["englishHeadline"] = candidate
+                        row["headlineTranslationNote"] = "offline machine translation"
                         changed += 1
                     else:
                         print(
@@ -380,6 +383,7 @@ def main() -> int:
                     quality_reason = translation_quality_reason(candidate, headline)
                     if quality_reason is None:
                         row["englishHeadline"] = candidate
+                        row["headlineTranslationNote"] = "offline machine translation"
                         changed += 1
                     else:
                         print(
