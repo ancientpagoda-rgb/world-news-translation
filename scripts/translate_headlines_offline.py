@@ -145,7 +145,9 @@ def looks_english(text: str, language: str) -> bool:
     letters = len(re.findall(r"[a-z\u00c0-\u024f]", body.lower()))
     if letters and latin_letters / letters < 0.8:
         return False
-    return sum(1 for word in words if word in ENGLISH_HINTS or f" {word}" in ENGLISH_HINTS) >= 2
+    matches = sum(1 for word in words if word in ENGLISH_HINTS)
+    strong = {"after", "against", "and", "are", "between", "from", "has", "have", "is", "more", "of", "on", "said", "says", "that", "the", "their", "this", "to", "under", "was", "were", "with"}
+    return matches >= 3 and any(word in strong for word in words)
 
 
 def merge_translation(translated: str, source: str) -> str:
@@ -296,8 +298,11 @@ def main() -> int:
         if not headline:
             continue
         current = str(row.get("englishHeadline") or "").strip()
+        language = primary_language(row.get("language") or row.get("nativeLanguage"))
         if current and current != UNAVAILABLE:
             quality_reason = translation_quality_reason(current, headline)
+            if current == headline and language != "en":
+                quality_reason = "untranslated non-English source"
             if quality_reason is None and not args.force:
                 continue
             if quality_reason:
@@ -308,7 +313,6 @@ def main() -> int:
                 )
         row["englishHeadline"] = UNAVAILABLE
         row.pop("headlineTranslationNote", None)
-        language = primary_language(row.get("language") or row.get("nativeLanguage"))
         if looks_english(headline, language):
             row["englishHeadline"] = headline
             row["headlineTranslationNote"] = "source headline is already English"
