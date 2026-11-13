@@ -21,6 +21,7 @@
     if (/\p{Script=Greek}/u.test(input)) return "greek";
     if (/\p{Script=Arabic}/u.test(input)) return "arabic";
     if (/\p{Script=Bengali}/u.test(input)) return "bengali";
+    if (/\p{Script=Ethiopic}/u.test(input)) return "ethiopic";
     if (/\p{Script=Han}/u.test(input)) return "han";
     if (/\p{Script=Latin}/u.test(input)) return "latin";
     return "other";
@@ -306,6 +307,32 @@
     return output.join(" ").replace(/\s+([,.;:!?，。！？；：、])/gu, "$1");
   }
 
+  const AMHARIC_FIDEL_BASES = new Map([
+    [0x1200, "h"], [0x1208, "l"], [0x1210, "h"], [0x1218, "m"], [0x1220, "sʼ"], [0x1228, "r"],
+    [0x1230, "s"], [0x1238, "ʃ"], [0x1240, "q"], [0x1248, "qʷ"], [0x1250, "qʼ"], [0x1258, "qʼʷ"],
+    [0x1260, "b"], [0x1268, "v"], [0x1270, "t"], [0x1278, "tʃ"], [0x1280, "x"], [0x1288, "xʷ"],
+    [0x1290, "n"], [0x1298, "ɲ"], [0x12A0, "ʔ"], [0x12A8, "k"], [0x12B0, "kʷ"], [0x12B8, "kʼ"],
+    [0x12C0, "kʼʷ"], [0x12C8, "w"], [0x12D0, "ʕ"], [0x12D8, "z"], [0x12E0, "ʒ"], [0x12E8, "j"],
+    [0x12F0, "d"], [0x12F8, "dʼ"], [0x1300, "dʒ"], [0x1308, "g"], [0x1310, "gʷ"], [0x1318, "gʼ"],
+    [0x1320, "tʼ"], [0x1328, "tʃʼ"], [0x1330, "pʼ"], [0x1338, "tsʼ"], [0x1340, "tsʼ"], [0x1348, "f"],
+    [0x1350, "p"], [0x1358, "rj"],
+  ]);
+  const AMHARIC_VOWELS = ["ə", "u", "i", "a", "e", "ɨ", "o", "ʷa"];
+
+  function amharicSyllable(char) {
+    const codePoint = char.codePointAt(0);
+    let base = null;
+    for (const [start, consonant] of AMHARIC_FIDEL_BASES) {
+      if (codePoint >= start && codePoint < start + 8) base = [start, consonant];
+    }
+    if (!base) return char;
+    return base[1] + AMHARIC_VOWELS[codePoint - base[0]];
+  }
+
+  function amharicIpa(text) {
+    return Array.from(String(text || "")).map(amharicSyllable).join("");
+  }
+
   async function directIpa(text, language) {
     const lang = primaryLanguage(language);
     const script = scriptOf(text);
@@ -315,6 +342,7 @@
     if (script === "devanagari" && ["hi","ne"].includes(lang)) return devanagariIpa(text);
     if (script === "arabic" && ["ar","fa","ur"].includes(lang)) return arabicIpa(text, lang);
     if (script === "bengali" && lang === "bn") return bengaliIpa(text);
+    if (script === "ethiopic" && lang === "am") return amharicIpa(text);
     if (script === "hangul" && lang === "ko") return hangulIpa(text);
     if (script === "han" && lang === "zh") return chineseIpa(text);
     return null;
