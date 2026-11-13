@@ -307,10 +307,10 @@
       "language": "th",
       "publishers": [
         {
-          "name": "Thairath Online",
-          "domain": "thairath.co.th",
-          "feed": "https://www.thairath.co.th/rss/news",
-          "feedDirectory": "https://www.thairath.co.th/",
+          "name": "BBC Thai",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/thai/rss.xml",
+          "feedDirectory": "https://www.bbc.com/thai",
           "status": "approved"
         }
       ]
