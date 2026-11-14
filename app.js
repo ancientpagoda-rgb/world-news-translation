@@ -65,6 +65,7 @@ function renderArticle(text) {
 const WORD_COLORS = ['239 71 111', '17 138 178', '255 209 102', '131 56 236', '6 214 160', '247 127 0', '0 180 216', '255 112 166', '138 201 38', '67 97 238', '249 132 74', '42 157 143'];
 
 const LANGUAGE_OVERRIDES = { zh: 'Mandarin Chinese', pa: 'Western Punjabi', fa: 'Iranian Persian', jv: 'Javanese' };
+const LANGUAGE_AUTONYMS = { dv: 'ދިވެހިބަސް', dz: 'རྫོང་ཁ', km: 'ខ្មែរ', lo: 'ລາວ', my: 'မြန်မာ' };
 const LANGUAGE_NAMES = new Intl.DisplayNames(['en'], { type: 'language' });
 
 function displayLanguage(row) {
@@ -75,6 +76,7 @@ function displayLanguage(row) {
 function languageAutonym(code) {
   const normalized = String(code || '').toLowerCase();
   try {
+    if (LANGUAGE_AUTONYMS[normalized]) return LANGUAGE_AUTONYMS[normalized];
     const name = new Intl.DisplayNames([normalized], { type: 'language' }).of(normalized);
     if (name) return name;
   } catch {}
