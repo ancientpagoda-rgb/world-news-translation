@@ -221,8 +221,15 @@ function speakToken(token, card) {
     speakWithBrowserVoice(text, language);
   };
   const baseLanguage = String(language).toLowerCase().split('-')[0];
-  if (baseLanguage === 'he' && window.toVowelizedHebrew) {
-    text = window.toVowelizedHebrew(text);
+  if (baseLanguage === 'he') {
+    const hasHebrewBrowserVoice = [...(synth?.getVoices?.() || [])].some(voice => voice.lang?.toLowerCase().split('-')[0] === 'he');
+    if (hasHebrewBrowserVoice) {
+      speakWithBrowserVoice(text, language);
+      return;
+    }
+    // eSpeak's Hebrew dictionary handles unpointed text, but treats niqqud
+    // combining marks as separate Hebrew letter names.
+    text = text.normalize('NFD').replace(/[\u0591-\u05C7]/gu, '').normalize('NFC');
   }
   if (baseLanguage === 'ja') {
     const japaneseVoice = [...(synth?.getVoices?.() || [])].some(voice => voice.lang?.toLowerCase().split('-')[0] === 'ja');
