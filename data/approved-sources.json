@@ -250,6 +250,19 @@
         }
       ]
     },
+    "PH": {
+      "name": "Philippines",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "Philippine Daily Inquirer",
+          "domain": "inquirer.net",
+          "feed": "https://newsinfo.inquirer.net/feed",
+          "feedDirectory": "https://newsinfo.inquirer.net/feed",
+          "status": "approved"
+        }
+      ]
+    },
     "PK": {
       "name": "Pakistan",
       "language": "ur",
