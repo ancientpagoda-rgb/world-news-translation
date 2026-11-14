@@ -224,6 +224,19 @@
         }
       ]
     },
+    "NG": {
+      "name": "Nigeria",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "Channels Television",
+          "domain": "channelstv.com",
+          "feed": "https://www.channelstv.com/feed/",
+          "feedDirectory": "https://www.channelstv.com/feed/",
+          "status": "approved"
+        }
+      ]
+    },
     "PK": {
       "name": "Pakistan",
       "language": "ur",
