@@ -85,9 +85,9 @@ function languageAutonym(code) {
   return displayLanguage({ language: normalized });
 }
 
-const SPEECH_LANGUAGES = { zh: 'zh-CN', es: 'es-MX', en: 'en-US', he: 'he-IL', hi: 'hi-IN', pt: 'pt-BR', ja: 'ja-JP', vi: 'vi-VN', it: 'it-IT', my: 'my-MM', pl: 'pl-PL', nl: 'nl-NL', bn: 'bn-BD', am: 'am-ET', th: 'th-TH', fr: 'fr-FR', de: 'de-DE', fa: 'fa-IR', ur: 'ur-PK', tr: 'tr-TR', id: 'id-ID', ko: 'ko-KR' };
+const SPEECH_LANGUAGES = { zh: 'zh-CN', es: 'es-MX', en: 'en-US', ar: 'ar-SA', he: 'he-IL', hi: 'hi-IN', pt: 'pt-BR', ja: 'ja-JP', vi: 'vi-VN', it: 'it-IT', my: 'my-MM', pl: 'pl-PL', nl: 'nl-NL', bn: 'bn-BD', am: 'am-ET', th: 'th-TH', fr: 'fr-FR', de: 'de-DE', fa: 'fa-IR', ur: 'ur-PK', tr: 'tr-TR', id: 'id-ID', ko: 'ko-KR' };
 const ESPEAK_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@spelling-creator/spellophone@0.2.1/dist/browser.js';
-const ESPEAK_VOICES = { zh: 'cmn', es: 'es', en: 'en-us', he: 'he', hi: 'hi', pt: 'pt', ja: 'jpx/ja', vi: 'vi', it: 'it', my: 'my', pl: 'pl', nl: 'nl', bn: 'bn', am: 'am', th: 'th', fr: 'fr-fr', de: 'de', fa: 'fa', ur: 'ur', ru: 'zle/ru', tr: 'tr', id: 'id', ko: 'ko' };
+const ESPEAK_VOICES = { zh: 'cmn', es: 'es', en: 'en-us', ar: 'ar', he: 'he', hi: 'hi', pt: 'pt', ja: 'jpx/ja', vi: 'vi', it: 'it', my: 'my', pl: 'pl', nl: 'nl', bn: 'bn', am: 'am', th: 'th', fr: 'fr-fr', de: 'de', fa: 'fa', ur: 'ur', ru: 'zle/ru', tr: 'tr', id: 'id', ko: 'ko' };
 let espeakEnginePromise = null;
 let activeAudioContext = null;
 let activeAudioSource = null;
