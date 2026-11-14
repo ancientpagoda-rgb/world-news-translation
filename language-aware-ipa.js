@@ -385,8 +385,18 @@
     return output;
   }
 
+  function normalizeHebrewNiqqud(text) {
+    return String(text || "").replace(/(\p{Script=Hebrew})([\u0591-\u05C7]+)/gu, (_, base, marks) => {
+      const ordered = [...marks].sort((a, b) => {
+        const priority = mark => /[\u05BC\u05C1\u05C2]/u.test(mark) ? 0 : 1;
+        return priority(a) - priority(b);
+      });
+      return base + ordered.join("");
+    });
+  }
+
   function hebrewIpa(text) {
-    return String(text || "").replace(/\p{Script=Hebrew}+/gu, (word) => {
+    return normalizeHebrewNiqqud(text).replace(/\p{Script=Hebrew}+/gu, (word) => {
       if (/[\u0591-\u05C7]/u.test(word)) return hebrewPointedWord(word);
       return HEBREW_WORD_READINGS.get(word) || hebrewUnpointedWord(word);
     });
@@ -471,14 +481,15 @@
   ]);
 
   function toVowelizedHebrew(text) {
-    return String(text || "").replace(/\p{Script=Hebrew}+/gu, (word) => {
+    return normalizeHebrewNiqqud(String(text || "").replace(/\p{Script=Hebrew}+/gu, (word) => {
       if (/[\u0591-\u05C7]/u.test(word)) return word;
       return HEBREW_VOWELIZED_WORDS.get(word) || word;
-    });
+    }));
   }
 
   window.toIpaDisplay = languageAwareIpaDisplay;
   window.toVowelizedHebrew = toVowelizedHebrew;
+  window.normalizeHebrewNiqqud = normalizeHebrewNiqqud;
   window.setCoordinatedWordColors = setCoordinatedWordColors;
 
   const previousHydrateNewsItem = hydrateNewsItem;

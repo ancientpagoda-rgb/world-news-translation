@@ -227,9 +227,9 @@ function speakToken(token, card) {
       speakWithBrowserVoice(text, language);
       return;
     }
-    // eSpeak's Hebrew dictionary handles unpointed text, but treats niqqud
-    // combining marks as separate Hebrew letter names.
-    text = text.normalize('NFD').replace(/[\u0591-\u05C7]/gu, '').normalize('NFC');
+    // Keep the vowel information: eSpeak accepts Hebrew niqqud when the
+    // dagesh/shin marks come before the vowel marks in each cluster.
+    text = window.normalizeHebrewNiqqud ? window.normalizeHebrewNiqqud(text) : text;
   }
   if (baseLanguage === 'ja') {
     const japaneseVoice = [...(synth?.getVoices?.() || [])].some(voice => voice.lang?.toLowerCase().split('-')[0] === 'ja');
