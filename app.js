@@ -345,7 +345,7 @@ function render() {
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
-      (row.language === 'he' && row.headline && window.toPaleoHebrew ? '<div class="headline-block"><p class="label">Paleo-Hebrew (Phoenician script)</p><p class="headline paleo-hebrew" dir="rtl">' + escapeHtml(window.toPaleoHebrew(original)) + '</p></div>' : '') +
+      (row.language === 'he' && row.headline && window.toVowelizedHebrew ? '<div class="headline-block"><p class="label">Hebrew with niqqud</p><p class="headline vowelized-hebrew" dir="rtl">' + escapeHtml(window.toVowelizedHebrew(original)) + '</p></div>' : '') +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + (Array.isArray(row.speechIpaGroups) ? renderIpaGroups(row.speechIpaGroups) : escapeHtml(phonetics)) + '</p></div>' +
       '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderEnglishHeadline(row) : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
       source + '</article>';
