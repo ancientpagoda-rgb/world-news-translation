@@ -4,6 +4,8 @@ const list = document.querySelector('#news-list');
 const status = document.querySelector('#status');
 const search = document.querySelector('#search');
 const language = document.querySelector('#language');
+const languageButton = document.querySelector('#language-button');
+const languageMenu = document.querySelector('#language-menu');
 const showAll = document.querySelector('#show-all');
 let renderVersion = 0;
 
@@ -394,13 +396,92 @@ function render() {
   });
 }
 
+const LANGUAGE_FONT_FAMILIES = {
+  am: 'Noto Sans Ethiopic', ar: 'Noto Sans Arabic', bn: 'Noto Sans Bengali', dv: 'Noto Sans Thaana', dz: 'Noto Serif Tibetan',
+  he: 'Noto Sans Hebrew', hi: 'Noto Sans Devanagari', ja: 'Noto Sans JP', ka: 'Noto Sans Georgian', km: 'Noto Sans Khmer',
+  ko: 'Noto Sans KR', lo: 'Noto Sans Lao', my: 'Noto Sans Myanmar', si: 'Noto Sans Sinhala', ta: 'Noto Sans Tamil',
+  te: 'Noto Sans Telugu', th: 'Noto Sans Thai', zh: 'Noto Sans SC'
+};
+
+function syncLanguagePicker() {
+  if (!languageButton || !languageMenu) return;
+  const selected = language.options[language.selectedIndex];
+  languageButton.textContent = selected?.textContent || 'All languages';
+  languageMenu.querySelectorAll('[role=option]').forEach(option => {
+    const isSelected = option.dataset.value === language.value;
+    option.setAttribute('aria-selected', String(isSelected));
+    option.classList.toggle('is-selected', isSelected);
+  });
+}
+
+function closeLanguageMenu() {
+  if (!languageButton || !languageMenu) return;
+  languageMenu.hidden = true;
+  languageButton.setAttribute('aria-expanded', 'false');
+}
+
+function openLanguageMenu() {
+  if (!languageButton || !languageMenu) return;
+  languageMenu.hidden = false;
+  languageButton.setAttribute('aria-expanded', 'true');
+  languageMenu.querySelector('[aria-selected="true"]')?.focus();
+}
+
+function populateLanguageMenu() {
+  if (!languageMenu) return;
+  languageMenu.innerHTML = [...language.options].map(option => {
+    const code = option.value === 'all' ? '' : option.value;
+    const family = LANGUAGE_FONT_FAMILIES[code];
+    const style = family ? ' style="font-family: ' + escapeHtml(family) + ', Noto Sans, system-ui, sans-serif"' : '';
+    return '<button type="button" role="option" tabindex="-1" class="language-option" data-value="' + escapeHtml(option.value) + '"' + style + '>' + escapeHtml(option.textContent) + '</button>';
+  }).join('');
+  syncLanguagePicker();
+}
+
 function populateLanguages() {
   const languages = [...new Set(state.rows.map(row => row.language).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   language.insertAdjacentHTML('beforeend', languages.map(value => '<option value="' + escapeHtml(value) + '">' + escapeHtml(languageAutonym(value)) + '</option>').join(''));
+  populateLanguageMenu();
 }
 
 search.addEventListener('input', () => { state.query = search.value.trim().toLowerCase(); render(); });
-language.addEventListener('change', () => { state.language = language.value; render(); });
+language.addEventListener('change', () => { state.language = language.value; syncLanguagePicker(); render(); });
+languageButton?.addEventListener('click', () => {
+  if (languageMenu?.hidden) openLanguageMenu();
+  else closeLanguageMenu();
+});
+languageMenu?.addEventListener('click', event => {
+  const option = event.target.closest?.('[role=option]');
+  if (!option) return;
+  language.value = option.dataset.value || 'all';
+  language.dispatchEvent(new Event('change', { bubbles: true }));
+  closeLanguageMenu();
+  languageButton?.focus();
+});
+languageButton?.addEventListener('keydown', event => {
+  if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    openLanguageMenu();
+  }
+});
+languageMenu?.addEventListener('keydown', event => {
+  const options = [...languageMenu.querySelectorAll('[role=option]')];
+  const current = options.indexOf(document.activeElement);
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    options[(current + (event.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length]?.focus();
+  } else if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    document.activeElement?.click();
+  } else if (event.key === 'Escape') {
+    event.preventDefault();
+    closeLanguageMenu();
+    languageButton?.focus();
+  }
+});
+document.addEventListener('click', event => {
+  if (!event.target.closest?.('.language-picker')) closeLanguageMenu();
+});
 showAll.addEventListener('change', () => { state.showAllCountries = showAll.checked; render(); });
 
 try {

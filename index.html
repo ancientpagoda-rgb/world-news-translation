@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Country-by-country news headlines with English translations." />
     <title>World News Translation</title>
-    <link rel="stylesheet" href="styles.css?v=15" />
+    <link rel="stylesheet" href="styles.css?v=16" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;600;700&family=Noto+Sans+Lao:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&family=Noto+Serif+Tibetan:wght@400;600;700&family=Noto+Sans+Thaana:wght@400;600;700&family=Noto+Sans+Armenian:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@400;600;700&family=Noto+Sans+Georgian:wght@400;600;700&family=Noto+Sans+Hebrew:wght@400;600;700&family=Noto+Sans+JP:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&family=Noto+Sans+SC:wght@400;600;700&family=Noto+Sans+Sinhala:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Thai:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -17,7 +17,13 @@
     <main>
       <section class="controls" aria-label="News filters">
         <label>Search countries or headlines<input id="search" type="search" placeholder="Try Japan, climate, election..." autocomplete="off" /></label>
-        <label>Source language<select id="language"><option value="all">All languages</option></select></label>
+        <label class="language-picker-label">Source language
+          <span class="language-picker">
+            <button id="language-button" class="language-button" type="button" aria-haspopup="listbox" aria-controls="language-menu" aria-expanded="false">All languages</button>
+            <span id="language-menu" class="language-menu" role="listbox" aria-label="Source language options" hidden></span>
+            <select id="language" class="language-native" aria-hidden="true" tabindex="-1"><option value="all">All languages</option></select>
+          </span>
+        </label>
         <label class="checkbox-label"><input id="show-all" type="checkbox" /> Show all countries</label>
         <p id="status" class="status" aria-live="polite">Loading...</p>
       </section>
@@ -27,6 +33,6 @@
     <script src="vendor/english-cmudict.js?v=2"></script>
     <script src="phonetics-base.js?v=2"></script>
     <script src="language-aware-ipa.js?v=14"></script>
-    <script type="module" src="app.js?v=46"></script>
+    <script type="module" src="app.js?v=47"></script>
   </body>
 </html>
