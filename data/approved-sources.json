@@ -314,6 +314,19 @@
           "status": "approved"
         }
       ]
+    },
+    "IL": {
+      "name": "Israel",
+      "language": "he",
+      "publishers": [
+        {
+          "name": "ynet",
+          "domain": "ynet.co.il",
+          "feed": "https://www.ynet.co.il/Integration/StoryRss2.xml",
+          "feedDirectory": "https://www.ynet.co.il/Integration/StoryRss2.xml",
+          "status": "approved"
+        }
+      ]
     }
   }
 }

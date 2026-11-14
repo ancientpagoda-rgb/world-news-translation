@@ -17,6 +17,10 @@ on:
         description: "Per-feed request timeout in seconds"
         required: false
         default: "20"
+      country:
+        description: "Optional ISO2 country selector for a sparse refresh"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -38,7 +42,9 @@ jobs:
         env:
           FEED_TIMEOUT: ${{ inputs.timeout || '20' }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.count }}" != "0" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.country }}" ]; then
+            python scripts/update_headlines_only.py --allow-partial --country "${{ inputs.country }}"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.count }}" != "0" ]; then
             python scripts/update_headlines_only.py --allow-partial --start "${{ inputs.start }}" --count "${{ inputs.count }}"
           else
             python scripts/update_headlines_only.py --allow-partial
