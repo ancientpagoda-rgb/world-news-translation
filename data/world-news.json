@@ -732,7 +732,8 @@
       8,
       9
     ],
-    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)"
+    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)",
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 14,
@@ -1177,7 +1178,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 24,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 7.2
   },
   {
     "rank": 25,
@@ -1274,7 +1276,8 @@
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 27,
     "isRepresentative": true,
-    "headlineSource": "bbc.com"
+    "headlineSource": "bbc.com",
+    "nativeSpeakerMillions": 33
   },
   {
     "rank": 28,
@@ -1402,7 +1405,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 30,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 31,
@@ -1485,7 +1489,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 33,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 34,
@@ -1512,7 +1517,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 34,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 35,
@@ -1559,7 +1565,8 @@
       17,
       18
     ],
-    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)"
+    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)",
+    "nativeSpeakerMillions": 4.6
   },
   {
     "rank": 36,
@@ -1614,7 +1621,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 37,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 38,
@@ -1723,7 +1731,8 @@
       0,
       11
     ],
-    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)"
+    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)",
+    "nativeSpeakerMillions": 32
   },
   {
     "rank": 41,
@@ -1750,7 +1759,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 41,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 42,
@@ -1805,7 +1815,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 43,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 44,
@@ -1847,7 +1858,8 @@
       10,
       13
     ],
-    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)"
+    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)",
+    "nativeSpeakerMillions": 45
   },
   {
     "rank": 45,
@@ -1874,7 +1886,8 @@
     "articleSummaryOriginal": "Sebuah karya kolaboratif dalam Sorotan Mei 2026 Global Voices, “Krisis global, penyelesaian tempatan”.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 45,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 19
   },
   {
     "rank": 46,
@@ -1957,7 +1970,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 48,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 1.7
   },
   {
     "rank": 49,
@@ -2069,7 +2083,8 @@
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 52,
     "isRepresentative": true,
-    "headlineSource": null
+    "headlineSource": null,
+    "nativeSpeakerMillions": 16
   },
   {
     "rank": 53,
@@ -2238,7 +2253,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 57,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 58,
@@ -2389,7 +2405,8 @@
     "articleSummaryOriginal": "ස්ත්‍රී පුරුෂ සමානාත්මතාවය ඉදිරියට ගෙන යාම සඳහා පිහිටුවා ඇති ආධාරක පද්ධති විසුරුවා හැරීමට ක්‍රමානුකූල උත්සාහයක් සිදුවෙමින් පවතින බව පෙනේ.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 62,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 17
   },
   {
     "rank": 63,
@@ -2416,7 +2433,8 @@
     "articleSummaryOriginal": "تعود ماتشادو إلى أمة يملؤها الأمل والحذر.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 63,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 64,
@@ -2443,7 +2461,8 @@
     "articleSummaryOriginal": "Кения, Доминикан Республикасы, Непал, Тувалу, Йемен, Бразилия — бүкіл әлемде адамдар игі іс үшін күресіп жатыр.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 64,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 13.4
   },
   {
     "rank": 65,
@@ -2522,7 +2541,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 66,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 67,
@@ -2549,7 +2569,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 67,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 24
   },
   {
     "rank": 68,
@@ -2682,7 +2703,8 @@
       11,
       11
     ],
-    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)"
+    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)",
+    "nativeSpeakerMillions": 25
   },
   {
     "rank": 72,
@@ -2709,7 +2731,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 72,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 16
   },
   {
     "rank": 73,
@@ -2736,7 +2759,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 73,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 5.6
   },
   {
     "rank": 74,
@@ -2875,7 +2899,8 @@
     "articleSummaryOriginal": "Kenia, República Dominicana, Nepal, Tuvalu, Yemen, Brasil — jaqiwa uraqpachan suma luräwiru chʼamanchasipxi.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 78,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 1.7
   },
   {
     "rank": 79,
@@ -2902,7 +2927,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 79,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 80,
@@ -3013,7 +3039,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 83,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 84,
@@ -3068,7 +3095,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 85,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 86,
@@ -3151,7 +3179,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 88,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 10.6
   },
   {
     "rank": 89,
@@ -3262,7 +3291,8 @@
     "articleSummaryOriginal": "Ett systematiskt försök tycks pågå för att avveckla de stödsystem som har inrättats för att främja jämställdhet globalt.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 92,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 10
   },
   {
     "rank": 93,
@@ -3289,7 +3319,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 93,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 13.5
   },
   {
     "rank": 94,
@@ -3316,7 +3347,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 94,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 23
   },
   {
     "rank": 95,
@@ -3358,7 +3390,8 @@
       7,
       8
     ],
-    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)"
+    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)",
+    "nativeSpeakerMillions": 5.4
   },
   {
     "rank": 96,
@@ -3385,7 +3418,8 @@
     "articleSummaryOriginal": "A választások felerősítik azokat a legfontosabb kihívásokat, amelyekkel a transz emberek nap mint nap szembesülnek.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 96,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 13
   },
   {
     "rank": 97,
@@ -3468,7 +3502,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 99,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 3.2
   },
   {
     "rank": 100,
@@ -3551,7 +3586,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 102,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 3.3
   },
   {
     "rank": 103,
@@ -3634,7 +3670,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 105,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 106,
@@ -3661,7 +3698,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 106,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 4.5
   },
   {
     "rank": 107,
@@ -3688,7 +3726,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 107,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 4.6
   },
   {
     "rank": 108,
@@ -3743,7 +3782,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 109,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 6.6
   },
   {
     "rank": 110,
@@ -3798,7 +3838,8 @@
     "articleSummaryOriginal": "Изборите засилват основните предизвикателства, пред които транс хората се изправят всеки ден.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 111,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 7.8
   },
   {
     "rank": 112,
@@ -3853,7 +3894,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 113,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 19
   },
   {
     "rank": 114,
@@ -3880,7 +3922,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 114,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 6
   },
   {
     "rank": 115,
@@ -3907,7 +3950,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 115,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 116,
@@ -3962,7 +4006,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 117,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 5.7
   },
   {
     "rank": 118,
@@ -3989,7 +4034,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 118,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 5
   },
   {
     "rank": 119,
@@ -4044,7 +4090,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 120,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 121,
@@ -4071,7 +4118,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 121,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.17
   },
   {
     "rank": 122,
@@ -4098,7 +4146,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 122,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 5.2
   },
   {
     "rank": 123,
@@ -4125,7 +4174,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 123,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 124,
@@ -4152,7 +4202,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 124,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.05
   },
   {
     "rank": 125,
@@ -4179,7 +4230,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 125,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 126,
@@ -4234,7 +4286,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 127,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 128,
@@ -4289,7 +4342,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 129,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 3.7
   },
   {
     "rank": 130,
@@ -4316,7 +4370,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 130,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 5.6
   },
   {
     "rank": 131,
@@ -4343,7 +4398,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 131,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 132,
@@ -4370,7 +4426,8 @@
     "articleSummaryOriginal": "Global Voices-ийн 2026 оны тавдугаар сарын “Дэлхийн хямрал, орон нутгийн шийдэл” сэдэвт Spotlight-ийн хүрээнд хийсэн хамтын бүтээл.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 132,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 3.4
   },
   {
     "rank": 133,
@@ -4453,7 +4510,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 135,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 2.5
   },
   {
     "rank": 136,
@@ -4480,7 +4538,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 136,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 7.2
   },
   {
     "rank": 137,
@@ -4507,7 +4566,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 137,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 6.7
   },
   {
     "rank": 138,
@@ -4534,7 +4594,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 138,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 139,
@@ -4561,7 +4622,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 139,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 2.8
   },
   {
     "rank": 140,
@@ -4686,7 +4748,8 @@
       9,
       10
     ],
-    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)"
+    "headlineTranslationAlignmentNote": "offline SimAlign alignment (100% direct coverage)",
+    "nativeSpeakerMillions": 4.9
   },
   {
     "rank": 144,
@@ -4713,7 +4776,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 144,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 5.6
   },
   {
     "rank": 145,
@@ -4740,7 +4804,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 145,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 24
   },
   {
     "rank": 146,
@@ -4767,7 +4832,8 @@
     "articleSummaryOriginal": "Faktoje është një anëtar i respektuar i komunitetit ndërkombëtar të verifikimit të fakteve.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 146,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 7.5
   },
   {
     "rank": 147,
@@ -4822,7 +4888,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 148,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 2.1
   },
   {
     "rank": 149,
@@ -4877,7 +4944,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 150,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 1.5
   },
   {
     "rank": 151,
@@ -4904,7 +4972,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 151,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 1.4
   },
   {
     "rank": 152,
@@ -4931,7 +5000,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 152,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 153,
@@ -4958,7 +5028,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 153,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 7.5
   },
   {
     "rank": 154,
@@ -5013,7 +5084,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 155,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 13.5
   },
   {
     "rank": 156,
@@ -5068,7 +5140,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 157,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 1.2
   },
   {
     "rank": 158,
@@ -5151,7 +5224,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 160,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 161,
@@ -5178,7 +5252,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 161,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.35
   },
   {
     "rank": 162,
@@ -5205,7 +5280,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 162,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 310
   },
   {
     "rank": 163,
@@ -5288,7 +5364,8 @@
     "articleSummaryOriginal": "འོས་བསྡུ་ཁང་གིས་ ཕོ་མོའི་ངོ་བོ་སོར་མི་ཚུ་གིས་ ཉིན་ལྟར་འཕྲད་པའི་གདོང་ལེན་གཙོ་བོ་ཚུ་སྦོམ་སྟོནམ་ཨིན།",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 165,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.17
   },
   {
     "rank": 166,
@@ -5371,7 +5448,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 168,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 25
   },
   {
     "rank": 169,
@@ -5398,7 +5476,8 @@
     "articleSummaryOriginal": "I pomaže da ciljevi pristupanja EU postanu ostvarivi.",
     "articleSummaryTranslationNote": "machine translation",
     "countryPopulationRank": 169,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 6.6
   },
   {
     "rank": 170,
@@ -5425,7 +5504,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 170,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.52
   },
   {
     "rank": 171,
@@ -5452,7 +5532,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 171,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.3
   },
   {
     "rank": 172,
@@ -5507,7 +5588,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 173,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 19
   },
   {
     "rank": 174,
@@ -5590,7 +5672,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 176,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.33
   },
   {
     "rank": 177,
@@ -5617,7 +5700,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 177,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.01
   },
   {
     "rank": 178,
@@ -5756,7 +5840,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 182,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.5
   },
   {
     "rank": 183,
@@ -5867,7 +5952,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 186,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 25
   },
   {
     "rank": 187,
@@ -6006,7 +6092,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 191,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 25
   },
   {
     "rank": 192,
@@ -6195,7 +6282,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 197,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 4.1
   },
   {
     "rank": 198,
@@ -6306,7 +6394,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 201,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.05
   },
   {
     "rank": 202,
@@ -6333,7 +6422,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 202,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 6
   },
   {
     "rank": 203,
@@ -6416,7 +6506,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 205,
-    "isRepresentative": false
+    "isRepresentative": false,
+    "nativeSpeakerMillions": 0.5
   },
   {
     "rank": 206,
@@ -6723,7 +6814,8 @@
     "articleSummaryOriginal": null,
     "articleSummaryTranslationNote": null,
     "countryPopulationRank": 216,
-    "isRepresentative": true
+    "isRepresentative": true,
+    "nativeSpeakerMillions": 0.01
   },
   {
     "rank": 217,

@@ -358,10 +358,10 @@ function render() {
     const languageLabel = displayLanguage(row);
     const groupKey = code || 'unknown';
     const groupCount = groupCounts.get(groupKey) || 1;
-    const groupSpeakers = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M native speakers' : ' · native-speaker count not sourced';
+    const groupSpeakers = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M estimated native speakers' : ' · native-speaker count not sourced';
     const groupHeading = activeGroup === groupKey ? '' : '<div class="language-group"><h2>Language: ' + escapeHtml(languageLabel) + '</h2><p>' + escapeHtml(String(groupCount)) + ' countr' + (groupCount === 1 ? 'y' : 'ies') + groupSpeakers + '</p></div>';
     activeGroup = groupKey;
-    const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
+    const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M (estimated)' : ' · Native speakers: not sourced';
     const original = row.headline
       ? (row.language === 'he' && window.toVowelizedHebrew ? window.toVowelizedHebrew(row.headline) : row.headline)
       : 'No headline available.';
