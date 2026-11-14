@@ -1,4 +1,4 @@
-:root { color-scheme: dark; font-family: "Noto Sans", "Noto Sans Devanagari", "Noto Sans Bengali", "Noto Sans Ethiopic", "Noto Sans Thai", "Noto Sans Arabic", "Noto Sans JP", "Noto Sans KR", "Noto Sans SC", system-ui, sans-serif; background: #0b1020; color: #e8edf7; }
+:root { color-scheme: dark; font-family: "Noto Sans", "Noto Sans Devanagari", "Noto Sans Bengali", "Noto Sans Ethiopic", "Noto Sans Thai", "Noto Sans Arabic", "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Myanmar", "Noto Sans Tibetan", "Noto Sans Thaana", "Noto Sans JP", "Noto Sans KR", "Noto Sans SC", system-ui, sans-serif; background: #0b1020; color: #e8edf7; }
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; background: linear-gradient(180deg, #111a33 0, #0b1020 320px); }
 .site-header, main, .site-footer { width: min(100% - 2rem, 1080px); margin: 0 auto; }
@@ -8,6 +8,7 @@ h1 { max-width: 760px; margin: .35rem 0 .75rem; font-size: clamp(2.3rem, 7vw, 5r
 .lede { max-width: 680px; color: #b9c5db; font-size: 1.1rem; line-height: 1.6; }
 .controls { display: grid; grid-template-columns: minmax(0, 2fr) minmax(180px, 1fr); gap: 1rem; align-items: end; padding: 1rem; border: 1px solid #263658; border-radius: 14px; background: #111a2dcc; }
 label { display: grid; gap: .45rem; color: #c9d4e8; font-size: .9rem; }
+input, select, option { font-family: inherit; }
 input, select { width: 100%; border: 1px solid #3a4d75; border-radius: 9px; background: #0b1020; color: #eef4ff; padding: .78rem .85rem; font: inherit; }
 .status { grid-column: 1 / -1; margin: 0; }
 .checkbox-label { display: flex; align-items: center; gap: .5rem; }
