@@ -60,10 +60,10 @@
       "language": "ja",
       "publishers": [
         {
-          "name": "Mainichi Shimbun",
-          "domain": "mainichi.jp",
-          "feed": "https://mainichi.jp/rss/etc/mainichi-flash.rss",
-          "feedDirectory": "https://mainichi.jp/rss/",
+          "name": "Asahi Shimbun",
+          "domain": "asahi.com",
+          "feed": "https://www.asahi.com/rss/asahi/newsheadlines.rdf",
+          "feedDirectory": "https://www.asahi.com/rss/",
           "status": "approved"
         }
       ]

@@ -124,7 +124,10 @@ def apply_candidate(row, candidate):
     else:
         row["englishHeadline"] = "English translation unavailable"
         row.pop("headlineTranslationWordIndices", None)
+        row.pop("headlineTranslationAlignmentNote", None)
         row.pop("headlineTranslationNote", None)
+        for field in ("speechText", "speechWords", "speechIpaWords", "speechIpaGroups"):
+            row.pop(field, None)
 
 
 def main():
