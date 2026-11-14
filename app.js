@@ -72,6 +72,15 @@ function displayLanguage(row) {
   return LANGUAGE_OVERRIDES[code] || LANGUAGE_NAMES.of(code) || code.toUpperCase() || 'Unknown';
 }
 
+function languageAutonym(code) {
+  const normalized = String(code || '').toLowerCase();
+  try {
+    const name = new Intl.DisplayNames([normalized], { type: 'language' }).of(normalized);
+    if (name) return name;
+  } catch {}
+  return displayLanguage({ language: normalized });
+}
+
 const SPEECH_LANGUAGES = { zh: 'zh-CN', es: 'es-MX', en: 'en-US', he: 'he-IL', hi: 'hi-IN', pt: 'pt-BR', ja: 'ja-JP', vi: 'vi-VN', it: 'it-IT', my: 'my-MM', pl: 'pl-PL', nl: 'nl-NL', bn: 'bn-BD', am: 'am-ET', th: 'th-TH', fr: 'fr-FR', de: 'de-DE', fa: 'fa-IR', ur: 'ur-PK', tr: 'tr-TR', id: 'id-ID', ko: 'ko-KR' };
 const ESPEAK_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@spelling-creator/spellophone@0.2.1/dist/browser.js';
 const ESPEAK_VOICES = { zh: 'cmn', es: 'es', en: 'en-us', he: 'he', hi: 'hi', pt: 'pt', ja: 'jpx/ja', vi: 'vi', it: 'it', my: 'my', pl: 'pl', nl: 'nl', bn: 'bn', am: 'am', th: 'th', fr: 'fr-fr', de: 'de', fa: 'fa', ur: 'ur', ru: 'zle/ru', tr: 'tr', id: 'id', ko: 'ko' };
@@ -212,6 +221,9 @@ function speakToken(token, card) {
     speakWithBrowserVoice(text, language);
   };
   const baseLanguage = String(language).toLowerCase().split('-')[0];
+  if (baseLanguage === 'he' && window.toVowelizedHebrew) {
+    text = window.toVowelizedHebrew(text);
+  }
   if (baseLanguage === 'ja') {
     const japaneseVoice = [...(synth?.getVoices?.() || [])].some(voice => voice.lang?.toLowerCase().split('-')[0] === 'ja');
     if (japaneseVoice) {
@@ -374,7 +386,7 @@ function render() {
 
 function populateLanguages() {
   const languages = [...new Set(state.rows.map(row => row.language).filter(Boolean))].sort((a, b) => a.localeCompare(b));
-  language.insertAdjacentHTML('beforeend', languages.map(value => '<option value="' + escapeHtml(value) + '">' + escapeHtml(value) + '</option>').join(''));
+  language.insertAdjacentHTML('beforeend', languages.map(value => '<option value="' + escapeHtml(value) + '">' + escapeHtml(languageAutonym(value)) + '</option>').join(''));
 }
 
 search.addEventListener('input', () => { state.query = search.value.trim().toLowerCase(); render(); });
