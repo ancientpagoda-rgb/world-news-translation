@@ -344,8 +344,14 @@
     "ע": "ʕ", "פ": "f", "ף": "f", "צ": "ts", "ץ": "ts", "ק": "k", "ר": "ʁ", "ש": "ʃ", "ת": "t",
   };
 
-  function hebrewIpa(text) {
-    const chars = Array.from(String(text || ""));
+  const HEBREW_WORD_READINGS = new Map([
+    ["אנגלה", "ʔaŋela"], ["מרקל", "maʁkel"], ["יוצאת", "jotset"], ["להגנת", "lehaɡanat"], ["ישראל", "jisraʔel"],
+    ["מעולם", "meʕolam"], ["לא", "lo"], ["נאלצתי", "neʔalatsi"], ["לפתור", "liftoʁ"], ["בעיה", "beʕaja"],
+    ["כזו", "kazo"], ["קשה", "kaʃa"], ["של", "ʃel"], ["על", "ʕal"], ["עם", "ʕim"], ["אבל", "aval"],
+  ]);
+
+  function hebrewPointedWord(word) {
+    const chars = Array.from(String(word || ""));
     let output = "";
     for (let index = 0; index < chars.length; index += 1) {
       const char = chars[index];
@@ -363,6 +369,27 @@
       output += HEBREW_CONSONANTS[char] ?? char;
     }
     return output;
+  }
+
+  function hebrewUnpointedWord(word) {
+    const chars = Array.from(String(word || ""));
+    let output = "";
+    for (let index = 0; index < chars.length; index += 1) {
+      const char = chars[index];
+      const next = chars[index + 1] || "";
+      if (char === "ו" && index > 0 && next) { output += "o"; continue; }
+      if (char === "י" && index > 0 && next) { output += "i"; continue; }
+      output += HEBREW_CONSONANTS[char] ?? char;
+      if (next && char !== "ו" && char !== "י") output += index === 0 ? "a" : "ə";
+    }
+    return output;
+  }
+
+  function hebrewIpa(text) {
+    return String(text || "").replace(/\p{Script=Hebrew}+/gu, (word) => {
+      if (/[\u0591-\u05C7]/u.test(word)) return hebrewPointedWord(word);
+      return HEBREW_WORD_READINGS.get(word) || hebrewUnpointedWord(word);
+    });
   }
 
   async function directIpa(text, language) {
