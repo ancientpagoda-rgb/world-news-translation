@@ -351,13 +351,14 @@ function render() {
     const groupHeading = activeGroup === groupKey ? '' : '<div class="language-group"><h2>Language: ' + escapeHtml(languageLabel) + '</h2><p>' + escapeHtml(String(groupCount)) + ' countr' + (groupCount === 1 ? 'y' : 'ies') + groupSpeakers + '</p></div>';
     activeGroup = groupKey;
     const speakerMeta = Number.isFinite(Number(row.nativeSpeakerMillions)) ? ' · Native speakers: ~' + Number(row.nativeSpeakerMillions).toLocaleString() + 'M' : ' · Native speakers: not sourced';
-    const original = row.headline || 'No headline available.';
+    const original = row.headline
+      ? (row.language === 'he' && window.toVowelizedHebrew ? window.toVowelizedHebrew(row.headline) : row.headline)
+      : 'No headline available.';
     const phonetics = row.headline ? (Array.isArray(row.speechIpaWords) ? row.speechIpaWords.join(' ') : 'Generating phonetics…') : '—';
     return groupHeading + '<article class="news-card" data-row-index="' + index + '" data-language="' + escapeHtml(row.language || '') + '" data-speech-text="' + escapeHtml(row.speechText || '') + '" data-speech-words="' + escapeHtml((row.speechWords || []).join('|')) + '" data-speech-ipa-groups="' + escapeHtml(JSON.stringify(row.speechIpaGroups || [])) + '">' +
       '<div class="card-heading"><div><h2>' + escapeHtml(row.name) + '</h2><p class="meta">Country: ' + escapeHtml(row.name) + ' · Language: ' + escapeHtml(languageLabel) + ' (' + escapeHtml(code) + ')' + speakerMeta + (row.headlineSource ? ' · Source: ' + escapeHtml(row.headlineSource) : '') + '</p></div>' +
       (date ? '<time datetime="' + escapeHtml(row.headlinePublishedAt) + '">' + escapeHtml(date) + '</time>' : '') + '</div>' +
       '<div class="headline-block"><p class="label">Original</p><p class="headline original">' + (row.headline ? renderWordTrack(original, row.language) : escapeHtml(original)) + '</p></div>' +
-      (row.language === 'he' && row.headline && window.toVowelizedHebrew ? '<div class="headline-block"><p class="label">Hebrew with niqqud</p><p class="headline vowelized-hebrew" dir="rtl">' + escapeHtml(window.toVowelizedHebrew(original)) + '</p></div>' : '') +
       '<div class="headline-block"><p class="label">IPA phonetics</p><p class="headline phonetics" data-phonetics>' + (Array.isArray(row.speechIpaGroups) ? renderIpaGroups(row.speechIpaGroups) : escapeHtml(phonetics)) + '</p></div>' +
       '<div class="headline-block"><p class="label">English translation</p><p class="headline">' + (row.englishHeadline && row.englishHeadline !== 'English translation unavailable' ? renderEnglishHeadline(row) : escapeHtml(row.englishHeadline || 'English translation unavailable')) + '</p></div>' +
       source + '</article>';
