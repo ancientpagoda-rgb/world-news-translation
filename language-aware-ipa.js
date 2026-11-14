@@ -464,7 +464,23 @@
     return { originalWords, ipaWords };
   }
 
+  const PALEO_HEBREW = {
+    "א": "𐤀", "ב": "𐤁", "ג": "𐤂", "ד": "𐤃", "ה": "𐤄", "ו": "𐤅", "ז": "𐤆", "ח": "𐤇", "ט": "𐤈",
+    "י": "𐤉", "כ": "𐤊", "ך": "𐤊", "ל": "𐤋", "מ": "𐤌", "ם": "𐤌", "נ": "𐤍", "ן": "𐤍", "ס": "𐤎",
+    "ע": "𐤏", "פ": "𐤐", "ף": "𐤐", "צ": "𐤑", "ץ": "𐤑", "ק": "𐤒", "ר": "𐤓", "ש": "𐤔", "ת": "𐤕",
+  };
+
+  function toPaleoHebrew(text) {
+    return String(text || "")
+      .normalize("NFD")
+      .replace(/[\u0591-\u05C7]/gu, "")
+      .split("")
+      .map((char) => PALEO_HEBREW[char] ?? char)
+      .join("");
+  }
+
   window.toIpaDisplay = languageAwareIpaDisplay;
+  window.toPaleoHebrew = toPaleoHebrew;
   window.setCoordinatedWordColors = setCoordinatedWordColors;
 
   const previousHydrateNewsItem = hydrateNewsItem;
