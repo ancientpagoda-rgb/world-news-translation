@@ -237,6 +237,19 @@
         }
       ]
     },
+    "EG": {
+      "name": "Egypt, Arab Rep.",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "AlMasry AlYoum",
+          "domain": "almasryalyoum.com",
+          "feed": "https://www.almasryalyoum.com/rss/rssfeeds",
+          "feedDirectory": "https://www.almasryalyoum.com/rss/rssfeeds",
+          "status": "approved"
+        }
+      ]
+    },
     "PK": {
       "name": "Pakistan",
       "language": "ur",
