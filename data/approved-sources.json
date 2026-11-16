@@ -821,6 +821,97 @@
           "status": "approved"
         }
       ]
+    },
+    "GH": {
+      "name": "Ghana",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "MyJoyOnline",
+          "domain": "myjoyonline.com",
+          "feed": "https://www.myjoyonline.com/feed/",
+          "discoveredFrom": "https://www.myjoyonline.com/",
+          "status": "approved"
+        }
+      ]
+    },
+    "BE": {
+      "name": "Belgium",
+      "language": "de",
+      "publishers": [
+        {
+          "name": "Deutsche Welle",
+          "domain": "dw.com",
+          "feed": "https://rss.dw.com/rdf/rss-de-all",
+          "discoveredFrom": "https://www.dw.com/de/",
+          "status": "approved"
+        }
+      ]
+    },
+    "TN": {
+      "name": "Tunisia",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "BJ": {
+      "name": "Benin",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "RFI",
+          "domain": "rfi.fr",
+          "feed": "https://www.rfi.fr/fr/rss",
+          "discoveredFrom": "https://www.rfi.fr/fr/",
+          "status": "approved"
+        }
+      ]
+    },
+    "RW": {
+      "name": "Rwanda",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "RFI",
+          "domain": "rfi.fr",
+          "feed": "https://www.rfi.fr/fr/rss",
+          "discoveredFrom": "https://www.rfi.fr/fr/",
+          "status": "approved"
+        }
+      ]
+    },
+    "BI": {
+      "name": "Burundi",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "RFI",
+          "domain": "rfi.fr",
+          "feed": "https://www.rfi.fr/fr/rss",
+          "discoveredFrom": "https://www.rfi.fr/fr/",
+          "status": "approved"
+        }
+      ]
+    },
+    "HT": {
+      "name": "Haiti",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "RFI",
+          "domain": "rfi.fr",
+          "feed": "https://www.rfi.fr/fr/rss",
+          "discoveredFrom": "https://www.rfi.fr/fr/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
