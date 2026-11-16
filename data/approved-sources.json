@@ -912,6 +912,71 @@
           "status": "approved"
         }
       ]
+    },
+    "MW": {
+      "name": "Malawi",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "Nyasa Times",
+          "domain": "nyasatimes.com",
+          "feed": "https://www.nyasatimes.com/feed/",
+          "discoveredFrom": "https://www.nyasatimes.com/",
+          "status": "approved"
+        }
+      ]
+    },
+    "ZM": {
+      "name": "Zambia",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "Lusaka Times",
+          "domain": "lusakatimes.com",
+          "feed": "https://www.lusakatimes.com/feed/",
+          "discoveredFrom": "https://www.lusakatimes.com/",
+          "status": "approved"
+        }
+      ]
+    },
+    "SS": {
+      "name": "South Sudan",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "Sudans Post",
+          "domain": "sudanspost.com",
+          "feed": "https://www.sudanspost.com/feed/",
+          "discoveredFrom": "https://www.sudanspost.com/",
+          "status": "approved"
+        }
+      ]
+    },
+    "JO": {
+      "name": "Jordan",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "DO": {
+      "name": "Dominican Republic",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "BBC Mundo",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/mundo/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/mundo",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
