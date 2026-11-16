@@ -977,6 +977,84 @@
           "status": "approved"
         }
       ]
+    },
+    "CA": {
+      "name": "Canada",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "RFI",
+          "domain": "rfi.fr",
+          "feed": "https://www.rfi.fr/fr/rss",
+          "discoveredFrom": "https://www.rfi.fr/fr/",
+          "status": "approved"
+        }
+      ]
+    },
+    "AE": {
+      "name": "United Arab Emirates",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "HN": {
+      "name": "Honduras",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "BBC Mundo",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/mundo/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/mundo",
+          "status": "approved"
+        }
+      ]
+    },
+    "CU": {
+      "name": "Cuba",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "BBC Mundo",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/mundo/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/mundo",
+          "status": "approved"
+        }
+      ]
+    },
+    "CZ": {
+      "name": "Czechia",
+      "language": "cs",
+      "publishers": [
+        {
+          "name": "Český rozhlas",
+          "domain": "irozhlas.cz",
+          "feed": "https://www.irozhlas.cz/rss/irozhlas",
+          "discoveredFrom": "https://www.irozhlas.cz/",
+          "status": "approved"
+        }
+      ]
+    },
+    "PT": {
+      "name": "Portugal",
+      "language": "pt",
+      "publishers": [
+        {
+          "name": "BBC Portuguese",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/portuguese/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/portuguese",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
