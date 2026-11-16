@@ -704,6 +704,123 @@
           "status": "approved"
         }
       ]
+    },
+    "LK": {
+      "name": "Sri Lanka",
+      "language": "si",
+      "publishers": [
+        {
+          "name": "BBC Sinhala",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/sinhala/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/sinhala",
+          "status": "approved"
+        }
+      ]
+    },
+    "TD": {
+      "name": "Chad",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "CL": {
+      "name": "Chile",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "BBC Mundo",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/mundo/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/mundo",
+          "status": "approved"
+        }
+      ]
+    },
+    "SO": {
+      "name": "Somalia, Fed. Rep.",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "RO": {
+      "name": "Romania",
+      "language": "ro",
+      "publishers": [
+        {
+          "name": "Digi24",
+          "domain": "digi24.ro",
+          "feed": "https://www.digi24.ro/rss",
+          "discoveredFrom": "https://www.digi24.ro/",
+          "status": "approved"
+        }
+      ]
+    },
+    "SN": {
+      "name": "Senegal",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "RFI",
+          "domain": "rfi.fr",
+          "feed": "https://www.rfi.fr/fr/rss",
+          "discoveredFrom": "https://www.rfi.fr/fr/",
+          "status": "approved"
+        }
+      ]
+    },
+    "GT": {
+      "name": "Guatemala",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "BBC Mundo",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/mundo/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/mundo",
+          "status": "approved"
+        }
+      ]
+    },
+    "EC": {
+      "name": "Ecuador",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "BBC Mundo",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/mundo/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/mundo",
+          "status": "approved"
+        }
+      ]
+    },
+    "GN": {
+      "name": "Guinea",
+      "language": "fr",
+      "publishers": [
+        {
+          "name": "RFI",
+          "domain": "rfi.fr",
+          "feed": "https://www.rfi.fr/fr/rss",
+          "discoveredFrom": "https://www.rfi.fr/fr/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
