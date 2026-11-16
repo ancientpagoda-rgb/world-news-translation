@@ -366,6 +366,58 @@
           "status": "approved"
         }
       ]
+    },
+    "TZ": {
+      "name": "Tanzania",
+      "language": "sw",
+      "publishers": [
+        {
+          "name": "BBC News Swahili",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/swahili/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/swahili",
+          "status": "approved"
+        }
+      ]
+    },
+    "GB": {
+      "name": "United Kingdom",
+      "language": "en",
+      "publishers": [
+        {
+          "name": "BBC News UK",
+          "domain": "bbc.co.uk",
+          "feed": "https://feeds.bbci.co.uk/news/uk/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/news/uk",
+          "status": "approved"
+        }
+      ]
+    },
+    "ES": {
+      "name": "Spain",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "El País",
+          "domain": "elpais.com",
+          "feed": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada",
+          "discoveredFrom": "https://elpais.com/",
+          "status": "approved"
+        }
+      ]
+    },
+    "IQ": {
+      "name": "Iraq",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
