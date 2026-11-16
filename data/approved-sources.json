@@ -418,6 +418,136 @@
           "status": "approved"
         }
       ]
+    },
+    "KE": {
+      "name": "Kenya",
+      "language": "sw",
+      "publishers": [
+        {
+          "name": "BBC News Swahili",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/swahili/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/swahili",
+          "status": "approved"
+        }
+      ]
+    },
+    "CO": {
+      "name": "Colombia",
+      "language": "es",
+      "publishers": [
+        {
+          "name": "BBC Mundo",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/mundo/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/mundo",
+          "status": "approved"
+        }
+      ]
+    },
+    "SD": {
+      "name": "Sudan",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "UG": {
+      "name": "Uganda",
+      "language": "sw",
+      "publishers": [
+        {
+          "name": "BBC News Swahili",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/swahili/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/swahili",
+          "status": "approved"
+        }
+      ]
+    },
+    "DZ": {
+      "name": "Algeria",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "AF": {
+      "name": "Afghanistan",
+      "language": "fa",
+      "publishers": [
+        {
+          "name": "BBC Persian",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/persian/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/persian",
+          "status": "approved"
+        }
+      ]
+    },
+    "YE": {
+      "name": "Yemen, Rep.",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "BBC Arabic",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/arabic/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/arabic",
+          "status": "approved"
+        }
+      ]
+    },
+    "AO": {
+      "name": "Angola",
+      "language": "pt",
+      "publishers": [
+        {
+          "name": "BBC Portuguese",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/portuguese/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/portuguese",
+          "status": "approved"
+        }
+      ]
+    },
+    "MA": {
+      "name": "Morocco",
+      "language": "ar",
+      "publishers": [
+        {
+          "name": "Hespress",
+          "domain": "hespress.com",
+          "feed": "https://www.hespress.com/feed",
+          "discoveredFrom": "https://www.hespress.com/",
+          "status": "approved"
+        }
+      ]
+    },
+    "UZ": {
+      "name": "Uzbekistan",
+      "language": "ru",
+      "publishers": [
+        {
+          "name": "BBC Russian",
+          "domain": "bbc.com",
+          "feed": "https://feeds.bbci.co.uk/russian/rss.xml",
+          "discoveredFrom": "https://www.bbc.com/russian",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
