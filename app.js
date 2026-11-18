@@ -149,23 +149,6 @@ function stopActiveAudio() {
   }
 }
 
-function speakWithJapaneseAudio(text, fallback) {
-  if (!text || text.length > 200) return false;
-  stopActiveAudio();
-  const audio = new Audio('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=ja&q=' + encodeURIComponent(text));
-  audio.preload = 'auto';
-  const fail = () => {
-    if (activeHtmlAudio !== audio) return;
-    activeHtmlAudio = null;
-    fallback();
-  };
-  audio.addEventListener('error', fail, { once: true });
-  audio.addEventListener('ended', () => { if (activeHtmlAudio === audio) activeHtmlAudio = null; }, { once: true });
-  activeHtmlAudio = audio;
-  audio.play()?.catch(fail);
-  return true;
-}
-
 function speakWithWasmEngine(text, language, fallback) {
   const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
   if (!AudioContextCtor) return false;
@@ -242,7 +225,8 @@ function speakToken(token, card) {
       return;
     }
     if ((card.dataset.speechText || card.dataset.speechWords) && speakWithWasmEngine(text, language, browserFallback)) return;
-    if (speakWithJapaneseAudio(text, () => speakWithWasmEngine(text, language, browserFallback))) return;
+    browserFallback();
+    return;
   }
   if (speakWithWasmEngine(text, language, browserFallback)) return;
   if (synth && typeof window.SpeechSynthesisUtterance === 'function' && synth.getVoices().length) {
