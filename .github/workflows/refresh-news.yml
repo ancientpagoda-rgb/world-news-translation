@@ -63,12 +63,14 @@ jobs:
         env:
           NLLB_THREADS: "2"
         run: python scripts/translate_headlines_offline.py
+      - name: Require Arabic headline translations
+        run: python scripts/check-translation-coverage.py --language ar
       - name: Align translation words offline
         run: python scripts/align_headline_translations.py
       - name: Validate
         run: |
           python -m json.tool data/world-news.json > /dev/null
-          python -m py_compile scripts/update_headlines_only.py scripts/translate_headlines_offline.py scripts/align_headline_translations.py scripts/source-policy-smoke.py
+          python -m py_compile scripts/update_headlines_only.py scripts/translate_headlines_offline.py scripts/check-translation-coverage.py scripts/align_headline_translations.py scripts/source-policy-smoke.py
           python scripts/source-policy-smoke.py
           npm run check:syntax
           npm run check:data
