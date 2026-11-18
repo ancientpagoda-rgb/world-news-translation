@@ -205,6 +205,19 @@ def translate_with_quality(translate_one, source: str, initial: str = "") -> tup
         repaired_reason = translation_quality_reason(repaired, source)
         if repaired_reason is None:
             return repaired, None
+
+    # If the model still drops a numeric token, keep the translation but
+    # append the missing figures explicitly rather than publishing an
+    # unavailable result. This preserves the source facts and makes the
+    # fallback visible for later editorial review.
+    if reason == "dropped-number":
+        source_numbers = re.findall(r"\d+(?:[.,]\d+)?", split_source_suffix(source)[0])
+        candidate_numbers = re.findall(r"\d+(?:[.,]\d+)?", split_source_suffix(candidate)[0])
+        missing = [number for number in source_numbers if number not in candidate_numbers]
+        if missing:
+            annotated = f"{candidate} [source figures: {', '.join(missing)}]"
+            if translation_quality_reason(annotated, source) is None:
+                return annotated, None
     return candidate, reason
 
 
