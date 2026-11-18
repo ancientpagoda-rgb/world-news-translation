@@ -1211,6 +1211,45 @@
           "status": "approved"
         }
       ]
+    },
+    "BA": {
+      "name": "Bosnia and Herzegovina",
+      "language": "bs",
+      "publishers": [
+        {
+          "name": "Klix",
+          "domain": "klix.ba",
+          "feed": "https://www.klix.ba/rss",
+          "feedDirectory": "https://www.klix.ba/",
+          "status": "approved"
+        }
+      ]
+    },
+    "ME": {
+      "name": "Montenegro",
+      "language": "sr",
+      "publishers": [
+        {
+          "name": "Vijesti",
+          "domain": "vijesti.me",
+          "feed": "https://www.vijesti.me/rss",
+          "feedDirectory": "https://www.vijesti.me/",
+          "status": "approved"
+        }
+      ]
+    },
+    "MD": {
+      "name": "Moldova",
+      "language": "ro",
+      "publishers": [
+        {
+          "name": "Moldova 1",
+          "domain": "moldova1.md",
+          "feed": "https://moldova1.md/rss",
+          "feedDirectory": "https://moldova1.md/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
