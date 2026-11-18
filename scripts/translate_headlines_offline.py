@@ -24,6 +24,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "world-news.json"
+MANUAL_TRANSLATIONS_PATH = ROOT / "data" / "manual-headline-translations.json"
 UNAVAILABLE = "English translation unavailable"
 NLLB_MODEL = os.environ.get("NLLB_MODEL", "facebook/nllb-200-distilled-600M")
 
@@ -246,6 +247,15 @@ def write_rows(rows: list[dict[str, Any]]) -> None:
     DATA_PATH.write_text(json.dumps(rows, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def load_manual_translations() -> dict[str, dict[str, str]]:
+    if not MANUAL_TRANSLATIONS_PATH.exists():
+        return {}
+    data = json.loads(MANUAL_TRANSLATIONS_PATH.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise SystemExit("data/manual-headline-translations.json must contain an object")
+    return data
+
+
 def install_argos_translators(languages: set[str]) -> dict[str, Any]:
     """Install and return direct Argos translators for requested languages."""
     try:
@@ -337,6 +347,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     rows = load_rows()
+    manual_translations = load_manual_translations()
     pending: list[tuple[dict[str, Any], str, str]] = []
     changed = 0
 
@@ -346,6 +357,14 @@ def main() -> int:
             continue
         current = str(row.get("englishHeadline") or "").strip()
         language = primary_language(row.get("language") or row.get("nativeLanguage"))
+        manual = manual_translations.get(str(row.get("iso2") or "").upper())
+        if isinstance(manual, dict) and manual.get("headline") == headline and manual.get("englishHeadline"):
+            row["englishHeadline"] = str(manual["englishHeadline"]).strip()
+            row["headlineTranslationNote"] = "offline manual translation"
+            row.pop("headlineTranslationWordIndices", None)
+            row.pop("headlineTranslationAlignmentNote", None)
+            changed += 1
+            continue
         if current and current != UNAVAILABLE:
             quality_reason = translation_quality_reason(current, headline)
             if current == headline and language != "en":
