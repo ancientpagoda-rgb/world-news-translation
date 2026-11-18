@@ -62,7 +62,7 @@ jobs:
       - name: Translate new headlines offline
         env:
           NLLB_THREADS: "2"
-        run: python scripts/translate_headlines_offline.py
+        run: python scripts/translate_headlines_offline.py --require-complete
       - name: Require Arabic headline translations
         run: python scripts/check-translation-coverage.py --language ar
       - name: Align translation words offline
