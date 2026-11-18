@@ -122,6 +122,11 @@ def primary_language(value: Any) -> str:
     return str(value or "en").strip().lower().replace("_", "-").split("-", 1)[0]
 
 
+def headline_key(value: Any) -> str:
+    """Compare feed text while ignoring invisible Unicode formatting marks."""
+    return re.sub(r"[\u200c\u200d\ufeff]", "", str(value or "")).strip()
+
+
 def split_source_suffix(text: str) -> tuple[str, str]:
     input_text = str(text or "").strip()
     if not input_text:
@@ -358,7 +363,7 @@ def main() -> int:
         current = str(row.get("englishHeadline") or "").strip()
         language = primary_language(row.get("language") or row.get("nativeLanguage"))
         manual = manual_translations.get(str(row.get("iso2") or "").upper())
-        if isinstance(manual, dict) and manual.get("headline") == headline and manual.get("englishHeadline"):
+        if isinstance(manual, dict) and headline_key(manual.get("headline")) == headline_key(headline) and manual.get("englishHeadline"):
             row["englishHeadline"] = str(manual["englishHeadline"]).strip()
             row["headlineTranslationNote"] = "offline manual translation"
             row.pop("headlineTranslationWordIndices", None)
