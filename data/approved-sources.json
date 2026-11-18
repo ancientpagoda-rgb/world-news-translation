@@ -1055,6 +1055,84 @@
           "status": "approved"
         }
       ]
+    },
+    "SE": {
+      "name": "Sweden",
+      "language": "sv",
+      "publishers": [
+        {
+          "name": "SVT",
+          "domain": "svt.se",
+          "feed": "https://www.svt.se/nyheter/rss.xml",
+          "feedDirectory": "https://www.svt.se/nyheter",
+          "status": "approved"
+        }
+      ]
+    },
+    "GR": {
+      "name": "Greece",
+      "language": "el",
+      "publishers": [
+        {
+          "name": "ERT News",
+          "domain": "ertnews.gr",
+          "feed": "https://www.ertnews.gr/feed/",
+          "feedDirectory": "https://www.ertnews.gr/",
+          "status": "approved"
+        }
+      ]
+    },
+    "HU": {
+      "name": "Hungary",
+      "language": "hu",
+      "publishers": [
+        {
+          "name": "Telex",
+          "domain": "telex.hu",
+          "feed": "https://telex.hu/rss",
+          "feedDirectory": "https://telex.hu/",
+          "status": "approved"
+        }
+      ]
+    },
+    "AT": {
+      "name": "Austria",
+      "language": "de",
+      "publishers": [
+        {
+          "name": "ORF",
+          "domain": "orf.at",
+          "feed": "https://rss.orf.at/news.xml",
+          "feedDirectory": "https://orf.at/",
+          "status": "approved"
+        }
+      ]
+    },
+    "NO": {
+      "name": "Norway",
+      "language": "nb",
+      "publishers": [
+        {
+          "name": "NRK",
+          "domain": "nrk.no",
+          "feed": "https://www.nrk.no/toppsaker.rss",
+          "feedDirectory": "https://www.nrk.no/",
+          "status": "approved"
+        }
+      ]
+    },
+    "FI": {
+      "name": "Finland",
+      "language": "fi",
+      "publishers": [
+        {
+          "name": "Yle",
+          "domain": "yle.fi",
+          "feed": "https://yle.fi/uutiset/rss/uutiset.rss",
+          "feedDirectory": "https://yle.fi/uutiset",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
