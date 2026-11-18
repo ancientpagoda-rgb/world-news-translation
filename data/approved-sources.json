@@ -1133,6 +1133,84 @@
           "status": "approved"
         }
       ]
+    },
+    "DK": {
+      "name": "Denmark",
+      "language": "da",
+      "publishers": [
+        {
+          "name": "DR",
+          "domain": "dr.dk",
+          "feed": "https://www.dr.dk/nyheder/service/feeds/allenyheder",
+          "feedDirectory": "https://www.dr.dk/nyheder",
+          "status": "approved"
+        }
+      ]
+    },
+    "RS": {
+      "name": "Serbia",
+      "language": "sr",
+      "publishers": [
+        {
+          "name": "Radio Television of Serbia",
+          "domain": "rts.rs",
+          "feed": "https://www.rts.rs/page/stories/sr/rss/1301/vesti.html",
+          "feedDirectory": "https://www.rts.rs/",
+          "status": "approved"
+        }
+      ]
+    },
+    "LV": {
+      "name": "Latvia",
+      "language": "lv",
+      "publishers": [
+        {
+          "name": "LSM",
+          "domain": "lsm.lv",
+          "feed": "https://www.lsm.lv/rss/",
+          "feedDirectory": "https://www.lsm.lv/",
+          "status": "approved"
+        }
+      ]
+    },
+    "EE": {
+      "name": "Estonia",
+      "language": "et",
+      "publishers": [
+        {
+          "name": "ERR",
+          "domain": "err.ee",
+          "feed": "https://www.err.ee/rss",
+          "feedDirectory": "https://www.err.ee/",
+          "status": "approved"
+        }
+      ]
+    },
+    "LT": {
+      "name": "Lithuania",
+      "language": "lt",
+      "publishers": [
+        {
+          "name": "LRT",
+          "domain": "lrt.lt",
+          "feed": "https://www.lrt.lt/?rss",
+          "feedDirectory": "https://www.lrt.lt/",
+          "status": "approved"
+        }
+      ]
+    },
+    "AM": {
+      "name": "Armenia",
+      "language": "hy",
+      "publishers": [
+        {
+          "name": "NEWS.am",
+          "domain": "news.am",
+          "feed": "https://news.am/arm/rss",
+          "feedDirectory": "https://news.am/hy/",
+          "status": "approved"
+        }
+      ]
     }
   }
 }
