@@ -76,6 +76,10 @@ jobs:
           python scripts/source-policy-smoke.py
           npm run check:syntax
           npm run check:data
+      - name: Rebase refreshed data onto latest main
+        run: |
+          git fetch origin main
+          git rebase --autostash origin/main
       - name: Commit refreshed headlines
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
