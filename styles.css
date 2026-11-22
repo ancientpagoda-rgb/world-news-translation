@@ -54,6 +54,7 @@ a { color: #82b7ff; }
 .policy { max-width: 820px; padding: 0 0 4rem; color: #d6deed; line-height: 1.7; }
 .policy h2 { margin-top: 2rem; color: #dbe7ff; }
 .policy-header { padding-bottom: 1rem; }
+.site-logo { display: block; width: min(320px, 100%); height: auto; margin-bottom: 1.2rem; border-radius: 14px; }
 .privacy-consent-banner { position: fixed; z-index: 100; right: 1rem; bottom: 1rem; left: 1rem; display: flex; gap: 1.25rem; align-items: center; justify-content: space-between; max-width: 1080px; margin: auto; padding: 1rem 1.15rem; border: 1px solid #526b9c; border-radius: 14px; background: #111a2df2; box-shadow: 0 12px 34px rgb(0 0 0 / .45); }
 .privacy-consent-banner h2 { margin: 0 0 .3rem; font-size: 1rem; }
 .privacy-consent-banner p { max-width: 720px; margin: 0; color: #cbd7eb; font-size: .9rem; line-height: 1.45; }
