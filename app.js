@@ -98,6 +98,12 @@ function speechLanguage(code) {
   return SPEECH_LANGUAGES[normalized] || normalized || 'en-US';
 }
 
+function isAppleMobileDevice() {
+  const userAgent = navigator.userAgent || '';
+  return /iPad|iPhone|iPod/.test(userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
 function announceSpeech(message) {
   const previous = status.textContent;
   status.textContent = message;
@@ -222,6 +228,13 @@ function speakToken(token, card) {
     }
     speakWithBrowserVoice(text, language);
   };
+  // iOS can reject speech started after an asynchronous WASM load because the
+  // call is no longer part of the original tap gesture. Use the native engine
+  // synchronously on Apple mobile devices; keep WASM as the fallback elsewhere.
+  if (isAppleMobileDevice() && synth && typeof window.SpeechSynthesisUtterance === 'function') {
+    speakWithBrowserVoice(text, language);
+    return;
+  }
   const baseLanguage = String(language).toLowerCase().split('-')[0];
   if (baseLanguage === 'he') {
     const hasHebrewBrowserVoice = [...(synth?.getVoices?.() || [])].some(voice => voice.lang?.toLowerCase().split('-')[0] === 'he');
