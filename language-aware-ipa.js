@@ -402,9 +402,13 @@
     });
   }
 
-  async function directIpa(text, language) {
+  async function directIpa(text, language, pronunciationText = "") {
     const lang = primaryLanguage(language);
     const script = scriptOf(text);
+    if (lang === "ja") {
+      const reading = String(pronunciationText || "").trim();
+      return reading && typeof window.toJapaneseIpa === "function" ? window.toJapaneseIpa(reading) : null;
+    }
     if (script === "latin" && ["es","pt","fr","de","it","tr","pl","cs","sk","sl","hr","bs","sr","id","ms","nl"].includes(lang)) return latinIpa(text, lang);
     if (script === "cyrillic" && ["ru","uk","bg","sr","mk"].includes(lang)) return cyrillicIpa(text, lang);
     if (script === "greek" && lang === "el") return greekIpa(text);
@@ -418,7 +422,7 @@
     return null;
   }
 
-  async function languageAwareIpaDisplay(input = "", language = "") {
+  async function languageAwareIpaDisplay(input = "", language = "", pronunciationText = "") {
     const text = String(input || "");
     if (!text) return "";
     const { body, suffix } = typeof splitSourceSuffix === "function" ? splitSourceSuffix(text) : { body: text, suffix: "" };
@@ -429,7 +433,7 @@
       return fallbackIpaDisplay(input, language);
     }
     try {
-      const direct = await directIpa(sourceText, language);
+      const direct = await directIpa(sourceText, language, pronunciationText);
       if (direct != null && direct !== sourceText) {
         counters.direct += 1;
         return `${direct}${suffix || ""}`.trim();
@@ -499,7 +503,7 @@
     const englishEl = row.querySelector(".news-en");
     if (!originalEl || !ipaEl || !englishEl) return previousHydrateNewsItem(row, originalText, language, preparedEnglish);
     const [ipaText, englishText] = await Promise.all([
-      languageAwareIpaDisplay(originalText, language),
+      languageAwareIpaDisplay(originalText, language, row.dataset.speechText || ""),
       preparedEnglish ? Promise.resolve(preparedEnglish) : toEnglishDisplay(originalText, language),
     ]);
     setCoordinatedWordColors(originalEl, originalText, ipaEl, ipaText || originalText, language);

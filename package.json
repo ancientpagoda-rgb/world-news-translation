@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "check:syntax": "node --check app.js",
-    "check:data": "node scripts/check-data.mjs"
+    "check:data": "node scripts/check-data.mjs",
+    "check:japanese-ipa": "node scripts/check-japanese-ipa.mjs"
   }
 }

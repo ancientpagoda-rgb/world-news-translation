@@ -364,7 +364,7 @@ function render() {
     if (Array.isArray(row.speechIpaGroups)) return;
     Promise.resolve(Array.isArray(row.speechIpaWords)
       ? row.speechIpaWords.join(' ')
-      : (window.toIpaDisplay ? window.toIpaDisplay(row.headline, row.language || '') : row.headline))
+      : (window.toIpaDisplay ? window.toIpaDisplay(row.headline, row.language || '', row.speechText || '') : row.headline))
       .then(value => {
         if (version !== renderVersion) return;
         const card = list.querySelector('[data-row-index="' + index + '"]');

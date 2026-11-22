@@ -76,6 +76,7 @@ jobs:
           python scripts/source-policy-smoke.py
           npm run check:syntax
           npm run check:data
+          npm run check:japanese-ipa
       - name: Rebase refreshed data onto latest main
         run: |
           git fetch origin main
