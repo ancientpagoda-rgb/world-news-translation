@@ -3,8 +3,8 @@
   let loaded = false;
 
   function loadAdSense() {
-    if (loaded || !config.enabled || !config.certifiedCmpConfigured || !config.clientId) return;
-    if (window.worldNewsPrivacy?.getChoice() !== 'advertising') return;
+    if (loaded || !config.enabled || !config.clientId) return;
+    if (config.certifiedCmpConfigured !== true && window.worldNewsPrivacy?.getChoice() !== 'advertising') return;
     loaded = true;
     const script = document.createElement('script');
     script.async = true;

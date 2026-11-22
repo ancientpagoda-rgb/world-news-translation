@@ -3,6 +3,7 @@
   const adsConfig = window.WORLD_NEWS_ADSENSE_CONFIG || {};
   const adsEnabled = Boolean(adsConfig.enabled && adsConfig.certifiedCmpConfigured && adsConfig.clientId);
   const adsConfigured = Boolean(adsConfig.clientId);
+  const googleCmpConfigured = Boolean(adsConfig.certifiedCmpConfigured);
 
   function readChoice() {
     try { return window.localStorage.getItem(STORAGE_KEY); } catch { return null; }
@@ -20,6 +21,10 @@
   }
 
   function showConsent(force = false) {
+    if (googleCmpConfigured) {
+      if (typeof window.googlefc?.showRevocationMessage === 'function') window.googlefc.showRevocationMessage();
+      return;
+    }
     if (!force && !adsEnabled) return;
     closeBanner();
     const banner = document.createElement('section');
@@ -48,6 +53,7 @@
   window.worldNewsPrivacy = {
     adsEnabled,
     adsConfigured,
+    googleCmpConfigured,
     getChoice: readChoice,
     showConsent,
     saveChoice,
@@ -58,7 +64,7 @@
     window.dispatchEvent(new CustomEvent('world-news-consent', {
       detail: { choice, ads: choice === 'advertising', adsEnabled }
     }));
-  } else if (adsEnabled) {
+  } else if (adsEnabled && !googleCmpConfigured) {
     showConsent();
   }
 })();
