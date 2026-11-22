@@ -1,6 +1,8 @@
 (() => {
   const STORAGE_KEY = 'world-news-privacy-consent-v1';
-  const adsEnabled = Boolean(window.WORLD_NEWS_ADSENSE_CLIENT);
+  const adsConfig = window.WORLD_NEWS_ADSENSE_CONFIG || {};
+  const adsEnabled = Boolean(adsConfig.enabled && adsConfig.certifiedCmpConfigured && adsConfig.clientId);
+  const adsConfigured = Boolean(adsConfig.clientId);
 
   function readChoice() {
     try { return window.localStorage.getItem(STORAGE_KEY); } catch { return null; }
@@ -9,7 +11,7 @@
   function saveChoice(choice) {
     try { window.localStorage.setItem(STORAGE_KEY, choice); } catch {}
     window.dispatchEvent(new CustomEvent('world-news-consent', {
-      detail: { choice, ads: choice === 'advertising', adsEnabled }
+      detail: { choice, ads: choice === 'advertising', adsEnabled, adsConfigured }
     }));
   }
 
@@ -45,6 +47,7 @@
 
   window.worldNewsPrivacy = {
     adsEnabled,
+    adsConfigured,
     getChoice: readChoice,
     showConsent,
     saveChoice,
