@@ -149,20 +149,35 @@ function stopActiveAudio() {
   }
 }
 
+function unlockAudioContext(context) {
+  try {
+    const silentBuffer = context.createBuffer(1, 1, 22050);
+    const silentSource = context.createBufferSource();
+    silentSource.buffer = silentBuffer;
+    silentSource.connect(context.destination);
+    silentSource.start(0);
+  } catch {}
+  return context.resume().catch(() => {});
+}
+
 function speakWithWasmEngine(text, language, fallback) {
   const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
   if (!AudioContextCtor) return false;
   if (!activeAudioContext) activeAudioContext = new AudioContextCtor();
   const context = activeAudioContext;
-  context.resume().catch(() => {});
+  const unlockPromise = unlockAudioContext(context);
+  stopActiveAudio();
   announceSpeech('Loading speech engine…');
   getEspeakEngine().then(async ({ module, engine }) => {
+    await unlockPromise;
     const voice = espeakVoice(language);
     await engine.loadVoice(voice);
     const result = engine.synthesize(text, { voice });
     const wav = module.encodeWav(result.samples, result.sampleRate);
     const bytes = wav.buffer.slice(wav.byteOffset, wav.byteOffset + wav.byteLength);
     const buffer = await context.decodeAudioData(bytes);
+    await context.resume();
+    if (context.state !== 'running') throw new Error('Audio context could not be resumed');
     stopActiveAudio();
     const source = context.createBufferSource();
     source.buffer = buffer;
